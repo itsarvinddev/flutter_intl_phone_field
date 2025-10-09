@@ -23,6 +23,7 @@ const List<Country> countries = [
       "zh_TW": "阿富汗",
       "tr": "Afganistan",
       "ro": "Afganistan",
+      "ru": "Афганистан",
       "ar": "أفغانستان",
       "fa": "افغانستان",
       "yue": "阿富汗"
@@ -54,6 +55,7 @@ const List<Country> countries = [
       "zh_TW": "奧蘭群島",
       "tr": "Åland",
       "ro": "Insulele Åland",
+      "ru": "Аландские острова",
       "ar": "جزر أولاند",
       "fa": "جزیره اولاند",
       "yue": "奧蘭群島"
@@ -85,6 +87,7 @@ const List<Country> countries = [
       "zh_TW": "阿爾巴尼亞",
       "tr": "Arnavutluk",
       "ro": "Albania",
+      "ru": "Албания",
       "ar": "ألبانيا",
       "fa": "آلبانی",
       "yue": "阿爾巴尼亞"
@@ -116,6 +119,7 @@ const List<Country> countries = [
       "zh_TW": "阿爾及利亞",
       "tr": "Cezayir",
       "ro": "Algeria",
+      "ru": "Алжир",
       "ar": "الجزائر",
       "fa": "الجزیره",
       "yue": "阿爾及利亞"
@@ -147,6 +151,7 @@ const List<Country> countries = [
       "zh_TW": "美屬薩摩亞",
       "tr": "Amerikan Samoası",
       "ro": "Samoa Americană",
+      "ru": "Американское Самоа",
       "ar": "ساموا الأمريكية",
       "fa": "ساموا آمریکا",
       "yue": "美屬薩摩亞"
@@ -178,6 +183,7 @@ const List<Country> countries = [
       "zh_TW": "安道爾",
       "tr": "Andora",
       "ro": "Andorra",
+      "ru": "Андорра",
       "ar": "أندورا",
       "fa": "آندورا",
       "yue": "安道爾"
@@ -209,6 +215,7 @@ const List<Country> countries = [
       "zh_TW": "安哥拉",
       "tr": "Angola",
       "ro": "Angola",
+      "ru": "Ангола",
       "ar": "أنغولا",
       "fa": "آنگولا",
       "yue": "安哥拉"
@@ -240,6 +247,7 @@ const List<Country> countries = [
       "zh_TW": "安圭拉",
       "tr": "Anguilla",
       "ro": "Anguilla",
+      "ru": "Ангилья",
       "ar": "أنغويلا",
       "fa": "آنگولیا",
       "yue": "安圭拉"
@@ -271,6 +279,7 @@ const List<Country> countries = [
       "zh_TW": "南極",
       "tr": "Antarktika",
       "ro": "Antarctica",
+      "ru": "Антарктида",
       "ar": "القارة القطبية الجنوبية",
       "fa": "قطب جنوب",
       "yue": "南极洲"
@@ -302,6 +311,7 @@ const List<Country> countries = [
       "zh_TW": "安提瓜和巴布達",
       "tr": "Antigua ve Barbuda",
       "ro": "Antigua şi Barbuda",
+      "ru": "Антигуа и Барбуда",
       "ar": "أنتيغوا وباربودا",
       "fa": "آنتیگوآ و باربودا",
       "yue": "安提瓜同巴布达"
@@ -333,6 +343,7 @@ const List<Country> countries = [
       "zh_TW": "阿根廷",
       "tr": "Arjantin",
       "ro": "Argentina",
+      "ru": "Аргентина",
       "ar": "الأرجنتين",
       "fa": "آرژانتین",
       "yue": "阿根廷"
@@ -364,6 +375,7 @@ const List<Country> countries = [
       "zh_TW": "亞美尼亞",
       "tr": "Ermenistan",
       "ro": "Armenia",
+      "ru": "Армения",
       "ar": "أرمينيا",
       "fa": "ارمنستان",
       "yue": "亞美尼亞"
@@ -395,6 +407,7 @@ const List<Country> countries = [
       "zh_TW": "阿魯巴",
       "tr": "Aruba",
       "ro": "Aruba",
+      "ru": "Аруба",
       "ar": "أروبا",
       "fa": "آروبا",
       "yue": "阿魯巴島"
@@ -426,6 +439,7 @@ const List<Country> countries = [
       "zh_TW": "澳州",
       "tr": "Avustralya",
       "ro": "Australia",
+      "ru": "Австралия",
       "ar": "أستراليا",
       "fa": "استرالیا",
       "yue": "澳洲"
@@ -457,6 +471,7 @@ const List<Country> countries = [
       "zh_TW": "奥地利",
       "tr": "Avusturya",
       "ro": "Austria",
+      "ru": "Австрия",
       "ar": "النمسا",
       "fa": "اتریش",
       "yue": "奧地利"
@@ -488,6 +503,7 @@ const List<Country> countries = [
       "zh_TW": "亞塞拜然",
       "tr": "Azerbaycan",
       "ro": "Azerbaidjan",
+      "ru": "Азербайджан",
       "ar": "أذربيجان",
       "fa": "آذربایجان",
       "yue": "阿塞拜疆"
@@ -519,6 +535,7 @@ const List<Country> countries = [
       "zh_TW": "巴哈馬",
       "tr": "Bahama",
       "ro": "Bahamas",
+      "ru": "Багамы",
       "ar": "باهاماس",
       "fa": "باهاماس",
       "yue": "巴哈馬"
@@ -550,6 +567,7 @@ const List<Country> countries = [
       "zh_TW": "巴林",
       "tr": "Bahreyn",
       "ro": "Bahrein",
+      "ru": "Бахрейн",
       "ar": "البحرين",
       "fa": "بحرین",
       "yue": "巴林"
@@ -581,6 +599,7 @@ const List<Country> countries = [
       "zh_TW": "孟加拉",
       "tr": "Bangladeş",
       "ro": "Bangladesh",
+      "ru": "Бангладеш",
       "ar": "بنغلاديش",
       "fa": "بنگلادش",
       "yue": "孟加拉囯"
@@ -612,6 +631,7 @@ const List<Country> countries = [
       "zh_TW": "巴巴多斯",
       "tr": "Barbados",
       "ro": "Barbados",
+      "ru": "Барбадос",
       "ar": "باربادوس",
       "fa": "باربادوس",
       "yue": "巴巴多斯"
@@ -643,6 +663,7 @@ const List<Country> countries = [
       "zh_TW": "白俄羅斯",
       "tr": "Belarus",
       "ro": "Belarus",
+      "ru": "Беларусь",
       "ar": "بيلاروس",
       "fa": "بلاروس",
       "yue": "白俄羅斯"
@@ -674,6 +695,7 @@ const List<Country> countries = [
       "zh_TW": "比利時",
       "tr": "Belçika",
       "ro": "Belgia",
+      "ru": "Бельгия",
       "ar": "بلجيكا",
       "fa": "بلژیک",
       "yue": "比利時"
@@ -705,6 +727,7 @@ const List<Country> countries = [
       "zh_TW": "伯利茲",
       "tr": "Belize",
       "ro": "Belize",
+      "ru": "Белиз",
       "ar": "بليز",
       "fa": "بليز",
       "yue": "伯利茲"
@@ -736,6 +759,7 @@ const List<Country> countries = [
       "zh_TW": "貝南",
       "tr": "Benin",
       "ro": "Benin",
+      "ru": "Бенин",
       "ar": "بنين",
       "fa": "بنين",
       "yue": "貝寧"
@@ -767,6 +791,7 @@ const List<Country> countries = [
       "zh_TW": "百慕達",
       "tr": "Bermuda",
       "ro": "Insulele Bermude",
+      "ru": "Бермудские острова",
       "ar": "برمودا",
       "fa": "برمودا",
       "yue": "百慕大"
@@ -798,6 +823,7 @@ const List<Country> countries = [
       "zh_TW": "不丹",
       "tr": "Bhutan",
       "ro": "Bhutan",
+      "ru": "Бутан",
       "ar": "بوتان",
       "fa": "بوتان",
       "yue": "不丹"
@@ -829,6 +855,7 @@ const List<Country> countries = [
       "zh_TW": "玻利維亞",
       "tr": "Bolivya",
       "ro": "Bolivia",
+      "ru": "Боливия",
       "ar": "بوليفيا",
       "fa": "بولیوی",
       "yue": "玻利維亞（多民族國家）"
@@ -860,6 +887,7 @@ const List<Country> countries = [
       "zh_TW": "波士尼亞和黑塞哥維那",
       "tr": "Bosna Hersek",
       "ro": "Bosnia și Herțegovina",
+      "ru": "Босния и Герцеговина",
       "ar": "البوسنة والهرسك",
       "fa": "بوسنی و هرزگوین",
       "yue": "波斯尼亞黑塞哥維那"
@@ -891,6 +919,7 @@ const List<Country> countries = [
       "zh_TW": "博茨瓦納",
       "tr": "Botsvana",
       "ro": "Botswana",
+      "ru": "Ботсвана",
       "ar": "بوتسوانا",
       "fa": "بوتسوانا",
       "yue": "博茨瓦納"
@@ -922,6 +951,7 @@ const List<Country> countries = [
       "zh_TW": "布維特島",
       "tr": "Bouvet Adası",
       "ro": "Insula Bouvet",
+      "ru": "Остров Буве",
       "ar": "جزيرة بوفيه",
       "fa": "جزیره بووه",
       "yue": "布维特岛"
@@ -953,6 +983,7 @@ const List<Country> countries = [
       "zh_TW": "巴西",
       "tr": "Brezilya",
       "ro": "Brazilia",
+      "ru": "Бразилия",
       "ar": "البرازيل",
       "fa": "برزیل",
       "yue": "巴西"
@@ -984,6 +1015,7 @@ const List<Country> countries = [
       "zh_TW": "英屬印度洋領地",
       "tr": "Britanya Hint Okyanusu Toprakları",
       "ro": "Teritoriul Britanic din Oceanul Indian",
+      "ru": "Британская территория в Индийском океане",
       "ar": "إقليم المحيط الهندي البريطاني",
       "fa": "سرزمین دریایی هند - بریتانیا",
       "yue": "英屬印度洋領土"
@@ -1015,6 +1047,7 @@ const List<Country> countries = [
       "zh_TW": "汶萊",
       "tr": "Bruney",
       "ro": "Brunei",
+      "ru": "Бруней",
       "ar": "بروناي",
       "fa": "برونئی",
       "yue": "文萊達魯薩蘭國"
@@ -1046,6 +1079,7 @@ const List<Country> countries = [
       "zh_TW": "保加利亞",
       "tr": "Bulgaristan",
       "ro": "Bulgaria",
+      "ru": "Болгария",
       "ar": "بلغاريا",
       "fa": "بلغارستان",
       "yue": "保加利亞"
@@ -1077,6 +1111,7 @@ const List<Country> countries = [
       "zh_TW": "布吉納法索",
       "tr": "Burkina Faso",
       "ro": "Burkina Faso",
+      "ru": "Буркина-Фасо",
       "ar": "بوركينا فاسو",
       "fa": "بورکینافاسو",
       "yue": "布基納法索"
@@ -1108,6 +1143,7 @@ const List<Country> countries = [
       "zh_TW": "蒲隆地",
       "tr": "Burundi",
       "ro": "Burundi",
+      "ru": "Бурунди",
       "ar": "بوروندي",
       "fa": "بوروندی",
       "yue": "蒲隆地"
@@ -1139,6 +1175,7 @@ const List<Country> countries = [
       "zh_TW": "柬埔寨",
       "tr": "Kamboçya",
       "ro": "Cambogia",
+      "ru": "Камбоджа",
       "ar": "كمبوديا",
       "fa": "کامبوج",
       "yue": "柬埔寨"
@@ -1170,6 +1207,7 @@ const List<Country> countries = [
       "zh_TW": "喀麥隆",
       "tr": "Kamerun",
       "ro": "Camerun",
+      "ru": "Камерун",
       "ar": "الكاميرون",
       "fa": "کامرون",
       "yue": "喀 麥 隆"
@@ -1201,6 +1239,7 @@ const List<Country> countries = [
       "zh_TW": "加拿大",
       "tr": "Kanada",
       "ro": "Canada",
+      "ru": "Канада",
       "ar": "كندا",
       "fa": "کانادا",
       "yue": "加拿大"
@@ -1232,6 +1271,7 @@ const List<Country> countries = [
       "zh_TW": "開曼群島",
       "tr": "Cayman Adaları",
       "ro": "Insulele Cayman",
+      "ru": "Острова Кайман",
       "ar": "جزر كايمان",
       "fa": "جزایر کیمن",
       "yue": "開曼群島"
@@ -1263,6 +1303,7 @@ const List<Country> countries = [
       "zh_TW": "中非共和國",
       "tr": "Orta Afrika Cumhuriyeti",
       "ro": "Republica Centrafricană",
+      "ru": "ЦАР",
       "ar": "جمهورية أفريقيا الوسطى",
       "fa": "جمهوری افریقای مرکزی",
       "yue": "中非共和國"
@@ -1294,6 +1335,7 @@ const List<Country> countries = [
       "zh_TW": "查德",
       "tr": "Çad",
       "ro": "Ciad",
+      "ru": "Чад",
       "ar": "تشاد",
       "fa": "چاد",
       "yue": "乍得"
@@ -1325,6 +1367,7 @@ const List<Country> countries = [
       "zh_TW": "智利",
       "tr": "Şili",
       "ro": "Chile",
+      "ru": "Чили",
       "ar": "تشيلي",
       "fa": "شیلی",
       "yue": "智利"
@@ -1356,6 +1399,7 @@ const List<Country> countries = [
       "zh_TW": "中國",
       "tr": "Çin",
       "ro": "China",
+      "ru": "Китай",
       "ar": "الصين",
       "fa": "چین",
       "yue": "中國"
@@ -1387,6 +1431,7 @@ const List<Country> countries = [
       "zh_TW": "聖誕島",
       "tr": "Christmas Adası",
       "ro": "Insula Crăciunului",
+      "ru": "Остров Рождества (Австралия)",
       "ar": "جزيرة عيد الميلاد",
       "fa": "جزیره کریسمس",
       "yue": "聖誕島"
@@ -1418,6 +1463,7 @@ const List<Country> countries = [
       "zh_TW": "科科斯（基林）群島",
       "tr": "Cocos (Keyling) Adaları",
       "ro": "Insulele Cocos",
+      "ru": "Кокосовые (Килинг) острова",
       "ar": "جزر كوكوس",
       "fa": "جزایر کوکوس",
       "yue": "可可島（基林）群島"
@@ -1449,6 +1495,7 @@ const List<Country> countries = [
       "zh_TW": "哥倫比亞",
       "tr": "Kolombiya",
       "ro": "Columbia",
+      "ru": "Колумбия",
       "ar": "كولومبيا",
       "fa": "کلمبیا",
       "yue": "哥倫比亞"
@@ -1480,6 +1527,7 @@ const List<Country> countries = [
       "zh_TW": "科摩羅",
       "tr": "Komor Adaları",
       "ro": "Comore",
+      "ru": "Коморы",
       "ar": "جزر القمر",
       "fa": "جزیره کومور",
       "yue": "科摩羅"
@@ -1511,6 +1559,7 @@ const List<Country> countries = [
       "zh_TW": "剛果共和國（布拉柴維爾）",
       "tr": "Kongo Cumhuriyeti",
       "ro": "Republica Congo",
+      "ru": "Конго",
       "ar": "جمهورية الكونغو",
       "fa": "جمهوری کنگو",
       "yue": "剛果（共和國）"
@@ -1542,6 +1591,7 @@ const List<Country> countries = [
       "zh_TW": "剛果民主共和國（金沙薩）",
       "tr": "Kongo Demokratik Cumhuriyeti",
       "ro": "Republica Democrată Congo",
+      "ru": "ДР Конго",
       "ar": "جمهورية الكونغو الديمقراطية",
       "fa": "جمهوری دموکراتیک کنگو",
       "yue": "剛果（金）"
@@ -1573,6 +1623,7 @@ const List<Country> countries = [
       "zh_TW": "庫克群島",
       "tr": "Cook Adaları",
       "ro": "Insulele Cook",
+      "ru": "Острова Кука",
       "ar": "جزر كوك",
       "fa": "جزایر کوک",
       "yue": "庫克群島"
@@ -1604,6 +1655,7 @@ const List<Country> countries = [
       "zh_TW": "哥斯大黎加",
       "tr": "Kosta Rika",
       "ro": "Costa Rica",
+      "ru": "Коста-Рика",
       "ar": "كوستاريكا",
       "fa": "کاستاریکا",
       "yue": "哥斯達黎加"
@@ -1635,6 +1687,7 @@ const List<Country> countries = [
       "zh_TW": "象牙海岸",
       "tr": "Fildişi Kıyısı",
       "ro": "Coasta de fildeș",
+      "ru": "Кот-д’Ивуар",
       "ar": "ساحل العاج",
       "fa": "ساحل عاج",
       "yue": "科特迪瓦"
@@ -1666,6 +1719,7 @@ const List<Country> countries = [
       "zh_TW": "克羅埃西亞",
       "tr": "Hırvatistan",
       "ro": "Croația",
+      "ru": "Хорватия",
       "ar": "كرواتيا",
       "fa": "کرواسی",
       "yue": "克羅地亞"
@@ -1697,6 +1751,7 @@ const List<Country> countries = [
       "zh_TW": "古巴",
       "tr": "Küba",
       "ro": "Cuba",
+      "ru": "Куба",
       "ar": "كوبا",
       "fa": "كوبا",
       "yue": "古巴"
@@ -1728,6 +1783,7 @@ const List<Country> countries = [
       "zh_TW": "塞普勒斯",
       "tr": "Kıbrıs",
       "ro": "Cipru",
+      "ru": "Кипр",
       "ar": "قبرص",
       "fa": "قبرس",
       "yue": "塞浦路斯"
@@ -1759,6 +1815,7 @@ const List<Country> countries = [
       "zh_TW": "捷克",
       "tr": "Çek Cumhuriyeti",
       "ro": "Cehia",
+      "ru": "Чехия",
       "ar": "جمهورية التشيك",
       "fa": "جمهوری چک",
       "yue": "捷克共和國"
@@ -1790,6 +1847,7 @@ const List<Country> countries = [
       "zh_TW": "丹麥",
       "tr": "Danimarka",
       "ro": "Danemarca",
+      "ru": "Дания",
       "ar": "الدنمارك",
       "fa": "دانمارک",
       "yue": "丹麥"
@@ -1821,6 +1879,7 @@ const List<Country> countries = [
       "zh_TW": "吉布地",
       "tr": "Cibuti",
       "ro": "Djibouti",
+      "ru": "Джибути",
       "ar": "جيبوتي",
       "fa": "جیبوتی",
       "yue": "吉布提"
@@ -1852,6 +1911,7 @@ const List<Country> countries = [
       "zh_TW": "多明尼加",
       "tr": "Dominika",
       "ro": "Dominica",
+      "ru": "Доминика",
       "ar": "دومينيكا",
       "fa": "دومينيكا",
       "yue": "多米尼加"
@@ -1883,6 +1943,7 @@ const List<Country> countries = [
       "zh_TW": "多明尼加共和國",
       "tr": "Dominik Cumhuriyeti",
       "ro": "Republica Dominicană",
+      "ru": "Доминикана",
       "ar": "جمهورية الدومينيكان",
       "fa": "جمهوری دومنیکن",
       "yue": "多明尼加共和國"
@@ -1914,6 +1975,7 @@ const List<Country> countries = [
       "zh_TW": "厄瓜多",
       "tr": "Ekvador",
       "ro": "Ecuador",
+      "ru": "Эквадор",
       "ar": "الإكوادور",
       "fa": "اكوادور",
       "yue": "厄瓜多爾"
@@ -1945,6 +2007,7 @@ const List<Country> countries = [
       "zh_TW": "埃及",
       "tr": "Mısır",
       "ro": "Egipt",
+      "ru": "Египет",
       "ar": "مصر",
       "fa": "مصر",
       "yue": "埃及"
@@ -1976,6 +2039,7 @@ const List<Country> countries = [
       "zh_TW": "薩爾瓦多",
       "tr": "El Salvador",
       "ro": "Salvador",
+      "ru": "Сальвадор",
       "ar": "السلفادور",
       "fa": "ال سالوادور",
       "yue": "薩爾瓦多"
@@ -2007,6 +2071,7 @@ const List<Country> countries = [
       "zh_TW": "赤道幾內亞",
       "tr": "Ekvator Ginesi",
       "ro": "Guineea Ecuatorială",
+      "ru": "Экваториальная Гвинея",
       "ar": "غينيا الاستوائية",
       "fa": "گینه استوایی",
       "yue": "赤道幾內亞"
@@ -2038,6 +2103,7 @@ const List<Country> countries = [
       "zh_TW": "厄立特裡亞",
       "tr": "Eritre",
       "ro": "Eritreea",
+      "ru": "Эритрея",
       "ar": "إريتريا",
       "fa": "اریتره",
       "yue": "厄立特里亞"
@@ -2069,6 +2135,7 @@ const List<Country> countries = [
       "zh_TW": "愛沙尼亞",
       "tr": "Estonya",
       "ro": "Estonia",
+      "ru": "Эстония",
       "ar": "إستونيا",
       "fa": "استونی",
       "yue": "愛沙尼亞"
@@ -2100,6 +2167,7 @@ const List<Country> countries = [
       "zh_TW": "伊索比亞",
       "tr": "Etiyopya",
       "ro": "Etiopia",
+      "ru": "Эфиопия",
       "ar": "إثيوبيا",
       "fa": "اتیوپی",
       "yue": "埃塞俄比亞"
@@ -2131,6 +2199,7 @@ const List<Country> countries = [
       "zh_TW": "福克蘭群島",
       "tr": "Falkland Adaları",
       "ro": "Insulele Falklands",
+      "ru": "Фолклендские острова",
       "ar": "جزر فوكلاند",
       "fa": "جزایر فالکلند",
       "yue": "福克蘭群島（馬爾維納斯群島）"
@@ -2162,6 +2231,7 @@ const List<Country> countries = [
       "zh_TW": "法羅群島",
       "tr": "Faroe Adaları",
       "ro": "Insulele Feroe",
+      "ru": "Фарерские острова",
       "ar": "جزر فارو",
       "fa": "جزایر فارو",
       "yue": "法羅群島"
@@ -2193,6 +2263,7 @@ const List<Country> countries = [
       "zh_TW": "斐濟",
       "tr": "Fiji",
       "ro": "Fiji",
+      "ru": "Фиджи",
       "ar": "فيجي",
       "fa": "فيجي",
       "yue": "斐濟"
@@ -2224,6 +2295,7 @@ const List<Country> countries = [
       "zh_TW": "芬蘭",
       "tr": "Finlandiya",
       "ro": "Finlanda",
+      "ru": "Финляндия",
       "ar": "فنلندا",
       "fa": "فنلاند",
       "yue": "芬蘭"
@@ -2255,6 +2327,7 @@ const List<Country> countries = [
       "zh_TW": "法國",
       "tr": "Fransa",
       "ro": "Franța",
+      "ru": "Франция",
       "ar": "فرنسا",
       "fa": "فرانسه",
       "yue": "法國"
@@ -2286,6 +2359,7 @@ const List<Country> countries = [
       "zh_TW": "法屬蓋亞那",
       "tr": "Fransız Guyanası",
       "ro": "Guiana Franceză",
+      "ru": "Французская Гвиана",
       "ar": "غويانا الفرنسية",
       "fa": "گویان فرانسه",
       "yue": "法屬圭亞那"
@@ -2317,6 +2391,7 @@ const List<Country> countries = [
       "zh_TW": "法屬玻里尼西亞",
       "tr": "Fransız Polinezyası",
       "ro": "Polinezia Franceză",
+      "ru": "Французская Полинезия",
       "ar": "بولينزيا الفرنسية",
       "fa": "پلی‌نزی فرانسه",
       "yue": "法屬波利尼西亞"
@@ -2348,6 +2423,7 @@ const List<Country> countries = [
       "zh_TW": "法屬南部屬地",
       "tr": "Fransız Güney ve Antarktika Toprakları",
       "ro": "Teritoriile australe și antarctice franceze",
+      "ru": "Французские Южные и Антарктические территории",
       "ar": "أراض فرنسية جنوبية وأنتارتيكية",
       "fa": "سرزمین‌های جنوبی فرانسه",
       "yue": "法國南部領土"
@@ -2379,6 +2455,7 @@ const List<Country> countries = [
       "zh_TW": "加彭",
       "tr": "Gabon",
       "ro": "Gabon",
+      "ru": "Габон",
       "ar": "الغابون",
       "fa": "گابن",
       "yue": "加蓬"
@@ -2410,6 +2487,7 @@ const List<Country> countries = [
       "zh_TW": "岡比亞",
       "tr": "Gambiya",
       "ro": "Gambia",
+      "ru": "Гамбия",
       "ar": "غامبيا",
       "fa": "گامبیا",
       "yue": "岡比亞"
@@ -2441,6 +2519,7 @@ const List<Country> countries = [
       "zh_TW": "喬治亞",
       "tr": "Gürcistan",
       "ro": "Georgia",
+      "ru": "Грузия",
       "ar": "جورجيا",
       "fa": "گرجستان",
       "yue": "格魯吉亞"
@@ -2472,6 +2551,7 @@ const List<Country> countries = [
       "zh_TW": "德國",
       "tr": "Almanya",
       "ro": "Germania",
+      "ru": "Германия",
       "ar": "ألمانيا",
       "fa": "آلمان",
       "yue": "德國"
@@ -2503,6 +2583,7 @@ const List<Country> countries = [
       "zh_TW": "迦納",
       "tr": "Gana",
       "ro": "Ghana",
+      "ru": "Гана",
       "ar": "غانا",
       "fa": "غنا",
       "yue": "加納"
@@ -2534,6 +2615,7 @@ const List<Country> countries = [
       "zh_TW": "直布羅陀",
       "tr": "Cebelitarık",
       "ro": "Gibraltar",
+      "ru": "Гибралтар",
       "ar": "جبل طارق",
       "fa": "جبل الطارق",
       "yue": "直布羅陀"
@@ -2565,6 +2647,7 @@ const List<Country> countries = [
       "zh_TW": "希臘",
       "tr": "Yunanistan",
       "ro": "Grecia",
+      "ru": "Греция",
       "ar": "اليونان",
       "fa": "یونان",
       "yue": "希臘"
@@ -2596,6 +2679,7 @@ const List<Country> countries = [
       "zh_TW": "格陵蘭",
       "tr": "Grönland",
       "ro": "Groenlanda",
+      "ru": "Гренландия",
       "ar": "جرينلاند",
       "fa": "گرینلند",
       "yue": "格陵蘭"
@@ -2627,6 +2711,7 @@ const List<Country> countries = [
       "zh_TW": "格林納達",
       "tr": "Grenada",
       "ro": "Grenada",
+      "ru": "Гренада",
       "ar": "غرينادا",
       "fa": "گرنادا",
       "yue": "格林納達"
@@ -2658,6 +2743,7 @@ const List<Country> countries = [
       "zh_TW": "瓜地洛普",
       "tr": "Guadeloupe",
       "ro": "Guadelupa",
+      "ru": "Гваделупа",
       "ar": "غوادلوب",
       "fa": "گوادلوپ",
       "yue": "瓜德罗普"
@@ -2689,6 +2775,7 @@ const List<Country> countries = [
       "zh_TW": "關島",
       "tr": "Guam",
       "ro": "Guam",
+      "ru": "Гуам",
       "ar": "غوام",
       "fa": "گوام",
       "yue": "關島"
@@ -2720,6 +2807,7 @@ const List<Country> countries = [
       "zh_TW": "瓜地馬拉",
       "tr": "Guatemala",
       "ro": "Guatemala",
+      "ru": "Гватемала",
       "ar": "غواتيمالا",
       "fa": "گواتمالا",
       "yue": "危地馬拉"
@@ -2751,6 +2839,7 @@ const List<Country> countries = [
       "zh_TW": "根息島",
       "tr": "Guernsey",
       "ro": "Guernsey",
+      "ru": "Гернси",
       "ar": "غيرنزي",
       "fa": "گرنزی",
       "yue": "格恩西島"
@@ -2782,6 +2871,7 @@ const List<Country> countries = [
       "zh_TW": "幾內亞",
       "tr": "Gine",
       "ro": "Guinea",
+      "ru": "Гвинея",
       "ar": "غينيا",
       "fa": "گینه",
       "yue": "幾內亞"
@@ -2813,6 +2903,7 @@ const List<Country> countries = [
       "zh_TW": "幾內亞比索",
       "tr": "Gine-Bissau",
       "ro": "Guineea-Bissau",
+      "ru": "Гвинея-Бисау",
       "ar": "غينيا بيساو",
       "fa": "گینه بیسائو",
       "yue": "幾內亞比紹"
@@ -2844,6 +2935,7 @@ const List<Country> countries = [
       "zh_TW": "蓋亞那",
       "tr": "Guyana",
       "ro": "Guyana",
+      "ru": "Гайана",
       "ar": "غيانا",
       "fa": "گویان",
       "yue": "圭亞那"
@@ -2875,6 +2967,7 @@ const List<Country> countries = [
       "zh_TW": "海地",
       "tr": "Haiti",
       "ro": "Haiti",
+      "ru": "Гаити",
       "ar": "هايتي",
       "fa": "هائیتی",
       "yue": "海地"
@@ -2906,6 +2999,7 @@ const List<Country> countries = [
       "zh_TW": "赫德暨麥當勞群島",
       "tr": "Heard Adası ve McDonald Adaları",
       "ro": "Insula Heard și Insulele McDonald",
+      "ru": "Остров Херд и острова Макдональд",
       "ar": "جزيرة هيرد وجزر ماكدونالد",
       "fa": "جزیره هرد و جزایر مک‌دونالد",
       "yue": "赫德岛同麦克唐纳群岛"
@@ -2937,6 +3031,7 @@ const List<Country> countries = [
       "zh_TW": "梵蒂岡",
       "tr": "Vatikan",
       "ro": "Vatican",
+      "ru": "Ватикан",
       "ar": "الفاتيكان",
       "fa": "واتیکان",
       "yue": "梵蒂岡城國"
@@ -2968,6 +3063,7 @@ const List<Country> countries = [
       "zh_TW": "宏都拉斯",
       "tr": "Honduras",
       "ro": "Honduras",
+      "ru": "Гондурас",
       "ar": "هندوراس",
       "fa": "هندوراس",
       "yue": "洪都拉斯"
@@ -2999,6 +3095,7 @@ const List<Country> countries = [
       "zh_TW": "香港",
       "tr": "Hong Kong",
       "ro": "Hong Kong",
+      "ru": "Гонконг",
       "ar": "هونغ كونغ",
       "fa": "هنگ کنگ",
       "yue": "香港"
@@ -3030,6 +3127,7 @@ const List<Country> countries = [
       "zh_TW": "匈牙利",
       "tr": "Macaristan",
       "ro": "Ungaria",
+      "ru": "Венгрия",
       "ar": "المجر",
       "fa": "مجارستان",
       "yue": "匈牙利"
@@ -3061,6 +3159,7 @@ const List<Country> countries = [
       "zh_TW": "冰島",
       "tr": "İzlanda",
       "ro": "Islanda",
+      "ru": "Исландия",
       "ar": "آيسلندا",
       "fa": "ایسلند",
       "yue": "冰島"
@@ -3092,6 +3191,7 @@ const List<Country> countries = [
       "zh_TW": "印度",
       "tr": "Hindistan",
       "ro": "India",
+      "ru": "Индия",
       "ar": "الهند",
       "fa": "هند",
       "yue": "印度"
@@ -3123,6 +3223,7 @@ const List<Country> countries = [
       "zh_TW": "印尼",
       "tr": "Endonezya",
       "ro": "Indonezia",
+      "ru": "Индонезия",
       "ar": "إندونيسيا",
       "fa": "اندونزی",
       "yue": "印尼"
@@ -3154,6 +3255,7 @@ const List<Country> countries = [
       "zh_TW": "伊朗",
       "tr": "İran",
       "ro": "Iran",
+      "ru": "Иран",
       "ar": "إيران",
       "fa": "ایران",
       "yue": "伊朗"
@@ -3185,6 +3287,7 @@ const List<Country> countries = [
       "zh_TW": "伊拉克",
       "tr": "Irak",
       "ro": "Irak",
+      "ru": "Ирак",
       "ar": "العراق",
       "fa": "عراق",
       "yue": "伊拉克"
@@ -3216,6 +3319,7 @@ const List<Country> countries = [
       "zh_TW": "愛爾蘭",
       "tr": "İrlanda",
       "ro": "Irlanda",
+      "ru": "Ирландия",
       "ar": "أيرلندا",
       "fa": "ایرلند",
       "yue": "愛爾蘭"
@@ -3247,6 +3351,7 @@ const List<Country> countries = [
       "zh_TW": "曼島",
       "tr": "Man Adası",
       "ro": "Insula Man",
+      "ru": "Остров Мэн",
       "ar": "جزيرة مان",
       "fa": "جزیره مان",
       "yue": "马伊岛"
@@ -3278,6 +3383,7 @@ const List<Country> countries = [
       "zh_TW": "以色列",
       "tr": "İsrail",
       "ro": "Israel",
+      "ru": "Израиль",
       "ar": "إسرائيل",
       "fa": "إسرائيل",
       "yue": "以色列"
@@ -3309,6 +3415,7 @@ const List<Country> countries = [
       "zh_TW": "義大利",
       "tr": "İtalya",
       "ro": "Italia",
+      "ru": "Италия",
       "ar": "إيطاليا",
       "fa": "ایتالیا",
       "yue": "意大利"
@@ -3340,6 +3447,7 @@ const List<Country> countries = [
       "zh_TW": "牙買加",
       "tr": "Jamaika",
       "ro": "Jamaica",
+      "ru": "Ямайка",
       "ar": "جامايكا",
       "fa": "جامائیکا",
       "yue": "牙買加"
@@ -3371,6 +3479,7 @@ const List<Country> countries = [
       "zh_TW": "日本",
       "tr": "Japonya",
       "ro": "Japonia",
+      "ru": "Япония",
       "ar": "اليابان",
       "fa": "ژاپن",
       "yue": "日本"
@@ -3402,6 +3511,7 @@ const List<Country> countries = [
       "zh_TW": "澤西",
       "tr": "Jersey",
       "ro": "Jersey",
+      "ru": "Джерси (остров)",
       "ar": "جيرزي",
       "fa": "جرزی",
       "yue": "澤西"
@@ -3433,6 +3543,7 @@ const List<Country> countries = [
       "zh_TW": "約旦",
       "tr": "Mavera-i Ürdün",
       "ro": "Iordania",
+      "ru": "Иордания",
       "ar": "الأردن",
       "fa": "اردن",
       "yue": "約旦"
@@ -3464,6 +3575,7 @@ const List<Country> countries = [
       "zh_TW": "哈薩克",
       "tr": "Kazakistan",
       "ro": "Kazahstan",
+      "ru": "Казахстан",
       "ar": "كازاخستان",
       "fa": "قزاقستان",
       "yue": "哈薩克斯坦"
@@ -3495,6 +3607,7 @@ const List<Country> countries = [
       "zh_TW": "肯亞",
       "tr": "Kenya",
       "ro": "Kenya",
+      "ru": "Кения",
       "ar": "كينيا",
       "fa": "كنيا",
       "yue": "肯雅"
@@ -3526,6 +3639,7 @@ const List<Country> countries = [
       "zh_TW": "吉里巴斯",
       "tr": "Kiribati",
       "ro": "Kiribati",
+      "ru": "Кирибати",
       "ar": "كيريباتي",
       "fa": "کیریباتی",
       "yue": "基里巴斯"
@@ -3557,6 +3671,7 @@ const List<Country> countries = [
       "zh_TW": "北韓",
       "tr": "Kuzey Kore",
       "ro": "Coreea de Nord",
+      "ru": "КНДР",
       "ar": "كوريا الشمالية",
       "fa": "کره شمالی",
       "yue": "朝鮮（朝鮮民主主義人民共咊囯）"
@@ -3588,6 +3703,7 @@ const List<Country> countries = [
       "zh_TW": "南韓",
       "tr": "Güney Kore",
       "ro": "Coreea de Sud",
+      "ru": "Корея",
       "ar": "كوريا الجنوبية",
       "fa": "کره جنوبی",
       "yue": "韓國（大韓民國）"
@@ -3619,6 +3735,7 @@ const List<Country> countries = [
       "zh_TW": "科威特",
       "tr": "Kuveyt",
       "ro": "Kuweit",
+      "ru": "Кувейт",
       "ar": "الكويت",
       "fa": "کویت",
       "yue": "科威特"
@@ -3650,6 +3767,7 @@ const List<Country> countries = [
       "zh_TW": "吉爾吉斯",
       "tr": "Kırgızistan",
       "ro": "Kîrgîzstan",
+      "ru": "Кыргызстан",
       "ar": "قيرغيزستان",
       "fa": "قرقیزستان",
       "yue": "吉爾吉斯斯坦"
@@ -3681,6 +3799,7 @@ const List<Country> countries = [
       "zh_TW": "寮國",
       "tr": "Laos",
       "ro": "Laos",
+      "ru": "Лаос",
       "ar": "لاوس",
       "fa": "لائوس",
       "yue": "老撾人民民主共和國"
@@ -3712,6 +3831,7 @@ const List<Country> countries = [
       "zh_TW": "拉托維亞",
       "tr": "Letonya",
       "ro": "Letonia",
+      "ru": "Латвия",
       "ar": "لاتفيا",
       "fa": "لتونی",
       "yue": "拉脫維亞"
@@ -3743,6 +3863,7 @@ const List<Country> countries = [
       "zh_TW": "黎巴嫩",
       "tr": "Lübnan",
       "ro": "Liban",
+      "ru": "Ливан",
       "ar": "لبنان",
       "fa": "لبنان",
       "yue": "黎巴嫩"
@@ -3774,6 +3895,7 @@ const List<Country> countries = [
       "zh_TW": "賴索托",
       "tr": "Lesotho",
       "ro": "Lesotho",
+      "ru": "Лесото",
       "ar": "ليسوتو",
       "fa": "لسوتو",
       "yue": "萊索托"
@@ -3805,6 +3927,7 @@ const List<Country> countries = [
       "zh_TW": "賴比瑞亞",
       "tr": "Liberya",
       "ro": "Liberia",
+      "ru": "Либерия",
       "ar": "ليبيريا",
       "fa": "لیبریا",
       "yue": "利比里亞"
@@ -3836,6 +3959,7 @@ const List<Country> countries = [
       "zh_TW": "利比亞",
       "tr": "Libya",
       "ro": "Libia",
+      "ru": "Ливия",
       "ar": "ليبيا",
       "fa": "لیبی",
       "yue": "利比亞"
@@ -3867,6 +3991,7 @@ const List<Country> countries = [
       "zh_TW": "列支敦斯登",
       "tr": "Lihtenştayn",
       "ro": "Liechtenstein",
+      "ru": "Лихтенштейн",
       "ar": "ليختنشتاين",
       "fa": "لیختن‌اشتاین",
       "yue": "列支敦士登"
@@ -3898,6 +4023,7 @@ const List<Country> countries = [
       "zh_TW": "立陶宛",
       "tr": "Litvanya",
       "ro": "Lituania",
+      "ru": "Литва",
       "ar": "ليتوانيا",
       "fa": "لیتوانی",
       "yue": "立陶宛"
@@ -3929,6 +4055,7 @@ const List<Country> countries = [
       "zh_TW": "盧森堡",
       "tr": "Lüksemburg",
       "ro": "Luxemburg",
+      "ru": "Люксембург",
       "ar": "لوكسمبورغ",
       "fa": "لوکزامبورگ",
       "yue": "盧森堡"
@@ -3960,6 +4087,7 @@ const List<Country> countries = [
       "zh_TW": "澳門",
       "tr": "Makao",
       "ro": "Macao",
+      "ru": "Макао",
       "ar": "ماكاو",
       "fa": "ماكائو",
       "yue": "澳門"
@@ -3991,6 +4119,7 @@ const List<Country> countries = [
       "zh_TW": "北馬其頓",
       "tr": "Kuzey Makedonya",
       "ro": "Macedonia de Nord",
+      "ru": "Северная Македония",
       "ar": "مقدونيا",
       "fa": "مقدونیه",
       "yue": "馬其頓（前南斯拉夫共和國）"
@@ -4022,6 +4151,7 @@ const List<Country> countries = [
       "zh_TW": "馬達加斯加",
       "tr": "Madagaskar",
       "ro": "Madagascar",
+      "ru": "Мадагаскар",
       "ar": "مدغشقر",
       "fa": "ماداگاسکار",
       "yue": "馬達加斯加"
@@ -4053,6 +4183,7 @@ const List<Country> countries = [
       "zh_TW": "馬拉威",
       "tr": "Malavi",
       "ro": "Malawi",
+      "ru": "Малави",
       "ar": "مالاوي",
       "fa": "مالاوی",
       "yue": "馬拉維"
@@ -4084,6 +4215,7 @@ const List<Country> countries = [
       "zh_TW": "馬來西亞",
       "tr": "Malezya",
       "ro": "Malaezia",
+      "ru": "Малайзия",
       "ar": "ماليزيا",
       "fa": "مالزی",
       "yue": "馬來西亞"
@@ -4115,6 +4247,7 @@ const List<Country> countries = [
       "zh_TW": "馬爾地夫",
       "tr": "Maldivler",
       "ro": "Maldive",
+      "ru": "Мальдивы",
       "ar": "جزر المالديف",
       "fa": "مالدیو",
       "yue": "馬爾代夫"
@@ -4146,6 +4279,7 @@ const List<Country> countries = [
       "zh_TW": "馬里",
       "tr": "Mali",
       "ro": "Mali",
+      "ru": "Мали",
       "ar": "مالي",
       "fa": "مالی",
       "yue": "馬里"
@@ -4177,6 +4311,7 @@ const List<Country> countries = [
       "zh_TW": "馬爾他",
       "tr": "Malta",
       "ro": "Malta",
+      "ru": "Мальта",
       "ar": "مالطا",
       "fa": "مالت",
       "yue": "馬耳他"
@@ -4208,6 +4343,7 @@ const List<Country> countries = [
       "zh_TW": "馬紹爾群島",
       "tr": "Marshall Adaları",
       "ro": "Insulele Marshall",
+      "ru": "Маршалловы Острова",
       "ar": "جزر مارشال",
       "fa": "جزایر مارشال",
       "yue": "馬紹爾群島"
@@ -4239,6 +4375,7 @@ const List<Country> countries = [
       "zh_TW": "馬丁尼克",
       "tr": "Martinique",
       "ro": "Martinica",
+      "ru": "Мартиника",
       "ar": "مارتينيك",
       "fa": "مارتینیک",
       "yue": "马提尼克"
@@ -4270,6 +4407,7 @@ const List<Country> countries = [
       "zh_TW": "茅利塔尼亞",
       "tr": "Moritanya",
       "ro": "Mauritania",
+      "ru": "Мавритания",
       "ar": "موريتانيا",
       "fa": "موریتانی",
       "yue": "毛里塔尼亞"
@@ -4301,6 +4439,7 @@ const List<Country> countries = [
       "zh_TW": "模里西斯",
       "tr": "Mauritius",
       "ro": "Mauritius",
+      "ru": "Маврикий",
       "ar": "موريشيوس",
       "fa": "موریس",
       "yue": "毛里求斯"
@@ -4332,6 +4471,7 @@ const List<Country> countries = [
       "zh_TW": "馬約特",
       "tr": "Mayotte",
       "ro": "Mayotte",
+      "ru": "Майотта",
       "ar": "مايوت",
       "fa": "مایوت",
       "yue": "馬約特"
@@ -4363,6 +4503,7 @@ const List<Country> countries = [
       "zh_TW": "墨西哥",
       "tr": "Meksika",
       "ro": "Mexic",
+      "ru": "Мексика",
       "ar": "المكسيك",
       "fa": "مکزیک",
       "yue": "墨西哥"
@@ -4394,6 +4535,7 @@ const List<Country> countries = [
       "zh_TW": "密克羅尼西亞",
       "tr": "Mikronezya",
       "ro": "Micronezia",
+      "ru": "Микронезия",
       "ar": "ولايات ميكرونيسيا المتحدة",
       "fa": "ایالات فدرال میکرونزی",
       "yue": "密克罗尼西亚（聯邦）"
@@ -4425,6 +4567,7 @@ const List<Country> countries = [
       "zh_TW": "摩爾多瓦",
       "tr": "Moldova",
       "ro": "Moldova",
+      "ru": "Молдова",
       "ar": "مولدوفا",
       "fa": "مولداوی",
       "yue": "摩爾多瓦（共和國）"
@@ -4456,6 +4599,7 @@ const List<Country> countries = [
       "zh_TW": "摩納哥",
       "tr": "Monako",
       "ro": "Monaco",
+      "ru": "Монако",
       "ar": "موناكو",
       "fa": "موناكو",
       "yue": "摩納哥"
@@ -4487,6 +4631,7 @@ const List<Country> countries = [
       "zh_TW": "蒙古",
       "tr": "Moğolistan",
       "ro": "Mongolia",
+      "ru": "Монголия",
       "ar": "منغوليا",
       "fa": "مغولستان",
       "yue": "蒙古"
@@ -4518,6 +4663,7 @@ const List<Country> countries = [
       "zh_TW": "蒙特內哥羅",
       "tr": "Karadağ",
       "ro": "Muntenegru",
+      "ru": "Черногория",
       "ar": "الجبل الأسود",
       "fa": "مونته‌نگرو",
       "yue": "黑山"
@@ -4549,6 +4695,7 @@ const List<Country> countries = [
       "zh_TW": "蒙哲臘",
       "tr": "Montserrat",
       "ro": "Montserrat",
+      "ru": "Монтсеррат",
       "ar": "مونتسرات",
       "fa": "مونتسرات",
       "yue": "蒙特塞拉特"
@@ -4580,6 +4727,7 @@ const List<Country> countries = [
       "zh_TW": "摩洛哥",
       "tr": "Fas",
       "ro": "Maroc",
+      "ru": "Марокко",
       "ar": "المغرب",
       "fa": "مراکش",
       "yue": "摩洛哥"
@@ -4611,6 +4759,7 @@ const List<Country> countries = [
       "zh_TW": "莫三比克",
       "tr": "Mozambik",
       "ro": "Mozambic",
+      "ru": "Мозамбик",
       "ar": "موزمبيق",
       "fa": "موزامبیک",
       "yue": "莫桑比克"
@@ -4642,6 +4791,7 @@ const List<Country> countries = [
       "zh_TW": "緬甸",
       "tr": "Myanmar",
       "ro": "Myanmar",
+      "ru": "Мьянма",
       "ar": "ميانمار",
       "fa": "میانمار",
       "yue": "緬甸"
@@ -4673,6 +4823,7 @@ const List<Country> countries = [
       "zh_TW": "納米比亞",
       "tr": "Namibya",
       "ro": "Namibia",
+      "ru": "Намибия",
       "ar": "ناميبيا",
       "fa": "نامیبیا",
       "yue": "納米比亞"
@@ -4704,6 +4855,7 @@ const List<Country> countries = [
       "zh_TW": "諾魯",
       "tr": "Nauru",
       "ro": "Nauru",
+      "ru": "Науру",
       "ar": "ناورو",
       "fa": "نائورو",
       "yue": "瑙魯"
@@ -4735,6 +4887,7 @@ const List<Country> countries = [
       "zh_TW": "尼泊爾",
       "tr": "Nepal",
       "ro": "Nepal",
+      "ru": "Непал",
       "ar": "نيبال",
       "fa": "نپال",
       "yue": "尼泊爾"
@@ -4766,6 +4919,7 @@ const List<Country> countries = [
       "zh_TW": "荷蘭",
       "tr": "Hollanda",
       "ro": "Olanda",
+      "ru": "Нидерланды",
       "ar": "هولندا",
       "fa": "هلند",
       "yue": "荷蘭"
@@ -4797,6 +4951,7 @@ const List<Country> countries = [
       "zh_TW": "新喀里多尼亞",
       "tr": "Yeni Kaledonya",
       "ro": "Noua Caledonie",
+      "ru": "Новая Каледония",
       "ar": "كاليدونيا الجديدة",
       "fa": "کالدونیای جدید",
       "yue": "新喀里多尼亚"
@@ -4828,6 +4983,7 @@ const List<Country> countries = [
       "zh_TW": "紐西蘭",
       "tr": "Yeni Zelanda",
       "ro": "Noua Zeelandă",
+      "ru": "Новая Зеландия",
       "ar": "نيوزيلندا",
       "fa": "نیوزلند",
       "yue": "紐西蘭"
@@ -4859,6 +5015,7 @@ const List<Country> countries = [
       "zh_TW": "尼加拉瓜",
       "tr": "Nikaragua",
       "ro": "Nicaragua",
+      "ru": "Никарагуа",
       "ar": "نيكاراغوا",
       "fa": "نیکاراگوئه",
       "yue": "尼加拉瓜"
@@ -4890,6 +5047,7 @@ const List<Country> countries = [
       "zh_TW": "尼日爾",
       "tr": "Nijer",
       "ro": "Niger",
+      "ru": "Нигер",
       "ar": "النيجر",
       "fa": "نیجر",
       "yue": "尼日爾"
@@ -4921,6 +5079,7 @@ const List<Country> countries = [
       "zh_TW": "奈及利亞",
       "tr": "Nijerya",
       "ro": "Nigeria",
+      "ru": "Нигерия",
       "ar": "نيجيريا",
       "fa": "نیجریه",
       "yue": "尼日利亞"
@@ -4952,6 +5111,7 @@ const List<Country> countries = [
       "zh_TW": "紐埃",
       "tr": "Niue",
       "ro": "Niue",
+      "ru": "Ниуэ",
       "ar": "نييوي",
       "fa": "نیووی",
       "yue": "紐埃"
@@ -4983,6 +5143,7 @@ const List<Country> countries = [
       "zh_TW": "諾福克島",
       "tr": "Norfolk Adası",
       "ro": "Insulele Norfolk",
+      "ru": "Остров Норфолк",
       "ar": "جزيرة نورفولك",
       "fa": "جزیره نورفک",
       "yue": "诺福克岛"
@@ -5014,6 +5175,7 @@ const List<Country> countries = [
       "zh_TW": "北馬利安納群島",
       "tr": "Kuzey Mariana Adaları",
       "ro": "Insulelor Mariane de Nord",
+      "ru": "Северные Марианские Острова",
       "ar": "جزر ماريانا الشمالية",
       "fa": "جزایر ماریانای شمالی",
       "yue": "北馬里亞納群島"
@@ -5045,6 +5207,7 @@ const List<Country> countries = [
       "zh_TW": "挪威",
       "tr": "Norveç",
       "ro": "Norvegia",
+      "ru": "Норвегия",
       "ar": "النرويج",
       "fa": "نروژ",
       "yue": "挪威"
@@ -5076,6 +5239,7 @@ const List<Country> countries = [
       "zh_TW": "阿曼",
       "tr": "Umman",
       "ro": "Oman",
+      "ru": "Оман",
       "ar": "عمان",
       "fa": "عمان",
       "yue": "阿曼"
@@ -5107,6 +5271,7 @@ const List<Country> countries = [
       "zh_TW": "巴基斯坦",
       "tr": "Pakistan",
       "ro": "Pakistan",
+      "ru": "Пакистан",
       "ar": "باكستان",
       "fa": "پاکستان",
       "yue": "巴基斯坦"
@@ -5138,6 +5303,7 @@ const List<Country> countries = [
       "zh_TW": "帛琉",
       "tr": "Palau",
       "ro": "Palau",
+      "ru": "Палау",
       "ar": "بالاو",
       "fa": "پالائو",
       "yue": "帕劳"
@@ -5169,6 +5335,7 @@ const List<Country> countries = [
       "zh_TW": "巴勒斯坦",
       "tr": "Filistin",
       "ro": "Palestina",
+      "ru": "Палестина",
       "ar": "فلسطين",
       "fa": "فلسطین",
       "yue": "巴勒斯坦，国"
@@ -5200,6 +5367,7 @@ const List<Country> countries = [
       "zh_TW": "巴拿馬",
       "tr": "Panama",
       "ro": "Panama",
+      "ru": "Панама",
       "ar": "بنما",
       "fa": "پاناما",
       "yue": "巴拿馬"
@@ -5231,6 +5399,7 @@ const List<Country> countries = [
       "zh_TW": "巴布亞新幾內亞",
       "tr": "Papua Yeni Gine",
       "ro": "Papua Noua Guinee",
+      "ru": "Папуа — Новая Гвинея",
       "ar": "بابوا غينيا الجديدة",
       "fa": "پاپوآ گینه نو",
       "yue": "巴布亚新几内亚"
@@ -5262,6 +5431,7 @@ const List<Country> countries = [
       "zh_TW": "巴拉圭",
       "tr": "Paraguay",
       "ro": "Paraguay",
+      "ru": "Парагвай",
       "ar": "باراغواي",
       "fa": "پاراگوئه",
       "yue": "巴拉圭"
@@ -5293,6 +5463,7 @@ const List<Country> countries = [
       "zh_TW": "秘鲁",
       "tr": "Peru",
       "ro": "Peru",
+      "ru": "Перу",
       "ar": "بيرو",
       "fa": "پرو",
       "yue": "秘魯"
@@ -5324,6 +5495,7 @@ const List<Country> countries = [
       "zh_TW": "菲律賓",
       "tr": "Filipinler",
       "ro": "Filipine",
+      "ru": "Филиппины",
       "ar": "الفلبين",
       "fa": "فیلیپین",
       "yue": "菲律賓"
@@ -5355,6 +5527,7 @@ const List<Country> countries = [
       "zh_TW": "皮特肯群島",
       "tr": "Pitcairn Adaları",
       "ro": "Insulele Pitcairn",
+      "ru": "Острова Питкэрн",
       "ar": "جزر بيتكيرن",
       "fa": "جزایر پیت‌کرن",
       "yue": "皮特凱恩"
@@ -5386,6 +5559,7 @@ const List<Country> countries = [
       "zh_TW": "波蘭",
       "tr": "Polonya",
       "ro": "Polonia",
+      "ru": "Польша",
       "ar": "بولندا",
       "fa": "لهستان",
       "yue": "波蘭"
@@ -5417,6 +5591,7 @@ const List<Country> countries = [
       "zh_TW": "葡萄牙",
       "tr": "Portekiz",
       "ro": "Portugalia",
+      "ru": "Португалия",
       "ar": "البرتغال",
       "fa": "پرتغال",
       "yue": "葡萄牙"
@@ -5448,6 +5623,7 @@ const List<Country> countries = [
       "zh_TW": "波多黎各",
       "tr": "Porto Riko",
       "ro": "Puerto Rico",
+      "ru": "Пуэрто-Рико",
       "ar": "بورتوريكو",
       "fa": "پورتوریکو",
       "yue": "波多黎各"
@@ -5479,6 +5655,7 @@ const List<Country> countries = [
       "zh_TW": "卡達",
       "tr": "Katar",
       "ro": "Qatar",
+      "ru": "Катар",
       "ar": "قطر",
       "fa": "قطر",
       "yue": "卡塔爾"
@@ -5510,6 +5687,7 @@ const List<Country> countries = [
       "zh_TW": "羅馬尼亞",
       "tr": "Romanya",
       "ro": "România",
+      "ru": "Румыния",
       "ar": "رومانيا",
       "fa": "رومانی",
       "yue": "羅馬尼亞"
@@ -5541,6 +5719,7 @@ const List<Country> countries = [
       "zh_TW": "俄羅斯",
       "tr": "Rusya",
       "ro": "Rusia",
+      "ru": "Россия",
       "ar": "روسيا",
       "fa": "روسیه",
       "yue": "俄儸斯聯邦"
@@ -5572,6 +5751,7 @@ const List<Country> countries = [
       "zh_TW": "盧安達",
       "tr": "Ruanda",
       "ro": "Rwanda",
+      "ru": "Руанда",
       "ar": "رواندا",
       "fa": "رواندا",
       "yue": "盧旺達"
@@ -5603,6 +5783,7 @@ const List<Country> countries = [
       "zh_TW": "留尼旺",
       "tr": "La Réunion",
       "ro": "La Réunion",
+      "ru": "Реюньон",
       "ar": "لا ريونيون",
       "fa": "رئونیون",
       "yue": "留尼汪"
@@ -5634,6 +5815,7 @@ const List<Country> countries = [
       "zh_TW": "聖巴瑟米",
       "tr": "Saint Barthélemy",
       "ro": "Saint Barthélemy",
+      "ru": "Сен-Бартелеми (заморское сообщество)",
       "ar": "سان بارتيلمي",
       "fa": "سن بارتلمی",
       "yue": "聖巴泰勒米"
@@ -5665,6 +5847,7 @@ const List<Country> countries = [
       "zh_TW": "聖凱倫拿島",
       "tr": "Saint Helena",
       "ro": "Sfânta Elena",
+      "ru": "Острова Святой Елены, Вознесения и Тристан-да-Кунья",
       "ar": "سانت هيلانة وأسينشين وتريستان دا كونا",
       "fa": "سنت هلن",
       "yue": "圣赫勒拿、阿森松同特里斯坦·达库尼亚"
@@ -5696,6 +5879,7 @@ const List<Country> countries = [
       "zh_TW": "聖克里斯多福及尼維斯",
       "tr": "Saint Kitts ve Nevis",
       "ro": "Sfântul Kitts și Nevis",
+      "ru": "Сент-Китс и Невис",
       "ar": "سانت كيتس ونيفيس",
       "fa": "سنت کیتس و نویس",
       "yue": "圣基茨同尼维斯"
@@ -5727,6 +5911,7 @@ const List<Country> countries = [
       "zh_TW": "聖露西亞",
       "tr": "Saint Lucia",
       "ro": "Sfânta Elena",
+      "ru": "Сент-Люсия",
       "ar": "سانت لوسيا",
       "fa": "سنت لوسیا",
       "yue": "聖盧西亞"
@@ -5758,6 +5943,7 @@ const List<Country> countries = [
       "zh_TW": "聖馬丁",
       "tr": "Saint Martin",
       "ro": "Sfântul Martin",
+      "ru": "Сен-Мартен (владение Франции)",
       "ar": "تجمع سان مارتين",
       "fa": "سن مارتن",
       "yue": "聖馬丁（法國部分）"
@@ -5789,6 +5975,7 @@ const List<Country> countries = [
       "zh_TW": "聖皮埃與密克隆群島",
       "tr": "Saint Pierre ve Miquelon",
       "ro": "Saint Pierre și Miquelon",
+      "ru": "Сен-Пьер и Микелон",
       "ar": "سان بيير وميكلون",
       "fa": "سن-پیر و میکلون",
       "yue": "聖皮埃尔同米克隆"
@@ -5820,6 +6007,7 @@ const List<Country> countries = [
       "zh_TW": "聖文森及格瑞那丁",
       "tr": "Saint Vincent ve Grenadinler",
       "ro": "Sfântul Vincențiu și Grenadinele",
+      "ru": "Сент-Винсент и Гренадины",
       "ar": "سانت فينسنت والغرينادين",
       "fa": "سنت وینسنت و گرنادین‌ها",
       "yue": "聖文森特同格林纳丁斯"
@@ -5851,6 +6039,7 @@ const List<Country> countries = [
       "zh_TW": "薩摩亞",
       "tr": "Samoa",
       "ro": "Samoa",
+      "ru": "Самоа",
       "ar": "ساموا",
       "fa": "ساموآ",
       "yue": "薩摩亞"
@@ -5882,6 +6071,7 @@ const List<Country> countries = [
       "zh_TW": "聖馬利諾",
       "tr": "San Marino",
       "ro": "San Marino",
+      "ru": "Сан-Марино",
       "ar": "سان مارينو",
       "fa": "سان مارینو",
       "yue": "聖馬力諾"
@@ -5913,6 +6103,7 @@ const List<Country> countries = [
       "zh_TW": "聖多美普林西比",
       "tr": "São Tomé ve Príncipe",
       "ro": "Sao Tome şi Principe",
+      "ru": "Сан-Томе и Принсипи",
       "ar": "ساو تومي وبرينسيب",
       "fa": "سائوتومه و پرنسیپ",
       "yue": "聖多美和普林西比"
@@ -5944,6 +6135,7 @@ const List<Country> countries = [
       "zh_TW": "沙烏地阿拉",
       "tr": "Suudi Arabistan",
       "ro": "Arabia Saudită",
+      "ru": "Саудовская Аравия",
       "ar": "السعودية",
       "fa": "عربستان سعودی",
       "yue": "沙地阿拉伯"
@@ -5975,6 +6167,7 @@ const List<Country> countries = [
       "zh_TW": "塞內加爾",
       "tr": "Senegal",
       "ro": "Senegal",
+      "ru": "Сенегал",
       "ar": "السنغال",
       "fa": "سنگال",
       "yue": "塞內加爾"
@@ -6006,6 +6199,7 @@ const List<Country> countries = [
       "zh_TW": "塞爾維亞",
       "tr": "Sırbistan",
       "ro": "Serbia",
+      "ru": "Сербия",
       "ar": "صربيا",
       "fa": "صربستان",
       "yue": "塞爾維亞"
@@ -6037,6 +6231,7 @@ const List<Country> countries = [
       "zh_TW": "塞席爾",
       "tr": "Seyşeller",
       "ro": "Seychelles",
+      "ru": "Сейшелы",
       "ar": "سيشل",
       "fa": "سیشل",
       "yue": "塞舌爾"
@@ -6068,6 +6263,7 @@ const List<Country> countries = [
       "zh_TW": "獅子山",
       "tr": "Sierra Leone",
       "ro": "Sierra Leone",
+      "ru": "Сьерра-Леоне",
       "ar": "سيراليون",
       "fa": "سیرالئون",
       "yue": "塞拉利昂"
@@ -6099,6 +6295,7 @@ const List<Country> countries = [
       "zh_TW": "新加坡",
       "tr": "Singapur",
       "ro": "Singapore",
+      "ru": "Сингапур",
       "ar": "سنغافورة",
       "fa": "سنگاپور",
       "yue": "星架坡"
@@ -6130,6 +6327,7 @@ const List<Country> countries = [
       "zh_TW": "斯洛伐克",
       "tr": "Slovakya",
       "ro": "Slovacia",
+      "ru": "Словакия",
       "ar": "سلوفاكيا",
       "fa": "اسلواکی",
       "yue": "斯洛伐克"
@@ -6161,6 +6359,7 @@ const List<Country> countries = [
       "zh_TW": "斯洛維尼亞",
       "tr": "Slovenya",
       "ro": "Slovenia",
+      "ru": "Словения",
       "ar": "سلوفينيا",
       "fa": "اسلوونی",
       "yue": "斯洛文尼亞"
@@ -6192,6 +6391,7 @@ const List<Country> countries = [
       "zh_TW": "所羅門群島",
       "tr": "Solomon Adaları",
       "ro": "Insulele Solomon",
+      "ru": "Соломоновы Острова",
       "ar": "جزر سليمان",
       "fa": "جزایر سلیمان",
       "yue": "所羅門群島"
@@ -6223,6 +6423,7 @@ const List<Country> countries = [
       "zh_TW": "索馬利亞",
       "tr": "Somali",
       "ro": "Somalia",
+      "ru": "Сомали",
       "ar": "الصومال",
       "fa": "سومالی",
       "yue": "索馬里"
@@ -6254,6 +6455,7 @@ const List<Country> countries = [
       "zh_TW": "南非",
       "tr": "Güney Afrika",
       "ro": "Africa de Sud",
+      "ru": "ЮАР",
       "ar": "جنوب أفريقيا",
       "fa": "آفریقای جنوبی",
       "yue": "南非"
@@ -6285,6 +6487,7 @@ const List<Country> countries = [
       "zh_TW": "南蘇丹",
       "tr": "Güney Sudan",
       "ro": "Sudanul de Sud",
+      "ru": "Южный Судан",
       "ar": "جنوب السودان",
       "fa": "سودان جنوبی",
       "yue": "南蘇丹"
@@ -6316,6 +6519,7 @@ const List<Country> countries = [
       "zh_TW": "南喬治亞與南三明治群島 ",
       "tr": "Güney Georgia ve Güney Sandwich Adaları",
       "ro": "Georgia de Sud și Insulele Sandwich de Sud",
+      "ru": "Южная Георгия и Южные Сандвичевы острова",
       "ar": "جورجيا الجنوبية وجزر ساندويتش الجنوبية",
       "fa": "جزایر جورجیای جنوبی و ساندویچ جنوبی",
       "yue": "南喬治亞州同南桑威奇群島"
@@ -6347,6 +6551,7 @@ const List<Country> countries = [
       "zh_TW": "西班牙",
       "tr": "İspanya",
       "ro": "Spania",
+      "ru": "Испания",
       "ar": "إسبانيا",
       "fa": "اسپانیا",
       "yue": "西班牙"
@@ -6378,6 +6583,7 @@ const List<Country> countries = [
       "zh_TW": "斯里蘭卡",
       "tr": "Sri Lanka",
       "ro": "Sri Lanka",
+      "ru": "Шри-Ланка",
       "ar": "سريلانكا",
       "fa": "سریلانکا",
       "yue": "斯里蘭卡"
@@ -6409,6 +6615,7 @@ const List<Country> countries = [
       "zh_TW": "蘇丹",
       "tr": "Sudan",
       "ro": "Sudan",
+      "ru": "Судан",
       "ar": "السودان",
       "fa": "سودان",
       "yue": "蘇丹"
@@ -6440,6 +6647,7 @@ const List<Country> countries = [
       "zh_TW": "蘇利南",
       "tr": "Surinam",
       "ro": "Surinam",
+      "ru": "Суринам",
       "ar": "سورينام",
       "fa": "سورینام",
       "yue": "蘇里南"
@@ -6471,6 +6679,7 @@ const List<Country> countries = [
       "zh_TW": "斯瓦巴及尖棉",
       "tr": "Svalbard ve Jan Mayen",
       "ro": "Svalbard și Jan Mayen",
+      "ru": "Шпицберген и Ян-Майен",
       "ar": "سفالبارد ويان ماين",
       "fa": "سوالبارد و یان ماین",
       "yue": "斯瓦尔巴德同扬·马延"
@@ -6502,6 +6711,7 @@ const List<Country> countries = [
       "zh_TW": "史瓦帝尼",
       "tr": "Esvatini",
       "ro": "Eswatini",
+      "ru": "Эсватини",
       "ar": "إسواتيني",
       "fa": "اسواتینی",
       "yue": "斯威士蘭"
@@ -6533,6 +6743,7 @@ const List<Country> countries = [
       "zh_TW": "瑞典",
       "tr": "İsveç",
       "ro": "Suedia",
+      "ru": "Швеция",
       "ar": "السويد",
       "fa": "سوئد",
       "yue": "瑞典"
@@ -6564,6 +6775,7 @@ const List<Country> countries = [
       "zh_TW": "瑞士",
       "tr": "İsviçre",
       "ro": "Elveţia",
+      "ru": "Швейцария",
       "ar": "سويسرا",
       "fa": "سوئیس",
       "yue": "瑞士"
@@ -6595,6 +6807,7 @@ const List<Country> countries = [
       "zh_TW": "敘利亞",
       "tr": "Suriye",
       "ro": "Siria",
+      "ru": "Сирия",
       "ar": "سوريا",
       "fa": "سوریه",
       "yue": "阿拉伯敘利亞共和國"
@@ -6626,6 +6839,7 @@ const List<Country> countries = [
       "zh_TW": "台灣",
       "tr": "Tayvan",
       "ro": "Taiwan",
+      "ru": "Тайвань",
       "ar": "تايوان",
       "fa": "تایوان",
       "yue": "台灣"
@@ -6657,6 +6871,7 @@ const List<Country> countries = [
       "zh_TW": "塔吉克",
       "tr": "Tacikistan",
       "ro": "Tadiquistão",
+      "ru": "Таджикистан",
       "ar": "طاجيكستان",
       "fa": "تاجیکستان",
       "yue": "塔吉克斯坦"
@@ -6688,6 +6903,7 @@ const List<Country> countries = [
       "zh_TW": "坦尚尼亞",
       "tr": "Tanzanya",
       "ro": "Tanzania",
+      "ru": "Танзания",
       "ar": "تنزانيا",
       "fa": "تانزانیا",
       "yue": "坦桑尼亞，聯合共和國"
@@ -6719,6 +6935,7 @@ const List<Country> countries = [
       "zh_TW": "泰國",
       "tr": "Tayland",
       "ro": "Tailanda",
+      "ru": "Таиланд",
       "ar": "تايلاند",
       "fa": "تایلند",
       "yue": "泰國"
@@ -6750,6 +6967,7 @@ const List<Country> countries = [
       "zh_TW": "東帝汶",
       "tr": "Doğu Timor",
       "ro": "Timorul de Est",
+      "ru": "Восточный Тимор",
       "ar": "تيمور الشرقية",
       "fa": "تیمور شرقی",
       "yue": "東帝汶"
@@ -6781,6 +6999,7 @@ const List<Country> countries = [
       "zh_TW": "多哥",
       "tr": "Togo",
       "ro": "Togo",
+      "ru": "Того",
       "ar": "توغو",
       "fa": "توگو",
       "yue": "多哥"
@@ -6812,6 +7031,7 @@ const List<Country> countries = [
       "zh_TW": "托克勞",
       "tr": "Tokelau",
       "ro": "Tokelau",
+      "ru": "Токелау",
       "ar": "توكيلاو",
       "fa": "توکلائو",
       "yue": "托克劳"
@@ -6843,6 +7063,7 @@ const List<Country> countries = [
       "zh_TW": "東加",
       "tr": "Tonga",
       "ro": "Tonga",
+      "ru": "Тонга",
       "ar": "تونغا",
       "fa": "تونگا",
       "yue": "湯加"
@@ -6874,6 +7095,7 @@ const List<Country> countries = [
       "zh_TW": "千里達及托巴哥",
       "tr": "Trinidad ve Tobago",
       "ro": "Trinidad şi Tobago",
+      "ru": "Тринидад и Тобаго",
       "ar": "ترينيداد وتوباغو",
       "fa": "ترینیداد و توباگو",
       "yue": "特立尼達和多巴哥"
@@ -6905,6 +7127,7 @@ const List<Country> countries = [
       "zh_TW": "突尼西亞",
       "tr": "Tunus",
       "ro": "Tunisia",
+      "ru": "Тунис",
       "ar": "تونس",
       "fa": "تونس",
       "yue": "突尼斯"
@@ -6936,6 +7159,7 @@ const List<Country> countries = [
       "zh_TW": "土耳其",
       "tr": "Türkiye",
       "ro": "Turcia",
+      "ru": "Турция",
       "ar": "تركيا",
       "fa": "ترکیه",
       "yue": "土耳其"
@@ -6967,6 +7191,7 @@ const List<Country> countries = [
       "zh_TW": "土庫曼",
       "tr": "Türkmenistan",
       "ro": "Turkmenistan",
+      "ru": "Туркменистан",
       "ar": "تركمانستان",
       "fa": "ترکمنستان",
       "yue": "土庫曼斯坦"
@@ -6998,6 +7223,7 @@ const List<Country> countries = [
       "zh_TW": "土克斯及開科斯群島",
       "tr": "Turks ve Caicos Adaları",
       "ro": "Insulele Turks și Caicos",
+      "ru": "Теркс и Кайкос",
       "ar": "جزر توركس وكايكوس",
       "fa": "جزایر تورکس و کایکوس",
       "yue": "特克斯同凯科斯群岛"
@@ -7029,6 +7255,7 @@ const List<Country> countries = [
       "zh_TW": "圖瓦盧",
       "tr": "Tuvalu",
       "ro": "Tuvalu",
+      "ru": "Тувалу",
       "ar": "توفالو",
       "fa": "تووالو",
       "yue": "圖瓦盧"
@@ -7060,6 +7287,7 @@ const List<Country> countries = [
       "zh_TW": "烏干達",
       "tr": "Uganda",
       "ro": "Uganda",
+      "ru": "Уганда",
       "ar": "أوغندا",
       "fa": "اوگاندا",
       "yue": "烏干達"
@@ -7091,6 +7319,7 @@ const List<Country> countries = [
       "zh_TW": "烏克蘭",
       "tr": "Ukrayna",
       "ro": "Ucraína",
+      "ru": "Украина",
       "ar": "أوكرانيا",
       "fa": "اوکراین",
       "yue": "烏克蘭"
@@ -7122,6 +7351,7 @@ const List<Country> countries = [
       "zh_TW": "阿拉伯聯合大公國",
       "tr": "Birleşik Arap Emirlikleri",
       "ro": "Emiratele Arabe Unite",
+      "ru": "ОАЭ",
       "ar": "الإمارات العربية المتحدة",
       "fa": "امارات متحده عربی",
       "yue": "阿拉伯聯合酋長國"
@@ -7153,6 +7383,7 @@ const List<Country> countries = [
       "zh_TW": "英國",
       "tr": "Büyük Britanya ve Kuzey İrlanda Birleşik Krallığ",
       "ro": "Regatul Unit al Marii Britanii și Irlandei de Nord",
+      "ru": "Великобритания",
       "ar": "المملكة المتحدة",
       "fa": "بریتانیا",
       "yue": "大不列顛及北愛爾蘭聯合王國"
@@ -7184,6 +7415,7 @@ const List<Country> countries = [
       "zh_TW": "美國",
       "tr": "Amerika Birleşik Devletleri",
       "ro": "Statele Unite ale Americii",
+      "ru": "США",
       "ar": "الولايات المتحدة",
       "fa": "ایالات متحده آمریکا",
       "yue": "美利堅郃眾囯"
@@ -7215,6 +7447,7 @@ const List<Country> countries = [
       "zh_TW": "烏拉圭",
       "tr": "Uruguay",
       "ro": "Uruguay",
+      "ru": "Уругвай",
       "ar": "الأوروغواي",
       "fa": "اروگوئه",
       "yue": "烏拉圭"
@@ -7246,6 +7479,7 @@ const List<Country> countries = [
       "zh_TW": "烏玆別克",
       "tr": "Özbekistan",
       "ro": "Uzbekistan",
+      "ru": "Узбекистан",
       "ar": "أوزبكستان",
       "fa": "ازبکستان",
       "yue": "月即別"
@@ -7277,6 +7511,7 @@ const List<Country> countries = [
       "zh_TW": "瓦努阿圖",
       "tr": "Vanuatu",
       "ro": "Vanuatu",
+      "ru": "Вануату",
       "ar": "فانواتو",
       "fa": "وانواتو",
       "yue": "瓦努阿圖"
@@ -7308,6 +7543,7 @@ const List<Country> countries = [
       "zh_TW": "委內瑞拉",
       "tr": "Venezuela",
       "ro": "Venezuela",
+      "ru": "Венесуэла",
       "ar": "فنزويلا",
       "fa": "ونزوئلا",
       "yue": "委內瑞拉（玻利瓦爾共和國）"
@@ -7339,6 +7575,7 @@ const List<Country> countries = [
       "zh_TW": "越南",
       "tr": "Vietnam",
       "ro": "Vietnam",
+      "ru": "Вьетнам",
       "ar": "فيتنام",
       "fa": "ویتنام",
       "yue": "越南"
@@ -7370,6 +7607,7 @@ const List<Country> countries = [
       "zh_TW": "英屬維京群島",
       "tr": "Britanya Virjin Adaları",
       "ro": "Insulele Virgine Britanice",
+      "ru": "Британские Виргинские острова",
       "ar": "جزر العذراء البريطانية",
       "fa": "جزایر ویرجین بریتانیا",
       "yue": "維爾京群島（英國）"
@@ -7401,6 +7639,7 @@ const List<Country> countries = [
       "zh_TW": "美屬維京群島",
       "tr": "Amerika Birleşik Devletleri Virjin Adaları",
       "ro": "Insulele Virgine Americane",
+      "ru": "Виргинские Острова (США)",
       "ar": "جزر العذراء الأمريكية",
       "fa": "جزایر ویرجین ایالات متحده آمریکا",
       "yue": "維爾京群島（美國）"
@@ -7432,6 +7671,7 @@ const List<Country> countries = [
       "zh_TW": "瓦利斯和富圖那",
       "tr": "Wallis ve Futuna",
       "ro": "Wallis și Futuna",
+      "ru": "Уоллис и Футуна",
       "ar": "والس وفوتونا",
       "fa": "والیس و فوتونا",
       "yue": "瓦利斯同富图纳"
@@ -7463,6 +7703,7 @@ const List<Country> countries = [
       "zh_TW": "葉門",
       "tr": "Yemen",
       "ro": "Yemen",
+      "ru": "Йемен",
       "ar": "اليمن",
       "fa": "یمن",
       "yue": "也門"
@@ -7494,6 +7735,7 @@ const List<Country> countries = [
       "zh_TW": "贊比亞",
       "tr": "Zambiya",
       "ro": "Zambia",
+      "ru": "Замбия",
       "ar": "زامبيا",
       "fa": "زامبیا",
       "yue": "贊比亞"
@@ -7525,6 +7767,7 @@ const List<Country> countries = [
         "zh_TW": "辛巴威",
         "tr": "Zimbabve",
         "ro": "Zimbabwe",
+        "ru": "Зимбабве",
         "ar": "زيمبابوي",
         "fa": "زیمبابوه",
         "yue": "津巴布韋"
