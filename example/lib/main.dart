@@ -75,6 +75,26 @@ class _MyAppState extends State<MyApp> {
                 const SizedBox(
                   height: 10,
                 ),
+                IntlPhoneField(
+                  initialValue: "7012345678",
+                  showCountryCode: false,
+                  decoration: const InputDecoration(
+                    labelText: 'Phone Number (No Country Code)',
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(),
+                    ),
+                  ),
+                  languageCode: "en",
+                  onChanged: (phone) {
+                    print(phone.completeNumber);
+                  },
+                  onCountryChanged: (country) {
+                    print('Country changed to: ${country.name}');
+                  },
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
                 MaterialButton(
                   color: Theme.of(context).primaryColor,
                   textColor: Colors.white,

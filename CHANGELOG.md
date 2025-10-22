@@ -1,3 +1,8 @@
+## 0.0.8
+
+- Added `showCountryCode` parameter to control visibility of country dial code (e.g., +1, +44)
+- Enhanced flexibility in customizing phone field appearance
+
 ## 0.0.7
 
 - Refactor initState to use Future.microtask for improved initialization of country list and phone number handling

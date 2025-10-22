@@ -207,6 +207,11 @@ class IntlPhoneField extends StatefulWidget {
   /// Default value is `true`.
   final bool showCountryFlag;
 
+  /// Whether to show or hide country dial code.
+  ///
+  /// Default value is `true`.
+  final bool showCountryCode;
+
   /// Message to be displayed on autoValidate error
   ///
   /// Default value is `Invalid Mobile Number`.
@@ -324,6 +329,7 @@ class IntlPhoneField extends StatefulWidget {
     this.textInputAction,
     this.autovalidateMode = AutovalidateMode.onUserInteraction,
     this.showCountryFlag = true,
+    this.showCountryCode = true,
     this.cursorColor,
     this.disableLengthCheck = false,
     this.flagsButtonPadding = EdgeInsets.zero,
@@ -614,12 +620,13 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
                         ),
                   const SizedBox(width: 8),
                 ],
-                FittedBox(
-                  child: Text(
-                    '+${_selectedCountry.dialCode}',
-                    style: widget.dropdownTextStyle,
+                if (widget.showCountryCode)
+                  FittedBox(
+                    child: Text(
+                      '+${_selectedCountry.dialCode}',
+                      style: widget.dropdownTextStyle,
+                    ),
                   ),
-                ),
                 if (widget.enabled &&
                     widget.showDropdownIcon &&
                     widget.dropdownIconPosition == IconPosition.trailing) ...[
