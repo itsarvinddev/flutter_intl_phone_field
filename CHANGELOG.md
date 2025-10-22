@@ -1,3 +1,10 @@
+## 0.0.8 (Unreleased)
+
+- Fixed UK (+44) phone number validation issue
+- Added region codes for Crown Dependencies: Guernsey (1481), Isle of Man (1624), Jersey (1534)
+- Fixed widget to consistently use fullCountryCode when creating PhoneNumber objects
+- Added comprehensive tests for UK and Crown Dependencies phone validation
+
 ## 0.0.7
 
 - Refactor initState to use Future.microtask for improved initialization of country list and phone number handling

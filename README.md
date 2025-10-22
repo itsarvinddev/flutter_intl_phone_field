@@ -67,6 +67,39 @@ IntlPhoneField(
 
 Use `initialCountryCode` to set an initial Country Code.
 
+## Validation
+
+The package provides built-in validation for phone numbers. You can use the `isValidNumber()` method to check if a phone number is valid:
+
+```dart
+IntlPhoneField(
+    decoration: InputDecoration(
+        labelText: 'Phone Number',
+        border: OutlineInputBorder(
+            borderSide: BorderSide(),
+        ),
+    ),
+    initialCountryCode: 'GB', // United Kingdom
+    validator: (phoneNumber) {
+        if (phoneNumber == null || phoneNumber.number.isEmpty) {
+            return 'Please enter a phone number';
+        }
+        if (!phoneNumber.isValidNumber()) {
+            return 'Please enter a valid phone number';
+        }
+        return null;
+    },
+    onChanged: (phone) {
+        print(phone.completeNumber);
+    },
+)
+```
+
+The validator checks the phone number length against the selected country's min and max length requirements. For example:
+- United Kingdom (GB): 10 digits
+- Guernsey (GG): 6 digits
+- United States (US): 10 digits
+
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
