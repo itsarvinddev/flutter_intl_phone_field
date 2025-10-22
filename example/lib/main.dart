@@ -71,6 +71,16 @@ class _MyAppState extends State<MyApp> {
                   onCountryChanged: (country) {
                     print('Country changed to: ${country.name}');
                   },
+                  // Demonstrate custom validator using isValidNumber()
+                  validator: (phoneNumber) {
+                    if (phoneNumber == null || phoneNumber.number.isEmpty) {
+                      return 'Please enter a phone number';
+                    }
+                    if (!phoneNumber.isValidNumber()) {
+                      return 'Please enter a valid phone number';
+                    }
+                    return null;
+                  },
                 ),
                 const SizedBox(
                   height: 10,
