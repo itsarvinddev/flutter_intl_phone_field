@@ -3616,7 +3616,7 @@ const List<Country> countries = [
     code: "KE",
     dialCode: "254",
     minLength: 9,
-    maxLength: 9,
+    maxLength: 10,
   ),
   Country(
     name: "Kiribati",
