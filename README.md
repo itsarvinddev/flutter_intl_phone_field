@@ -67,6 +67,66 @@ IntlPhoneField(
 
 Use `initialCountryCode` to set an initial Country Code.
 
+## Customization Options
+
+### Hide Country Dial Code
+
+You can hide the country dial code (e.g., +1, +44) while keeping the flag visible:
+
+```dart
+IntlPhoneField(
+    decoration: InputDecoration(
+        labelText: 'Phone Number',
+        border: OutlineInputBorder(
+            borderSide: BorderSide(),
+        ),
+    ),
+    showCountryCode: false, // Hides the country dial code
+    onChanged: (phone) {
+        print(phone.completeNumber);
+    },
+)
+```
+
+### Hide Country Flag
+
+You can hide the country flag:
+
+```dart
+IntlPhoneField(
+    decoration: InputDecoration(
+        labelText: 'Phone Number',
+        border: OutlineInputBorder(
+            borderSide: BorderSide(),
+        ),
+    ),
+    showCountryFlag: false, // Hides the country flag
+    onChanged: (phone) {
+        print(phone.completeNumber);
+    },
+)
+```
+
+### Hide Both Flag and Dial Code
+
+You can hide both the country flag and dial code:
+
+```dart
+IntlPhoneField(
+    decoration: InputDecoration(
+        labelText: 'Phone Number',
+        border: OutlineInputBorder(
+            borderSide: BorderSide(),
+        ),
+    ),
+    showCountryFlag: false, // Hides the country flag
+    showCountryCode: false, // Hides the country dial code
+    onChanged: (phone) {
+        print(phone.completeNumber);
+    },
+)
+```
+
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
