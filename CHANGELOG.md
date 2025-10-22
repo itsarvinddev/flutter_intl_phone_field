@@ -1,3 +1,8 @@
+## 0.0.8
+
+- Add `searchFieldStyle` parameter to `PickerDialogStyle` to allow customization of search field text style
+- This allows users to customize text color, font size, and other text properties in the country picker search field
+
 ## 0.0.7
 
 - Refactor initState to use Future.microtask for improved initialization of country list and phone number handling
