@@ -56,7 +56,6 @@ linter:
     avoid_positional_boolean_parameters: true
     avoid_returning_this: true
     avoid_setters_without_getters: true
-    package_api_docs: true
     prefer_asserts_in_initializer_lists: true
     tighten_type_of_initializing_formals: true
     use_setters_to_change_properties: true
