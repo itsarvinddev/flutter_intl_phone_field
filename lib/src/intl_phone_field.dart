@@ -946,8 +946,12 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
           label: _localizations.countrySelectorLabelFor(
               _selectedCountry.localizedName(widget.languageCode)),
           child: InkWell(
-            borderRadius:
-                widget.dropdownDecoration.borderRadius as BorderRadius?,
+            // BorderRadiusDirectional is a BorderRadiusGeometry but not a
+            // BorderRadius, so a cast here crashes for RTL-aware decorations.
+            borderRadius: switch (widget.dropdownDecoration.borderRadius) {
+              final BorderRadius r => r,
+              _ => null,
+            },
             onTap: open,
             child: Padding(
               padding: widget.flagsButtonPadding,

@@ -105,6 +105,7 @@ class CountryFlag extends StatelessWidget {
     return Image.asset(
       'assets/flags/${country.code.toLowerCase()}.png',
       package: 'flutter_intl_phone_field',
+      semanticLabel: country.name,
       width: size,
       height: square ? size : null,
       fit: square ? BoxFit.cover : BoxFit.contain,
@@ -119,6 +120,7 @@ class CountryFlag extends StatelessWidget {
         child: Text(
           country.flag,
           textAlign: TextAlign.center,
+          semanticsLabel: country.name,
           style: TextStyle(fontSize: size * 0.6),
         ),
       );

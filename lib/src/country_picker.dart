@@ -204,7 +204,9 @@ class _PickerDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final media = MediaQuery.sizeOf(context);
-    final width = style?.width ?? media.width;
+    // Left unbounded, the dialog spans a whole desktop window. Cap it at a
+    // comfortable reading width and let narrow screens use what they have.
+    final width = style?.width ?? (media.width < 560 ? media.width : 480.0);
     const horizontal = 40.0;
     const vertical = 24.0;
     return Dialog(
@@ -352,69 +354,64 @@ class _CountryPickerBodyState extends State<CountryPickerBody> {
                       style: theme.textTheme.bodyMedium,
                     ),
                   )
-                : Scrollbar(
+                : ListView.builder(
                     controller: widget.scrollController,
-                    child: ListView.builder(
-                      controller: widget.scrollController,
-                      keyboardDismissBehavior:
-                          style?.scrollViewKeyboardDismissBehavior ??
-                              ScrollViewKeyboardDismissBehavior.onDrag,
-                      itemCount: _rows.length,
-                      itemBuilder: (context, index) {
-                        final row = _rows[index];
-                        if (row.isHeader) {
-                          return row.title!.isEmpty
-                              ? divider
-                              : Padding(
-                                  padding:
-                                      const EdgeInsets.fromLTRB(16, 12, 16, 4),
-                                  child: Align(
-                                    alignment: AlignmentDirectional.centerStart,
-                                    child: Text(
-                                      row.title!,
-                                      style: theme.textTheme.labelMedium
-                                          ?.copyWith(
-                                              color: theme.colorScheme.primary),
-                                    ),
+                    keyboardDismissBehavior:
+                        style?.scrollViewKeyboardDismissBehavior ??
+                            ScrollViewKeyboardDismissBehavior.onDrag,
+                    itemCount: _rows.length,
+                    itemBuilder: (context, index) {
+                      final row = _rows[index];
+                      if (row.isHeader) {
+                        return row.title!.isEmpty
+                            ? divider
+                            : Padding(
+                                padding:
+                                    const EdgeInsets.fromLTRB(16, 12, 16, 4),
+                                child: Align(
+                                  alignment: AlignmentDirectional.centerStart,
+                                  child: Text(
+                                    row.title!,
+                                    style: theme.textTheme.labelMedium
+                                        ?.copyWith(
+                                            color: theme.colorScheme.primary),
                                   ),
-                                );
-                        }
-                        final country = row.country!;
-                        final selected =
-                            country.code == widget.selectedCountry.code;
-                        return Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: <Widget>[
-                            ListTile(
-                              selected: selected,
-                              selectedTileColor: style?.selectedTileColor,
-                              leading: CountryFlag(
-                                country: country,
-                                shape: style?.flagShape ?? FlagShape.rectangle,
-                                size: style?.flagSize ?? 32,
-                              ),
-                              contentPadding: style?.listTilePadding,
-                              title: Text(
-                                country.localizedName(widget.languageCode),
-                                style: style?.countryNameStyle ??
-                                    const TextStyle(
-                                        fontWeight: FontWeight.w700),
-                              ),
-                              trailing: Text(
-                                '+${country.displayCC}',
-                                // '+' must lead the digits even in RTL layouts.
-                                textDirection: TextDirection.ltr,
-                                style: style?.countryCodeStyle ??
-                                    const TextStyle(
-                                        fontWeight: FontWeight.w700),
-                              ),
-                              onTap: () => Navigator.of(context).pop(country),
+                                ),
+                              );
+                      }
+                      final country = row.country!;
+                      final selected =
+                          country.code == widget.selectedCountry.code;
+                      return Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          ListTile(
+                            selected: selected,
+                            selectedTileColor: style?.selectedTileColor,
+                            leading: CountryFlag(
+                              country: country,
+                              shape: style?.flagShape ?? FlagShape.rectangle,
+                              size: style?.flagSize ?? 32,
                             ),
-                            divider,
-                          ],
-                        );
-                      },
-                    ),
+                            contentPadding: style?.listTilePadding,
+                            title: Text(
+                              country.localizedName(widget.languageCode),
+                              style: style?.countryNameStyle ??
+                                  const TextStyle(fontWeight: FontWeight.w700),
+                            ),
+                            trailing: Text(
+                              '+${country.displayCC}',
+                              // '+' must lead the digits even in RTL layouts.
+                              textDirection: TextDirection.ltr,
+                              style: style?.countryCodeStyle ??
+                                  const TextStyle(fontWeight: FontWeight.w700),
+                            ),
+                            onTap: () => Navigator.of(context).pop(country),
+                          ),
+                          divider,
+                        ],
+                      );
+                    },
                   ),
           ),
         ],
