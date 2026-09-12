@@ -12,7 +12,8 @@ void main() {
       final seen = <String>{};
       for (final c in countries) {
         expect(c.code, matches(RegExp(r'^[A-Z]{2}$')), reason: c.name);
-        expect(seen.add(c.code), isTrue, reason: 'duplicate ISO code ${c.code}');
+        expect(seen.add(c.code), isTrue,
+            reason: 'duplicate ISO code ${c.code}');
       }
     });
 
@@ -49,6 +50,25 @@ void main() {
       for (final c in countries) {
         expect(c.nameTranslations['en'], isNotNull, reason: c.name);
       }
+    });
+
+    test('name agrees with the English translation', () {
+      // These drifted apart in earlier releases: Italy's name was
+      // "Campione d'Italia" while its English translation said "Italy", and
+      // several entries carried mangled ISO long-forms.
+      for (final c in countries) {
+        expect(c.name, c.nameTranslations['en'], reason: c.code);
+      }
+    });
+
+    test('localizedName falls back sensibly', () {
+      final gb = countries.firstWhere((c) => c.code == 'GB');
+      expect(gb.localizedName('fr'), gb.nameTranslations['fr']);
+      expect(gb.localizedName('FR'), gb.nameTranslations['fr'],
+          reason: 'case-insensitive');
+      expect(gb.localizedName('fr_CA'), gb.nameTranslations['fr'],
+          reason: 'falls back to the base language');
+      expect(gb.localizedName('xx'), gb.name, reason: 'unknown language');
     });
 
     test('example numbers fall inside the declared length range', () {
