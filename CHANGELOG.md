@@ -29,7 +29,7 @@ rewritten on top of it. See [MIGRATION.md](MIGRATION.md) for an upgrade guide.
   `maxLength` corrected from libphonenumber. For 117 of them the range of
   numbers the field accepts genuinely changed, so numbers that used to
   validate may now fail, and vice versa; for the other three only the split
-  between `dialCode` and `minLength` moved.
+  between `regionCode` and `minLength` moved.
 - Cayman Islands moved from `+345`, which is not an assigned calling code and
   so could never match a real number, to `+1 345`. Vatican City moved from
   `+379` to `+39`; Vatican numbers are reported as Italian, as libphonenumber
@@ -64,8 +64,8 @@ rewritten on top of it. See [MIGRATION.md](MIGRATION.md) for an upgrade guide.
 - `CountryResolver`, which matches on the calling code and then on the leading
   digits of the national number, the way libphonenumber does. Every fixed-line
   and mobile example number libphonenumber publishes — 489 of them, covering
-  all 251 territories — resolves to the right country and validates, asserted
-  by a generated test fixture.
+  the 239 territories it publishes any for — resolves to the right country and
+  validates, asserted by a generated test fixture.
 - As-you-type national formatting, opt-in via `formatInput`, driven by
   libphonenumber's formatting rules: `2015550123` renders as `(201) 555-0123`.
   Exposed as `AsYouTypeFormatter` and `PhoneInputFormatter`.

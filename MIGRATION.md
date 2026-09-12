@@ -128,9 +128,9 @@ ranges come from libphonenumber's `possibleLengths` and are correct.
 
 Of the 243 territories that existed in 0.0.8, 120 had their `minLength` or
 `maxLength` field changed, and for 117 of those the range of numbers actually
-accepted changed too (the other three only moved digits between `dialCode` and
-`minLength`). Most ranges widened;
-46 became stricter at one end, so a number that used to validate may now fail.
+accepted changed too (the other three only moved digits between `regionCode`
+and `minLength`). Most ranges widened; 46 became stricter at one end, so a
+number that used to validate may now fail.
 
 ```dart
 // Before (0.0.8)          // After (0.1.0)
@@ -497,12 +497,13 @@ in most apps. Only affects you if you built your own picker UI; using
 
 ---
 
-### 41 country display names changed
+### 43 country display names changed
 
 **Why.** The `name` field disagreed with the English translation that was
 actually rendered. Italy was named `"Campione d'Italia"` — an exclave of about
-two thousand people — and forty more carried mangled ISO long-forms. `name` now
-matches the displayed English name, and a test keeps the two in step.
+two thousand people — and forty-two more carried mangled ISO long-forms.
+`name` now matches the displayed English name, and a test keeps the two in
+step.
 
 ```dart
 // Before (0.0.8)

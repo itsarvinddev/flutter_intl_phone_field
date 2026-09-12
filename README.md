@@ -570,7 +570,7 @@ or in the generator.
 `0.1.0` corrects the country dataset and reshapes several APIs. `Country.dialCode`
 is now the true calling code (territories that used to carry an area code inside
 it, such as American Samoa's `"1684"`, now have `dialCode: "1"` and
-`regionCode: "684"`), 109 countries had their length ranges corrected, and
+`regionCode: "684"`), 117 countries had their length ranges corrected, and
 `isValidNumber()` no longer throws.
 
 See **[MIGRATION.md](MIGRATION.md)** for the full list of changes and what to do

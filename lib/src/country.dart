@@ -3,7 +3,7 @@
 ///
 /// Instances are `const` and immutable. The bundled [countries] list is
 /// generated from Google's libphonenumber metadata; see
-/// `tool/generate_countries.dart`.
+/// `tool/generate_country_data.py`.
 class Country {
   /// English name of the country, e.g. `"United Kingdom"`.
   final String name;
@@ -15,7 +15,7 @@ class Country {
 
   /// Regional-indicator emoji for the country, e.g. `"🇬🇧"`.
   ///
-  /// Not every platform renders these; see `FlagStyle` for how the widget
+  /// Not every platform renders these; see [CountryFlag] for how the widget
   /// falls back to the bundled PNG flags.
   final String flag;
 
