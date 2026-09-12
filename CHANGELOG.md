@@ -2,6 +2,10 @@
 
 - Fixed Kenya mobile number validation - updated length from 9 to 9-10 digits to accommodate both standard international format and local format with trunk prefix
 - Added comprehensive test cases for Kenya phone numbers
+- Fixed UK (+44) phone number validation issue
+- Added region codes for Crown Dependencies: Guernsey (1481), Isle of Man (1624), Jersey (1534)
+- Fixed widget to consistently use fullCountryCode when creating PhoneNumber objects
+- Added comprehensive tests for UK and Crown Dependencies phone validation
 
 ## 0.0.7
 
