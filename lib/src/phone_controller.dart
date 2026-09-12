@@ -23,6 +23,7 @@ import 'phone_number.dart';
 ///
 /// Dispose it when you are done, as with any [ChangeNotifier].
 class PhoneController extends ValueNotifier<PhoneNumber> {
+  /// Creates a controller, optionally starting from [initialValue].
   PhoneController({PhoneNumber? initialValue})
       : super(initialValue ??
             const PhoneNumber(countryISOCode: '', countryCode: '', number: ''));

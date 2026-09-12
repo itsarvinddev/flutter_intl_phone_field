@@ -44,21 +44,10 @@ linter:
     unnecessary_statements: true
 
     # --- Public API hygiene ------------------------------------------------
-    # public_member_api_docs is measured, not forgotten: it reports exactly 31
-    # undocumented public members, all in hand-written lib/src files
-    # (phone_number.dart 10, country_picker.dart 9, localization.dart 3,
-    # intl_phone_field.dart 3, country.dart 2, and one each in country_flag,
-    # phone_controller, phone_input_formatter, phone_number_format).
-    #
-    # Notably ZERO of them are in the generated files -- countries.dart,
-    # country_patterns.dart and number_formats.dart each expose a single,
-    # already-documented top-level constant -- so the `analyzer: exclude:` that
-    # this rule would normally need is unnecessary here.
-    #
-    # 31 is a morning's work, not a rewrite. Document those members, then flip
-    # this to true; `flutter analyze --fatal-infos` is a CI gate, so it cannot
-    # be turned on before that without breaking every build.
-    # public_member_api_docs: true
+    # Every public member in lib/src carries a doc comment, and this rule keeps
+    # it that way. The generated files are exempt by construction: each exposes
+    # a single, already-documented top-level constant.
+    public_member_api_docs: true
     # This package's whole value is its API surface, so the rules that keep it
     # explicit and hard to misuse are worth the friction.
     always_declare_return_types: true

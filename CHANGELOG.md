@@ -49,9 +49,9 @@ rewritten on top of it. See [MIGRATION.md](MIGRATION.md) for an upgrade guide.
   the first hint.
 - `CountryPickerDialog` was replaced by the `showCountryPicker` function and
   the embeddable `CountryPickerBody`.
-- 41 countries' English `name` changed to match the English translation that
-  was actually being displayed: Italy was named `"Campione d'Italia"`, and
-  forty more carried mangled ISO long-forms such as
+- 43 countries' English `name` changed to match the English translation that
+  was actually being displayed: Italy was named `"Campione d'Italia"`, and the
+  rest carried mangled ISO long-forms such as
   `"Bolivia, Plurinational State of bolivia"`. Match on `Country.code`.
 - The minimum SDK is Dart 3.4 / Flutter 3.22. The old `">=2.12.0"` constraint
   pinned the package's language version to 2.12, making every Dart 3 feature a

@@ -70,6 +70,7 @@ class Country {
   /// Bouvet Island, …): they remain selectable but never win a lookup.
   final bool autoDetectable;
 
+  /// Creates a country entry. Prefer the bundled [countries] list.
   const Country({
     required this.name,
     required this.flag,
@@ -123,6 +124,7 @@ class Country {
     return name;
   }
 
+  /// A copy of this country with the given fields replaced.
   Country copyWith({
     String? name,
     Map<String, String>? nameTranslations,

@@ -15,7 +15,13 @@ import 'phone_input_formatter.dart';
 import 'phone_number.dart';
 
 /// Where the dropdown arrow sits relative to the flag and dial code.
-enum IconPosition { leading, trailing }
+enum IconPosition {
+  /// Before the flag and dial code.
+  leading,
+
+  /// After the flag and dial code.
+  trailing,
+}
 
 /// How to interpret [IntlPhoneField.initialValue].
 enum InitialValueFormat {
@@ -320,6 +326,7 @@ class IntlPhoneField extends StatefulWidget {
   /// Restore state across app restarts. See [TextFormField.restorationId].
   final String? restorationId;
 
+  /// Creates an international phone number field.
   const IntlPhoneField({
     super.key,
     this.formFieldKey,

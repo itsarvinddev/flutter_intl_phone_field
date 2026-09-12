@@ -9,6 +9,8 @@ import 'country.dart';
 /// always preserved. The caret is kept next to the same digit it was next to
 /// before formatting, which is what keeps mid-number edits from jumping.
 class PhoneInputFormatter extends TextInputFormatter {
+  /// Formats input for [country]; pass `enabled: false` to only strip
+  /// non-digits.
   PhoneInputFormatter({required this.country, this.enabled = true});
 
   /// The country whose national layout to apply.

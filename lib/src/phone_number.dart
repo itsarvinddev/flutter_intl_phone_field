@@ -4,7 +4,10 @@ import 'country_lookup.dart';
 
 /// Thrown when a number has more digits than the country allows.
 class NumberTooLongException implements Exception {
+  /// Creates the exception, optionally with a custom [message].
   const NumberTooLongException([this.message = 'The number is too long.']);
+
+  /// Human-readable description of the failure.
   final String message;
   @override
   String toString() => 'NumberTooLongException: $message';
@@ -12,7 +15,10 @@ class NumberTooLongException implements Exception {
 
 /// Thrown when a number has fewer digits than the country requires.
 class NumberTooShortException implements Exception {
+  /// Creates the exception, optionally with a custom [message].
   const NumberTooShortException([this.message = 'The number is too short.']);
+
+  /// Human-readable description of the failure.
   final String message;
   @override
   String toString() => 'NumberTooShortException: $message';
@@ -21,8 +27,11 @@ class NumberTooShortException implements Exception {
 /// Thrown when a number contains characters that cannot be part of a phone
 /// number.
 class InvalidCharactersException implements Exception {
+  /// Creates the exception, optionally with a custom [message].
   const InvalidCharactersException(
       [this.message = 'The number contains invalid characters.']);
+
+  /// Human-readable description of the failure.
   final String message;
   @override
   String toString() => 'InvalidCharactersException: $message';
@@ -45,6 +54,7 @@ class PhoneNumber {
   /// The subscriber number as typed, digits only.
   final String number;
 
+  /// Creates a phone number from its parts.
   const PhoneNumber({
     required this.countryISOCode,
     required this.countryCode,
@@ -161,6 +171,7 @@ class PhoneNumber {
   /// The subscriber number as typed.
   String get getOriginalValue => number;
 
+  /// A copy of this number with the given fields replaced.
   PhoneNumber copyWith({
     String? countryISOCode,
     String? countryCode,
@@ -172,12 +183,14 @@ class PhoneNumber {
         number: number ?? this.number,
       );
 
+  /// A JSON map of [countryISOCode], [countryCode] and [number].
   Map<String, dynamic> toJson() => <String, dynamic>{
         'countryISOCode': countryISOCode,
         'countryCode': countryCode,
         'number': number,
       };
 
+  /// Rebuilds a number from the map produced by [toJson].
   factory PhoneNumber.fromJson(Map<String, dynamic> json) => PhoneNumber(
         countryISOCode: json['countryISOCode'] as String? ?? '',
         countryCode: json['countryCode'] as String? ?? '',

@@ -34,6 +34,7 @@ class IntlPhoneFieldLocalizations {
   /// Heading above pinned favourite countries in the picker.
   final String favoritesLabel;
 
+  /// Creates a set of strings; anything omitted keeps its English default.
   const IntlPhoneFieldLocalizations({
     this.searchHint = 'Search country',
     this.invalidNumber = 'Invalid phone number',
@@ -48,9 +49,11 @@ class IntlPhoneFieldLocalizations {
   static const IntlPhoneFieldLocalizations fallback =
       IntlPhoneFieldLocalizations();
 
+  /// [countrySelectorLabel] with `{country}` replaced by [countryName].
   String countrySelectorLabelFor(String countryName) =>
       countrySelectorLabel.replaceAll('{country}', countryName);
 
+  /// A copy of these strings with the given ones replaced.
   IntlPhoneFieldLocalizations copyWith({
     String? searchHint,
     String? invalidNumber,

@@ -86,6 +86,7 @@ class PickerDialogStyle {
   /// Width of the flags in the list.
   final double flagSize;
 
+  /// Creates a style for the country picker. Every field is optional.
   const PickerDialogStyle({
     this.backgroundColor,
     this.countryCodeStyle,
@@ -233,6 +234,7 @@ class _PickerDialog extends StatelessWidget {
 /// Exposed so it can be embedded in a layout of your own; it pops the enclosing
 /// route with the chosen [Country].
 class CountryPickerBody extends StatefulWidget {
+  /// Creates the picker's contents.
   const CountryPickerBody({
     super.key,
     required this.countries,
@@ -244,12 +246,25 @@ class CountryPickerBody extends StatefulWidget {
     this.scrollController,
   });
 
+  /// Countries to offer.
   final List<Country> countries;
+
+  /// The country currently selected, marked in the list.
   final Country selectedCountry;
+
+  /// Visual styling; null follows the ambient [Theme].
   final PickerDialogStyle? style;
+
+  /// Language for country names, e.g. `'fr'`.
   final String languageCode;
+
+  /// Countries pinned above the rest, in the order given.
   final List<Country> favorites;
+
+  /// Strings shown by the picker.
   final IntlPhoneFieldLocalizations localizations;
+
+  /// Scroll controller for the list, supplied by a draggable sheet.
   final ScrollController? scrollController;
 
   @override

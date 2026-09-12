@@ -30,6 +30,7 @@ enum FlagShape {
 /// They fall back to the emoji, and then to the ISO code, so the widget always
 /// renders something identifiable rather than a blank or a wrong flag.
 class CountryFlag extends StatelessWidget {
+  /// Draws [country]'s flag at [size], clipped to [shape].
   const CountryFlag({
     super.key,
     required this.country,

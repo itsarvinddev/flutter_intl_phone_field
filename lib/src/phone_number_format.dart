@@ -19,6 +19,7 @@ class PhoneNumberFormat {
   /// formatting for domestic display, e.g. `r'$NP$FG'`.
   final String? nationalPrefixFormattingRule;
 
+  /// Creates a formatting rule.
   const PhoneNumberFormat({
     required this.pattern,
     required this.format,

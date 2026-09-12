@@ -22,12 +22,12 @@ keeps compiling and behaving as before.
 | The built-in length check now runs *alongside* a custom `validator` | Pass `disableLengthCheck: true` if you want only your own rule |
 | Async validators now display their message | Make sure your async validator only returns messages you want shown |
 | Default `autofillHints` lead with `telephoneNumber` | Nothing, or pass `autofillHints` explicitly to keep the old order |
-| Flags render as PNG on Windows, Linux and web | Nothing; set `forceImage: true` for the same look everywhere |
+| Flags render as PNG on Windows, Linux and web | Nothing; for the same look everywhere pass a `flagBuilder` returning `CountryFlag(..., forceImage: true)` |
 | Minimum SDK is Dart 3.4 / Flutter 3.22 | Raise your own constraint, or stay on 0.0.8 |
 | `searchText` is deprecated | Move the string to `localizations.searchHint` |
 | Implementation moved under `lib/src/` behind one barrel | Import `package:flutter_intl_phone_field/flutter_intl_phone_field.dart` |
 | `CountryPickerDialog` was replaced by `showCountryPicker` | Call `showCountryPicker(...)`, or embed `CountryPickerBody` |
-| 41 countries' English display names changed | Re-check anything that matches on `Country.name` |
+| 43 countries' English display names changed | Re-check anything that matches on `Country.name` |
 
 ---
 
