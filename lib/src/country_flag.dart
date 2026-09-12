@@ -25,6 +25,10 @@ enum FlagShape {
 /// bundled PNG flags everywhere else. Windows and most Linux font stacks have
 /// no glyphs for flag emoji and would otherwise show two letters or tofu, so
 /// those platforms — and the web, whose fonts vary — always get the image.
+///
+/// A handful of territories ship no image (Ascension and Tristan da Cunha).
+/// They fall back to the emoji, and then to the ISO code, so the widget always
+/// renders something identifiable rather than a blank or a wrong flag.
 class CountryFlag extends StatelessWidget {
   const CountryFlag({
     super.key,
@@ -105,7 +109,8 @@ class CountryFlag extends StatelessWidget {
       height: square ? size : null,
       fit: square ? BoxFit.cover : BoxFit.contain,
       // A missing asset must not take the whole app down with a red screen.
-      errorBuilder: (context, error, stack) => _emoji(),
+      errorBuilder: (context, error, stack) =>
+          supportsEmojiFlags ? _emoji() : _isoCode(),
     );
   }
 
@@ -115,6 +120,20 @@ class CountryFlag extends StatelessWidget {
           country.flag,
           textAlign: TextAlign.center,
           style: TextStyle(fontSize: size * 0.6),
+        ),
+      );
+
+  /// Last resort: the ISO code, which at least names the country.
+  Widget _isoCode() => SizedBox(
+        width: size,
+        child: Text(
+          country.code,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontSize: size * 0.4,
+            fontWeight: FontWeight.w600,
+            letterSpacing: 0.5,
+          ),
         ),
       );
 }
