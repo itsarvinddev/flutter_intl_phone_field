@@ -6,6 +6,8 @@
 - Added region codes for Crown Dependencies: Guernsey (1481), Isle of Man (1624), Jersey (1534)
 - Fixed widget to consistently use fullCountryCode when creating PhoneNumber objects
 - Added comprehensive tests for UK and Crown Dependencies phone validation
+- Added `showCountryCode` parameter to control visibility of country dial code (e.g., +1, +44)
+- Enhanced flexibility in customizing phone field appearance
 
 ## 0.0.7
 

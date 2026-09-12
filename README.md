@@ -67,9 +67,11 @@ IntlPhoneField(
 
 Use `initialCountryCode` to set an initial Country Code.
 
-## Validation
+## Customization Options
 
-The package provides built-in validation for phone numbers. You can use the `isValidNumber()` method to check if a phone number is valid:
+### Hide Country Dial Code
+
+You can hide the country dial code (e.g., +1, +44) while keeping the flag visible:
 
 ```dart
 IntlPhoneField(
@@ -79,26 +81,51 @@ IntlPhoneField(
             borderSide: BorderSide(),
         ),
     ),
-    initialCountryCode: 'GB', // United Kingdom
-    validator: (phoneNumber) {
-        if (phoneNumber == null || phoneNumber.number.isEmpty) {
-            return 'Please enter a phone number';
-        }
-        if (!phoneNumber.isValidNumber()) {
-            return 'Please enter a valid phone number';
-        }
-        return null;
-    },
+    showCountryCode: false, // Hides the country dial code
     onChanged: (phone) {
         print(phone.completeNumber);
     },
 )
 ```
 
-The validator checks the phone number length against the selected country's min and max length requirements. For example:
-- United Kingdom (GB): 10 digits
-- Guernsey (GG): 6 digits
-- United States (US): 10 digits
+### Hide Country Flag
+
+You can hide the country flag:
+
+```dart
+IntlPhoneField(
+    decoration: InputDecoration(
+        labelText: 'Phone Number',
+        border: OutlineInputBorder(
+            borderSide: BorderSide(),
+        ),
+    ),
+    showCountryFlag: false, // Hides the country flag
+    onChanged: (phone) {
+        print(phone.completeNumber);
+    },
+)
+```
+
+### Hide Both Flag and Dial Code
+
+You can hide both the country flag and dial code:
+
+```dart
+IntlPhoneField(
+    decoration: InputDecoration(
+        labelText: 'Phone Number',
+        border: OutlineInputBorder(
+            borderSide: BorderSide(),
+        ),
+    ),
+    showCountryFlag: false, // Hides the country flag
+    showCountryCode: false, // Hides the country dial code
+    onChanged: (phone) {
+        print(phone.completeNumber);
+    },
+)
+```
 
 ## Contributing
 
