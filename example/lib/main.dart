@@ -76,13 +76,17 @@ class _MyAppState extends State<MyApp> {
                 ),
                 IntlPhoneField(
                   initialValue: "7012345678",
-                  showCountryCode: false,
+                  focusNode: focusNode,
+                  dialogType: DialogType.showModalBottomSheet,
                   decoration: const InputDecoration(
                     labelText: 'Phone Number (No Country Code)',
                     border: OutlineInputBorder(
                       borderSide: BorderSide(),
                     ),
                   ),
+                  onTapOutside: (_) {
+                    focusNode.unfocus();
+                  },
                   languageCode: "en",
                   onChanged: (phone) {
                     print(phone.completeNumber);

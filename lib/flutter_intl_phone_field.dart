@@ -292,6 +292,9 @@ class IntlPhoneField extends StatefulWidget {
   /// Called when the user submits data.
   final void Function()? onEditingComplete;
 
+  /// Called when the user taps outside.
+  final void Function(PointerDownEvent)? onTapOutside;
+
   const IntlPhoneField({
     Key? key,
     this.formFieldKey,
@@ -350,6 +353,7 @@ class IntlPhoneField extends StatefulWidget {
     this.maxLengthEnforcement,
     this.buildCounter,
     this.onEditingComplete,
+    this.onTapOutside,
   }) : super(key: key);
 
   @override
@@ -450,23 +454,39 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
     filteredCountries = _countryList;
     await showModalBottomSheet(
       context: context,
-      builder: (context) => StatefulBuilder(
-        builder: (ctx, setState) => CountryPickerDialog(
-          dialogPadding: EdgeInsets.zero,
-          languageCode: widget.languageCode,
-          style: widget.pickerDialogStyle,
-          filteredCountries: filteredCountries,
-          searchText: widget.searchText,
-          countryList: _countryList,
-          selectedCountry: _selectedCountry,
-          onCountryChanged: (Country country) {
-            _selectedCountry = country;
-            widget.onCountryChanged?.call(country);
-            setState(() {});
-          },
-        ),
-      ),
+      isScrollControlled: true,
+      builder: (context) {
+        return FractionallySizedBox(
+            heightFactor: widget.pickerDialogStyle?.heightFactor ?? 0.8,
+            child: StatefulBuilder(
+              builder: (ctx, setState) {
+                return Container(
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).canvasColor,
+                    borderRadius: const BorderRadius.vertical(
+                      top: Radius.circular(20),
+                    ),
+                  ),
+                  child: CountryPickerDialog(
+                    dialogPadding: EdgeInsets.zero,
+                    languageCode: widget.languageCode,
+                    style: widget.pickerDialogStyle,
+                    filteredCountries: filteredCountries,
+                    searchText: widget.searchText,
+                    countryList: _countryList,
+                    selectedCountry: _selectedCountry,
+                    onCountryChanged: (Country country) {
+                      _selectedCountry = country;
+                      widget.onCountryChanged?.call(country);
+                      setState(() {});
+                    },
+                  ),
+                );
+              },
+            ));
+      },
     );
+
     if (mounted) setState(() {});
   }
 
@@ -576,6 +596,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
       autofocus: widget.autofocus,
       textInputAction: widget.textInputAction,
       autovalidateMode: widget.autovalidateMode,
+      onTapOutside: widget.onTapOutside,
     );
   }
 
