@@ -17,20 +17,27 @@ concurrency:
 
 jobs:
   test:
-    name: Test (Flutter ${{ matrix.flutter-version }})
+    name: Test (Flutter ${{ matrix.label }})
     runs-on: ubuntu-latest
     strategy:
       # Let both legs report. A failure on one is far easier to read when you
       # can see whether the other passed.
       fail-fast: false
       matrix:
-        # 3.32.0 is the OLDEST Flutter this repository's own tooling can run:
-        # flutter_lints 6.0.0 requires Dart ^3.8.0, and Flutter 3.32.0 is the
-        # first stable that ships Dart 3.8.0. The package's declared minimum is
-        # Flutter 3.22.0 (Dart 3.4.0), which cannot resolve that dev dependency
-        # -- so the declared minimum is verified from a consumer's point of
-        # view in the `min-supported-flutter` job below instead.
-        flutter-version: ['3.32.0', 'stable']
+        include:
+          # 3.32.0 is the OLDEST Flutter this repository's own tooling can run:
+          # flutter_lints 6.0.0 requires Dart ^3.8.0, and Flutter 3.32.0 is the
+          # first stable that ships Dart 3.8.0. The package's declared minimum
+          # is Flutter 3.22.0 (Dart 3.4.0), which cannot resolve that dev
+          # dependency -- so the declared minimum is verified from a consumer's
+          # point of view in the `min-supported-flutter` job below instead.
+          - label: '3.32.0'
+            flutter-version: '3.32.0'
+          # An empty flutter-version means "newest on the channel".
+          # Passing the literal string 'stable' is rejected by the action:
+          # "Unable to determine Flutter version for channel: stable".
+          - label: stable
+            flutter-version: ''
 
     steps:
       - uses: actions/checkout@v4
@@ -60,7 +67,7 @@ jobs:
 
       - name: Upload coverage
         # Upload once; two identical reports add nothing.
-        if: matrix.flutter-version == 'stable'
+        if: matrix.label == 'stable'
         uses: codecov/codecov-action@v4
         with:
           files: coverage/lcov.info
