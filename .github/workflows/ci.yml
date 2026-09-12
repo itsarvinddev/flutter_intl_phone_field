@@ -1,25 +1,201 @@
 name: CI
 
 on:
-  pull_request:
-    branches: '*'
   push:
-    branches: [master]
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+# Nothing here writes to the repository.
+permissions:
+  contents: read
+
+# A new push to a PR makes the in-flight run pointless; don't pay for it.
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  ci:
+  test:
+    name: Test (Flutter ${{ matrix.label }})
     runs-on: ubuntu-latest
+    strategy:
+      # Let both legs report. A failure on one is far easier to read when you
+      # can see whether the other passed.
+      fail-fast: false
+      matrix:
+        include:
+          # 3.32.0 is the OLDEST Flutter this repository's own tooling can run:
+          # flutter_lints 6.0.0 requires Dart ^3.8.0, and Flutter 3.32.0 is the
+          # first stable that ships Dart 3.8.0. The package's declared minimum
+          # is Flutter 3.22.0 (Dart 3.4.0), which cannot resolve that dev
+          # dependency -- so the declared minimum is verified from a consumer's
+          # point of view in the `min-supported-flutter` job below instead.
+          - label: '3.32.0'
+            flutter-version: '3.32.0'
+          # An empty flutter-version means "newest on the channel".
+          # Passing the literal string 'stable' is rejected by the action:
+          # "Unable to determine Flutter version for channel: stable".
+          - label: stable
+            flutter-version: ''
+
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+
       - uses: subosito/flutter-action@v2
         with:
-          channel: 'stable'
+          flutter-version: ${{ matrix.flutter-version }}
+          channel: stable
+          cache: true
+
+      - name: Print toolchain versions
+        run: flutter --version
+
       - name: Install dependencies
         run: flutter pub get
-      - name: Format code
-        run: dart format --line-length 120 --set-exit-if-changed .
-      - name: Analyze code
-        run: flutter analyze
-      # Skip tests for now
-      # - name: Run tests
-      #   run: flutter test
+
+      # The package is formatted at dart format's default 80 columns, which is
+      # also what pub.dev's pana scores. Do not add --line-length here.
+      - name: Verify formatting
+        run: dart format --output=none --set-exit-if-changed .
+
+      - name: Analyze
+        run: flutter analyze --fatal-infos
+
+      - name: Run tests
+        run: flutter test --coverage
+
+      - name: Upload coverage
+        # Upload once; two identical reports add nothing.
+        if: matrix.label == 'stable'
+        uses: codecov/codecov-action@v4
+        with:
+          files: coverage/lcov.info
+          token: ${{ secrets.CODECOV_TOKEN }}
+          # Fork PRs have no token, and a missing token must not turn a green
+          # test run red.
+          fail_ci_if_error: false
+
+  min-supported-flutter:
+    # pubspec.yaml claims `flutter: ">=3.22.0"`. Nobody develops on that
+    # version, so it is only ever a claim unless CI checks it. We cannot run the
+    # package's own `pub get` here (flutter_lints 6 needs Dart 3.8), but that is
+    # a dev dependency, and pub does not resolve a dependency's dev
+    # dependencies. So we check the thing that actually matters: that a real app
+    # on Flutter 3.22.0 can resolve this package and compile against its public
+    # API.
+    name: Minimum supported Flutter (3.22.0)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.22.0'
+          channel: stable
+          cache: true
+
+      - name: Print toolchain versions
+        run: flutter --version
+
+      - name: Create a consumer app
+        run: flutter create --platforms=web --project-name min_consumer "$RUNNER_TEMP/consumer"
+
+      - name: Depend on this checkout
+        working-directory: ${{ runner.temp }}/consumer
+        run: dart pub add 'flutter_intl_phone_field:{"path":"${{ github.workspace }}"}'
+
+      - name: Use the public API
+        run: |
+          cat > "$RUNNER_TEMP/consumer/lib/main.dart" <<'DART'
+          import 'package:flutter/material.dart';
+          import 'package:flutter_intl_phone_field/flutter_intl_phone_field.dart';
+
+          void main() {
+            final phoneController = PhoneController();
+            final country = CountryResolver.instance.fromInternationalNumber(
+              '+447400123456',
+            );
+            final parsed = PhoneNumber.parse('+447400123456');
+            debugPrint('${countries.length} ${country?.code} '
+                '${parsed.isValidNumber()} '
+                '${IntlPhoneFieldLocalizations.fallback.searchHint}');
+
+            runApp(
+              MaterialApp(
+                home: Scaffold(
+                  body: IntlPhoneField(
+                    initialCountryCode: 'GB',
+                    phoneController: phoneController,
+                    showCountryFlag: true,
+                    dropdownIconPosition: IconPosition.leading,
+                    favoriteCountries: const <String>['GB', 'US'],
+                    onChanged: (PhoneNumber phone) =>
+                        debugPrint(phone.completeNumber),
+                  ),
+                ),
+              ),
+            );
+          }
+          DART
+
+      # --no-fatal-infos: this app is linted by whatever flutter_lints version
+      # `flutter create` pinned on 3.22.0, and style drift there is not our bug.
+      # Type errors are still errors and still fail.
+      - name: Analyze the consumer
+        working-directory: ${{ runner.temp }}/consumer
+        run: flutter analyze lib --no-fatal-infos
+
+      # The real gate: this compiles every library in the package with Dart
+      # 3.4.0, so any newer language feature that crept into lib/ fails here.
+      - name: Compile the consumer
+        working-directory: ${{ runner.temp }}/consumer
+        run: flutter build web --release
+
+  publish-dry-run:
+    name: Publish dry run
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      # Two things at once: pub's own publish validation, and a check that the
+      # archive does not carry build output.
+      #
+      # `.pubignore` REPLACES `.gitignore` for pub rather than adding to it, so
+      # every path .gitignore covers but .pubignore omits (build/, coverage/,
+      # .fvm/, ...) is silently packaged. A fresh CI checkout has none of those
+      # directories, so a plain dry run here would look clean while a publish
+      # from a developer's working tree ships tens of megabytes of .dill files.
+      # Plant sentinels so the check is deterministic instead of incidental.
+      - name: Publish dry run
+        run: |
+          set -euo pipefail
+          mkdir -p build coverage
+          touch build/SENTINEL_MUST_NOT_PUBLISH coverage/SENTINEL_MUST_NOT_PUBLISH
+          flutter pub publish --dry-run 2>&1 | tee dry-run.log
+          if grep -q SENTINEL_MUST_NOT_PUBLISH dry-run.log; then
+            echo "::error file=.pubignore::build/ or coverage/ would be published. \
+          .pubignore replaces .gitignore for pub, so it must list them itself."
+            exit 1
+          fi
+          rm -f build/SENTINEL_MUST_NOT_PUBLISH coverage/SENTINEL_MUST_NOT_PUBLISH
+
+      # Scored 150/160 locally at the time of writing. The missing 10 points are
+      # pana's repository-URL check, which clones the repo's DEFAULT branch and
+      # compares its pubspec: main still carries the old `rvndsngwn` URL, so the
+      # check only passes once this work is merged. Until then a threshold would
+      # fail every run, so this step reports the score without gating on it.
+      # After merge, confirm 160/160 and add `--exit-code-threshold 0` to turn
+      # this into a real gate.
+      - name: Score with pana
+        run: |
+          dart pub global activate pana
+          dart pub global run pana --no-warning

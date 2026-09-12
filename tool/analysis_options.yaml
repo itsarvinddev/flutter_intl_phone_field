@@ -1,0 +1,8 @@
+# Developer scripts, not shipped code. They are run by hand with
+# `dart run tool/<script>.dart` and their whole purpose is to print a report to
+# stdout, so `avoid_print` does not apply here.
+include: ../analysis_options.yaml
+
+linter:
+  rules:
+    avoid_print: false

@@ -1,138 +1,651 @@
-# International Phone Field Package
+# flutter_intl_phone_field
 
-[![Pub Version](https://img.shields.io/pub/v/flutter_intl_phone_field?color=blue&style=plastic)](https://pub.dev/packages/flutter_intl_phone_field)
-[![GitHub Repo stars](https://img.shields.io/github/stars/rvndsngwn/flutter_intl_phone_field?color=gold&style=plastic)](https://github.com/rvndsngwn/flutter_intl_phone_field/stargazers)
-[![GitHub Repo forks](https://img.shields.io/github/forks/rvndsngwn/flutter_intl_phone_field?color=slateblue&style=plastic)](https://github.com/rvndsngwn/flutter_intl_phone_field/fork)
-[![GitHub Repo issues](https://img.shields.io/github/issues/rvndsngwn/flutter_intl_phone_field?color=coral&style=plastic)](https://github.com/rvndsngwn/flutter_intl_phone_field/issues)
-[![GitHub Repo contributors](https://img.shields.io/github/contributors/rvndsngwn/flutter_intl_phone_field?color=green&style=plastic)](https://github.com/rvndsngwn/flutter_intl_phone_field/graphs/contributors)
+International phone number input for Flutter: a `TextFormField` with a country
+picker, as-you-type formatting, and libphonenumber-accurate validation for 251
+countries and territories.
 
-A customized Flutter TextFormField to input international phone number along with country code.
+[![Pub Version](https://img.shields.io/pub/v/flutter_intl_phone_field?color=blue)](https://pub.dev/packages/flutter_intl_phone_field)
+[![Pub Points](https://img.shields.io/pub/points/flutter_intl_phone_field)](https://pub.dev/packages/flutter_intl_phone_field/score)
+[![Pub Popularity](https://img.shields.io/pub/popularity/flutter_intl_phone_field)](https://pub.dev/packages/flutter_intl_phone_field/score)
+[![License: MIT](https://img.shields.io/github/license/itsarvinddev/flutter_intl_phone_field?color=green)](https://github.com/itsarvinddev/flutter_intl_phone_field/blob/main/LICENSE)
+[![CI](https://github.com/itsarvinddev/flutter_intl_phone_field/actions/workflows/ci.yml/badge.svg)](https://github.com/itsarvinddev/flutter_intl_phone_field/actions/workflows/ci.yml)
 
-This widget can be used to make customized text field to take phone number input for any country along with an option to choose country code from a dropdown.
+## Features
+
+- **251 countries and territories**, with calling codes, national-number length
+  ranges, example numbers and national prefixes generated from Google's
+  libphonenumber metadata.
+- **Length validation out of the box**, and optional `strictValidation` that
+  requires the number to match a real fixed-line or mobile range.
+- **As-you-type formatting** using each country's national layout —
+  `2015550123` becomes `(201) 555-0123` — while the value you receive stays
+  digits only.
+- **Accurate country resolution**: numbers sharing a calling code are told apart
+  by their leading digits, so `+447781123456` resolves to Guernsey, not the UK.
+- **A searchable picker** in five presentations (dialog, modal sheet, draggable
+  sheet, full-screen page, or platform-adaptive), searchable by country name in
+  any bundled language, by ISO code, or by dial code, with accent folding.
+- **Favourite countries** pinned to the top of the list, plus `onlyCountries` /
+  `excludeCountries` filtering.
+- **Flags that work everywhere**: regional-indicator emoji on iOS, macOS and
+  Android; bundled PNGs on Windows, Linux and the web, where flag emoji don't
+  render.
+- **`PhoneController`** — a `ValueNotifier<PhoneNumber>` for reading, writing and
+  listening to the value from outside the widget.
+- **Immutable `PhoneNumber`** with `==`, `copyWith`, `toJson`/`fromJson`, E.164
+  output and non-throwing parsing.
+- **Localizable strings** with no `intl` dependency, and localized country names
+  from the Unicode CLDR.
+- **Deeply customizable**: builders for the flag, the dial code and the whole
+  country selector; every part hideable.
 
 ## Screenshots
 
 <table>
-<td><img src="https://raw.githubusercontent.com/rvndsngwn/flutter_intl_phone_field/master/image-1.png" width=270 height=480 alt=""></td>
-<td><img src="https://raw.githubusercontent.com/rvndsngwn/flutter_intl_phone_field/master/image-2.png" width=270 height=480 alt=""></td>
-<td><img src="https://raw.githubusercontent.com/rvndsngwn/flutter_intl_phone_field/master/image-3.png" width=270 height=480 alt=""></td>
+<tr>
+<td><img src="https://raw.githubusercontent.com/itsarvinddev/flutter_intl_phone_field/main/image-1.png" width="270" alt="Phone field with country selector"></td>
+<td><img src="https://raw.githubusercontent.com/itsarvinddev/flutter_intl_phone_field/main/image-2.png" width="270" alt="Searchable country picker"></td>
+<td><img src="https://raw.githubusercontent.com/itsarvinddev/flutter_intl_phone_field/main/image-3.png" width="270" alt="Validation and formatting"></td>
 </tr>
 </table>
 
-## Installing
+## Install
 
-To use this package:
-
-Run this command:
-
-```yaml
+```bash
 flutter pub add flutter_intl_phone_field
 ```
 
-Or, add the following to your `pubspec.yaml` file:
+Or add it to `pubspec.yaml` by hand:
 
 ```yaml
 dependencies:
-  flutter_intl_phone_field: ^<latest_version>
+  flutter_intl_phone_field: ^0.1.0
 ```
 
-Sometimes you may want to use the latest version of the package, instead of a published version. To do that, use the `git` syntax:
+Then import the single barrel file:
 
-```yaml
-dependencies:
-  flutter_intl_phone_field:
-    git:
-      url: git://github.com/rvndsngwn/flutter_intl_phone_field.git
-      ref: main
+```dart
+import 'package:flutter_intl_phone_field/flutter_intl_phone_field.dart';
 ```
 
-## How to Use
-
-Simply create a `IntlPhoneField` widget, and pass the required params:
+## Quick start
 
 ```dart
 IntlPhoneField(
-    decoration: InputDecoration(
-        labelText: 'Phone Number',
-        border: OutlineInputBorder(
-            borderSide: BorderSide(),
-        ),
-    ),
-    initialCountryCode: 'IN',
-    onChanged: (phone) {
-        print(phone.completeNumber);
-    },
+  decoration: const InputDecoration(
+    labelText: 'Phone number',
+    border: OutlineInputBorder(),
+  ),
+  initialCountryCode: 'IN',
+  onChanged: (phone) => print(phone.completeNumber), // +919876543210
 )
 ```
 
-Use `initialCountryCode` to set an initial Country Code.
+The field edits the *national* part of the number. The calling code is shown
+beside it and delivered on `PhoneNumber.countryCode`.
 
-## Customization Options
+## Recipes
 
-### Hide Country Dial Code
+### Validation
 
-You can hide the country dial code (e.g., +1, +44) while keeping the flag visible:
+The built-in check compares the digit count against the country's permitted
+range and shows `localizations.invalidNumber`. Override just the message with
+`invalidMessage`:
 
 ```dart
 IntlPhoneField(
-    decoration: InputDecoration(
-        labelText: 'Phone Number',
-        border: OutlineInputBorder(
-            borderSide: BorderSide(),
-        ),
-    ),
-    showCountryCode: false, // Hides the country dial code
-    onChanged: (phone) {
-        print(phone.completeNumber);
-    },
+  invalidMessage: 'That is not a valid number',
+  onChanged: (phone) => setState(() => _phone = phone),
 )
 ```
 
-### Hide Country Flag
-
-You can hide the country flag:
+A custom validator runs *after* the length check, so you never have to re-check
+the length yourself. Return `null` when the number is acceptable:
 
 ```dart
 IntlPhoneField(
-    decoration: InputDecoration(
-        labelText: 'Phone Number',
-        border: OutlineInputBorder(
-            borderSide: BorderSide(),
-        ),
-    ),
-    showCountryFlag: false, // Hides the country flag
-    onChanged: (phone) {
-        print(phone.completeNumber);
-    },
+  validator: (phone) {
+    if (phone == null || phone.number.isEmpty) return 'Required';
+    if (phone.countryISOCode == 'IN' && !phone.number.startsWith('9')) {
+      return 'We only accept numbers starting with 9';
+    }
+    return null;
+  },
 )
 ```
 
-### Hide Both Flag and Dial Code
-
-You can hide both the country flag and dial code:
+Async validators are supported — the field re-runs validation when the future
+completes:
 
 ```dart
 IntlPhoneField(
-    decoration: InputDecoration(
-        labelText: 'Phone Number',
-        border: OutlineInputBorder(
-            borderSide: BorderSide(),
-        ),
-    ),
-    showCountryFlag: false, // Hides the country flag
-    showCountryCode: false, // Hides the country dial code
-    onChanged: (phone) {
-        print(phone.completeNumber);
-    },
+  validator: (phone) async {
+    if (phone == null || !phone.isValidNumber()) return null;
+    final taken = await api.phoneAlreadyRegistered(phone.completeNumber);
+    return taken ? 'This number is already registered' : null;
+  },
 )
+```
+
+Strict validation additionally requires the number to match a real fixed-line or
+mobile range for the territory. It is off by default because it rejects numbers
+in ranges allocated after the bundled data was generated:
+
+```dart
+IntlPhoneField(strictValidation: true)
+```
+
+To turn the length check off entirely — which also lifts the typing limit — pass
+`disableLengthCheck: true`.
+
+### Reading the value
+
+`onChanged`, `onSaved` and `validator` all hand you a `PhoneNumber`:
+
+```dart
+IntlPhoneField(
+  onChanged: (phone) {
+    print(phone.countryISOCode); // GB
+    print(phone.countryCode);    // +44
+    print(phone.number);         // 7400123456
+    print(phone.completeNumber); // +447400123456  (E.164)
+    print(phone.isValidNumber()); // true
+    print(phone.toJson());
+  },
+)
+```
+
+`PhoneNumber` is immutable and round-trips through JSON:
+
+```dart
+final json = phone.toJson();
+final restored = PhoneNumber.fromJson(json);
+assert(restored == phone);
+```
+
+Parse a number you already have. `fromCompleteNumber` never throws; `parse`
+throws `NumberTooShortException` or `InvalidCharactersException`:
+
+```dart
+final a = PhoneNumber.fromCompleteNumber(completeNumber: '+441481960194');
+print(a.countryISOCode); // GG
+
+try {
+  PhoneNumber.parse('+999123');
+} on NumberTooShortException catch (e) {
+  print(e.message);
+}
+```
+
+`isValidNumber()` returns a bool and never throws. `validate()` is the throwing
+variant, raising `NumberTooShortException`, `NumberTooLongException` or
+`InvalidCharactersException` so you can tell the user *why* the number failed.
+
+### PhoneController
+
+`PhoneController` is a `ValueNotifier<PhoneNumber>`, so you can read, write and
+listen to the field from outside the widget:
+
+```dart
+final controller = PhoneController.fromCompleteNumber('+447400123456');
+// or: PhoneController.fromParts(isoCode: 'GB', number: '7400123456');
+
+@override
+void dispose() {
+  controller.dispose();
+  super.dispose();
+}
+
+// ...
+IntlPhoneField(phoneController: controller)
+
+// Elsewhere:
+controller.number = '7911123456';   // replace the number, keep the country
+controller.country = someCountry;   // switch country, keep the number
+controller.clear();                 // clear the number, keep the country
+print(controller.completeNumber);
+print(controller.isValid);
+```
+
+### As-you-type formatting
+
+`formatInput` formats the field using the country's national layout. Whatever is
+displayed, the value delivered on `onChanged` is always digits only:
+
+```dart
+IntlPhoneField(
+  formatInput: true,
+  initialCountryCode: 'US',
+  onChanged: (phone) => print(phone.number), // 2015550123, not (201) 555-0123
+)
+```
+
+You can also format a number yourself:
+
+```dart
+final us = countries.firstWhere((c) => c.code == 'US');
+AsYouTypeFormatter.format(us, '2015550123'); // (201) 555-0123
+```
+
+### Curating the country list
+
+Pin frequently used countries to the top of the picker, restrict the list, or
+remove entries. `favoriteCountries`, `onlyCountries` and `excludeCountries` all
+take ISO 3166-1 alpha-2 codes:
+
+```dart
+IntlPhoneField(
+  favoriteCountries: const ['IN', 'US', 'GB'],
+  excludeCountries: const ['KP'],
+)
+
+IntlPhoneField(
+  onlyCountries: const ['IN', 'US', 'GB', 'AE'],
+)
+```
+
+For full control, pass your own list — anything you can build from the exported
+`countries` constant:
+
+```dart
+IntlPhoneField(
+  countries: countries.where((c) => c.dialCode == '1').toList(),
+)
+```
+
+### Picker presentation
+
+`dialogType` chooses how the picker appears:
+
+```dart
+IntlPhoneField(dialogType: DialogType.showDialog)              // centred dialog (default)
+IntlPhoneField(dialogType: DialogType.showModalBottomSheet)    // modal bottom sheet
+IntlPhoneField(dialogType: DialogType.showDraggableBottomSheet) // drag between half and full screen
+IntlPhoneField(dialogType: DialogType.showFullScreenPage)      // full-screen route
+IntlPhoneField(dialogType: DialogType.adaptive)                // sheet on iOS/macOS, dialog elsewhere
+```
+
+The picker is also available on its own, and `CountryPickerBody` can be embedded
+in a layout of your own:
+
+```dart
+final country = await showCountryPicker(
+  context: context,
+  countries: countries,
+  selectedCountry: countries.first,
+  dialogType: DialogType.showModalBottomSheet,
+);
+```
+
+### Styling the picker
+
+Every field of `PickerDialogStyle` is optional; anything left null follows the
+ambient `Theme`:
+
+```dart
+IntlPhoneField(
+  pickerDialogStyle: PickerDialogStyle(
+    backgroundColor: Colors.white,
+    countryNameStyle: const TextStyle(fontWeight: FontWeight.w600),
+    countryCodeStyle: const TextStyle(color: Colors.black54),
+    listTileDivider: const SizedBox.shrink(),
+    listTilePadding: const EdgeInsets.symmetric(horizontal: 16),
+    dialogPadding: const EdgeInsets.all(24),
+    padding: const EdgeInsets.all(12),
+    searchFieldPadding: const EdgeInsets.only(bottom: 8),
+    searchFieldCursorColor: Colors.indigo,
+    searchFieldStyle: const TextStyle(fontSize: 16),
+    searchFieldInputDecoration: const InputDecoration(
+      labelText: 'Search',
+      prefixIcon: Icon(Icons.search),
+    ),
+    selectedTileColor: Colors.indigo.shade50,
+    autofocusSearchField: true,
+    showSearchClearButton: true,
+    width: 420,
+    heightFactor: 0.7,
+    flagShape: FlagShape.circle,
+    flagSize: 28,
+    scrollViewKeyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+  ),
+)
+```
+
+### Customizing the selector
+
+Change the flag's shape and size, or replace any part of the selector with a
+builder:
+
+```dart
+IntlPhoneField(
+  flagShape: FlagShape.circle,   // rectangle (default), circle, rounded, square
+  flagSize: 28,
+)
+```
+
+```dart
+IntlPhoneField(
+  flagBuilder: (context, country) => CountryFlag(
+    country: country,
+    shape: FlagShape.rounded,
+    size: 28,
+    border: Border.all(color: Colors.black12),
+  ),
+  dialCodeBuilder: (context, country) => Text(
+    '+${country.displayCC}',
+    style: const TextStyle(fontWeight: FontWeight.bold),
+  ),
+)
+```
+
+`countrySelectorBuilder` replaces the whole selector. It receives a callback
+that opens the picker, so your widget can still trigger it:
+
+```dart
+IntlPhoneField(
+  countrySelectorBuilder: (context, country, openPicker) => TextButton.icon(
+    onPressed: openPicker,
+    icon: CountryFlag(country: country, size: 24),
+    label: Text('+${country.displayCC}'),
+  ),
+)
+```
+
+> `prefixIcon` also replaces the selector, but with a plain widget that cannot
+> open the picker. Use `countrySelectorBuilder` unless you deliberately want the
+> picker to be unreachable.
+
+### Hiding parts of the selector
+
+Each piece of the selector can be hidden independently. **`showDropdownIcon:
+false` hides the dropdown arrow** — this is what
+[issue #18](https://github.com/itsarvinddev/flutter_intl_phone_field/issues/18)
+asked for, and it has always been supported:
+
+```dart
+IntlPhoneField(
+  showCountryFlag: false,  // hide the flag
+  showCountryCode: false,  // hide the dial code (+44)
+  showDropdownIcon: false, // hide the dropdown arrow
+)
+```
+
+The arrow is also hidden automatically when `enabled: false`. To move it rather
+than hide it, use `dropdownIconPosition: IconPosition.trailing`, and to replace
+it, pass your own `dropdownIcon`.
+
+### Localization
+
+The package ships English strings and takes no localization dependency. Override
+the ones you need from wherever your app already resolves strings:
+
+```dart
+IntlPhoneField(
+  languageCode: 'fr', // country names in the picker, from CLDR
+  localizations: IntlPhoneFieldLocalizations(
+    searchHint: 'Rechercher un pays',
+    invalidNumber: 'Numéro de téléphone invalide',
+    requiredNumber: 'Veuillez saisir un numéro',
+    invalidCharacters: 'Chiffres uniquement',
+    noCountriesFound: 'Aucun pays trouvé',
+    countrySelectorLabel: 'Pays sélectionné : {country}. Appuyez pour changer.',
+    favoritesLabel: 'Fréquemment utilisés',
+  ),
+)
+```
+
+`countrySelectorLabel` is the accessibility label for the selector button;
+`{country}` is replaced with the selected country's localized name.
+
+### Example numbers as hints
+
+Show the selected country's real example number as the field's hint. It is
+ignored when `decoration` already sets a `hintText`, and it respects
+`formatInput`:
+
+```dart
+IntlPhoneField(
+  showExampleAsHint: true,
+  formatInput: true,
+  decoration: const InputDecoration(
+    labelText: 'Phone number',
+    border: OutlineInputBorder(),
+  ),
+)
+```
+
+## Parameter reference
+
+Every parameter of `IntlPhoneField`.
+
+### Value & country
+
+| Parameter | Type | Default | Description |
+| --- | --- | --- | --- |
+| `key` | `Key?` | `null` | Widget key. |
+| `formFieldKey` | `GlobalKey<FormFieldState>?` | `null` | Key for the underlying `TextFormField`, for calling `validate()` or `reset()` directly. |
+| `initialCountryCode` | `String?` | `null` (falls back to `US`) | The country selected initially. Accepts an ISO 3166-1 alpha-2 code (`'IN'`) or a dial code (`'+225'`). |
+| `initialValue` | `String?` | `null` | Pre-fills the field. Interpreted according to `initialValueFormat`. |
+| `initialValueFormat` | `InitialValueFormat` | `InitialValueFormat.auto` | How `initialValue` is read: `auto` treats a leading `+`/`00` as international, `national` never strips a country code, `international` always does. |
+| `languageCode` | `String` | `'en'` | Language used for country names in the picker. |
+| `countries` | `List<Country>?` | `null` (all 251) | The countries to offer. |
+| `onlyCountries` | `List<String>?` | `null` | Restrict the picker to these ISO 3166-1 alpha-2 codes. |
+| `excludeCountries` | `List<String>?` | `null` | Remove these ISO 3166-1 alpha-2 codes from the picker. |
+| `favoriteCountries` | `List<String>` | `const []` | ISO codes pinned to the top of the picker, in the order given. |
+| `detectCountryOnPaste` | `bool` | `true` | Switch country automatically when a full international number is pasted or typed in. |
+| `controller` | `TextEditingController?` | `null` | Controls the text being edited. One is created if you pass none. |
+| `phoneController` | `PhoneController?` | `null` | Programmatic control over the country and number; listenable from outside the widget. |
+
+### Validation & messages
+
+| Parameter | Type | Default | Description |
+| --- | --- | --- | --- |
+| `validator` | `FutureOr<String?> Function(PhoneNumber?)?` | `null` | Validates the number, returning an error message or `null`. Runs after the built-in length check. Async validators are supported. |
+| `disableLengthCheck` | `bool` | `false` | Skip the built-in minimum/maximum length check. Also lifts the typing limit. |
+| `strictValidation` | `bool` | `false` | Require the number to match a real fixed-line or mobile range, not merely a plausible length. |
+| `invalidMessage` | `String?` | `null` | Message shown when the length is outside the country's range. Overrides `localizations.invalidNumber`. |
+| `localizations` | `IntlPhoneFieldLocalizations` | `IntlPhoneFieldLocalizations.fallback` | Strings shown by the field and the picker. |
+| `autovalidateMode` | `AutovalidateMode?` | `AutovalidateMode.onUserInteraction` | When the field auto-validates. |
+| `maxLength` | `int?` | `null` (country's maximum) | Maximum number of digits. |
+| `maxLengthEnforcement` | `MaxLengthEnforcement?` | `null` | How `maxLength` is enforced. |
+
+### Appearance
+
+| Parameter | Type | Default | Description |
+| --- | --- | --- | --- |
+| `decoration` | `InputDecoration` | `const InputDecoration()` | Decoration for the text field. |
+| `style` | `TextStyle?` | `null` | Style of the text being edited. |
+| `showExampleAsHint` | `bool` | `false` | Show the country's example number as the hint. Ignored when `decoration` sets a `hintText`. |
+| `formatInput` | `bool` | `false` | Format the number as it is typed, using the country's national layout. |
+| `cursorColor` | `Color?` | `null` | Colour of the cursor. |
+| `cursorHeight` | `double?` | `null` | Height of the cursor. |
+| `cursorRadius` | `Radius?` | `Radius.zero` | Corner radius of the cursor. |
+| `cursorWidth` | `double` | `2.0` | Thickness of the cursor. |
+| `showCursor` | `bool?` | `true` | Whether to show the cursor. |
+| `magnifierConfiguration` | `TextMagnifierConfiguration?` | `null` | Magnifier configuration for text selection. |
+
+### Country selector
+
+| Parameter | Type | Default | Description |
+| --- | --- | --- | --- |
+| `showCountryFlag` | `bool` | `true` | Whether to show the country flag. |
+| `showCountryCode` | `bool` | `true` | Whether to show the country dial code. |
+| `showDropdownIcon` | `bool` | `true` | Whether to show the dropdown arrow. Ignored when `enabled` is false. |
+| `dropdownIcon` | `Icon` | `Icon(Icons.arrow_drop_down)` | The dropdown arrow itself. |
+| `dropdownIconPosition` | `IconPosition` | `IconPosition.leading` | Where the arrow sits relative to the flag and dial code. |
+| `dropdownTextStyle` | `TextStyle?` | `null` | Text style for the country dial code. |
+| `dropdownDecoration` | `BoxDecoration` | `const BoxDecoration()` | Decoration behind the country selector button. |
+| `flagShape` | `FlagShape` | `FlagShape.rectangle` | Shape of the flag: `rectangle`, `circle`, `rounded` or `square`. |
+| `flagSize` | `double` | `32` | Width of the flag in logical pixels. |
+| `flagBuilder` | `Widget Function(BuildContext, Country)?` | `null` | Replaces the flag widget entirely. |
+| `dialCodeBuilder` | `Widget Function(BuildContext, Country)?` | `null` | Replaces the dial code widget. |
+| `countrySelectorBuilder` | `Widget Function(BuildContext, Country, VoidCallback openPicker)?` | `null` | Replaces the whole selector; receives a callback that opens the picker. |
+| `prefixIcon` | `Widget?` | `null` | Replaces the selector with your own prefix icon. The picker becomes unreachable. |
+| `flagsButtonPadding` | `EdgeInsetsGeometry` | `EdgeInsets.zero` | Padding inside the selector button. |
+| `flagsButtonMargin` | `EdgeInsets` | `EdgeInsets.zero` | Margin around the selector button. |
+
+### Picker
+
+| Parameter | Type | Default | Description |
+| --- | --- | --- | --- |
+| `dialogType` | `DialogType` | `DialogType.showDialog` | How the picker is presented: `showDialog`, `showModalBottomSheet`, `showDraggableBottomSheet`, `showFullScreenPage` or `adaptive`. |
+| `pickerDialogStyle` | `PickerDialogStyle?` | `null` | Styling for the country picker. |
+| `searchText` | `String` | `'Search country'` | **Deprecated** — use `localizations.searchHint` or `PickerDialogStyle.searchFieldInputDecoration`. Removed in 1.0.0. |
+
+### Text field
+
+| Parameter | Type | Default | Description |
+| --- | --- | --- | --- |
+| `keyboardType` | `TextInputType` | `TextInputType.phone` | Keyboard type for the field. |
+| `keyboardAppearance` | `Brightness?` | `null` | Keyboard brightness. Honoured on iOS only. |
+| `textInputAction` | `TextInputAction?` | `null` | Keyboard action button. |
+| `textAlign` | `TextAlign` | `TextAlign.left` | How the text is aligned horizontally. |
+| `textAlignVertical` | `TextAlignVertical?` | `null` | How the text is aligned vertically. |
+| `obscureText` | `bool` | `false` | Whether to hide the text being edited. |
+| `readOnly` | `bool` | `false` | Whether the field is read-only. |
+| `enabled` | `bool` | `true` | Whether the field accepts input. When false the picker is disabled too. |
+| `autofocus` | `bool` | `false` | Whether the field takes focus on first build. |
+| `focusNode` | `FocusNode?` | `null` | Focus for the text field. |
+| `inputFormatters` | `List<TextInputFormatter>?` | `null` | Defaults to digits-only plus the country's length limit, and as-you-type formatting when `formatInput` is true. Supplying your own replaces all of that. |
+| `autofillHints` | `Iterable<String>?` | `null` | Defaults to `[telephoneNumber, telephoneNumberNational]`, the order iOS expects. |
+| `minLines` | `int?` | `null` | Minimum number of lines. |
+| `maxLines` | `int?` | `null` | Maximum number of lines. |
+| `expands` | `bool` | `false` | Whether the field expands to fill its parent. |
+| `buildCounter` | `InputCounterWidgetBuilder?` | `null` | Builds the character counter. |
+| `restorationId` | `String?` | `null` | Restore state across app restarts. |
+
+### Callbacks
+
+| Parameter | Type | Default | Description |
+| --- | --- | --- | --- |
+| `onChanged` | `ValueChanged<PhoneNumber>?` | `null` | Called whenever the number or the country changes. |
+| `onCountryChanged` | `ValueChanged<Country>?` | `null` | Called when the user picks a different country. |
+| `onSubmitted` | `void Function(String)?` | `null` | Called when the user submits from the keyboard. |
+| `onSaved` | `FormFieldSetter<PhoneNumber>?` | `null` | Called when the enclosing `Form` is saved. |
+| `onTap` | `VoidCallback?` | `null` | Called when the field is tapped. |
+| `onTapOutside` | `void Function(PointerDownEvent)?` | `null` | Called when a pointer goes down outside the field — useful for dismissing the iOS numeric keyboard. |
+| `onEditingComplete` | `void Function()?` | `null` | Called when editing completes. |
+
+## Country data
+
+Calling codes, national-number length ranges, area codes, example numbers,
+national prefixes, validation patterns and formatting rules are all derived from
+[Google's libphonenumber](https://github.com/google/libphonenumber) metadata
+(`PhoneNumberMetadata.xml`, Apache-2.0). Localized country names come from the
+[Unicode CLDR](https://cldr.unicode.org/). 251 countries and territories are
+covered.
+
+The data lives in four generated files, each marked `GENERATED FILE -- DO NOT
+EDIT BY HAND`:
+
+| File | Contents |
+| --- | --- |
+| `lib/src/countries.dart` | The `countries` constant: names, translations, calling codes, lengths, examples |
+| `lib/src/country_patterns.dart` | Per-territory regexes used by `strictValidation` |
+| `lib/src/number_formats.dart` | Per-territory national formatting rules used by `formatInput` |
+| `test/libphonenumber_examples.dart` | Every published example number and the ISO code the resolver must return |
+
+To refresh them, run the generator — it fetches the upstream metadata, rewrites
+all four files, and caches its downloads under `tool/.cache`:
+
+```bash
+python3 tool/generate_country_data.py            # fetch sources and write
+python3 tool/generate_country_data.py --offline  # reuse the cached sources
+```
+
+Then run the tests, which check the dataset invariants and resolve all 489
+example numbers libphonenumber publishes:
+
+```bash
+dart format .
+flutter analyze
+flutter test
+```
+
+Do not hand-edit the generated files; a fix belongs upstream in libphonenumber,
+or in the generator.
+
+## Migrating from 0.0.x
+
+`0.1.0` corrects the country dataset and reshapes several APIs. `Country.dialCode`
+is now the true calling code (territories that used to carry an area code inside
+it, such as American Samoa's `"1684"`, now have `dialCode: "1"` and
+`regionCode: "684"`), 117 countries had their length ranges corrected, and
+`isValidNumber()` no longer throws.
+
+See **[MIGRATION.md](MIGRATION.md)** for the full list of changes and what to do
+about each one.
+
+## FAQ & troubleshooting
+
+**Flags show as two letters (or empty boxes) on Windows or Linux.**
+That is the platform, not the package: Windows and most Linux font stacks have
+no glyphs for regional-indicator emoji. `CountryFlag` already detects this and
+draws the bundled PNG on Windows, Linux and the web instead. If you want the
+same PNG look on every platform, build the flag yourself with
+`forceImage: true`:
+
+```dart
+IntlPhoneField(
+  flagBuilder: (context, country) =>
+      CountryFlag(country: country, size: 32, forceImage: true),
+)
+```
+
+**A number I know is valid is being rejected.**
+Three things to check, in order:
+
+1. `strictValidation` is on. Strict mode matches the number against
+   libphonenumber's assigned fixed-line and mobile ranges, and will reject a
+   number in a range allocated after the bundled data was generated. Turn it off
+   to fall back to a length check.
+2. You are typing the national number *including* an area code that the package
+   already supplies. For territories with a fixed area code — `+1 684` American
+   Samoa, `+1 345` Cayman Islands — the user types only the part after it.
+3. The trunk prefix. Domestic formats often include a leading `0` that is not
+   part of the international number; `Country.nationalPrefix` records it, and
+   it is stripped when a number is pasted in national format.
+
+If none of those explain it, the length range may genuinely be wrong — open an
+issue with the number's country and the range libphonenumber publishes.
+
+**How do I get E.164?**
+`PhoneNumber.completeNumber`:
+
+```dart
+IntlPhoneField(
+  onChanged: (phone) => print(phone.completeNumber), // +447400123456
+)
+```
+
+It is the `+`, the calling code, any fixed area code, and the digits typed —
+with no spaces or punctuation, whatever `formatInput` is displaying.
+
+**Can I use the old import paths?**
+`package:flutter_intl_phone_field/countries.dart`, `phone_number.dart`,
+`country_picker_dialog.dart` and `helpers.dart` still work as deprecated
+re-export shims. Move to the single barrel file:
+
+```dart
+import 'package:flutter_intl_phone_field/flutter_intl_phone_field.dart';
 ```
 
 ## Contributing
 
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+Pull requests are welcome. For anything substantial, open an issue first so we
+can agree on the shape of the change.
 
-Please make sure to update tests as appropriate.
+Before submitting:
 
-## LICENSE
+```bash
+dart format .
+flutter analyze   # must report "No issues found"
+flutter test
+```
 
-This project is licensed under the MIT license. See [LICENSE](LICENSE) for more information.
+Please add tests for behaviour you change, and do not edit the generated data
+files by hand.
+
+## License
+
+MIT — see [LICENSE](LICENSE).
