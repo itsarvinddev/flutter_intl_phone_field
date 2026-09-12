@@ -1,12 +1,14 @@
 // GENERATED FIXTURE -- DO NOT EDIT BY HAND.
 //
+// Regenerate with `python3 tool/generate_country_data.py`.
+//
 // Every fixed-line and mobile example number published by Google's
 // libphonenumber, paired with the ISO code the resolver must return.
 //
-// A handful of territories share both a calling code and their number ranges
-// with a neighbour (Vatican/Italy, Cocos Islands/Australia, Saint-Martin/
-// Guadeloupe, ...). Those numbers are attributed to the main country for the
-// calling code, which is what libphonenumber does too; each is marked below.
+// A few territories share both a calling code and their number ranges with a
+// neighbour (Vatican City with Italy, the Cocos Islands with Australia). Those
+// numbers are attributed to the main country for the calling code, as
+// libphonenumber does; each is marked below.
 
 /// `(e164, expectedIsoCode)` pairs covering every territory.
 const List<(String, String)> libphonenumberExamples = <(String, String)>[
@@ -65,9 +67,9 @@ const List<(String, String)> libphonenumberExamples = <(String, String)>[
   ('+211181234567', 'SS'),
   ('+211977123456', 'SS'),
   ('+212520123456', 'MA'),
-  ('+212528812345', 'MA'),  // EH: indistinguishable from +212 main country
+  ('+212528812345', 'MA'), // EH: shares its ranges with the +212 main country
   ('+212650123456', 'MA'),
-  ('+212650123456', 'MA'),  // EH: indistinguishable from +212 main country
+  ('+212650123456', 'MA'), // EH: shares its ranges with the +212 main country
   ('+21312345678', 'DZ'),
   ('+213551234567', 'DZ'),
   ('+21620123456', 'TN'),
@@ -216,7 +218,7 @@ const List<(String, String)> libphonenumberExamples = <(String, String)>[
   ('+358131234567', 'FI'),
   ('+358181234567', 'AX'),
   ('+358412345678', 'FI'),
-  ('+358412345678', 'FI'),  // AX: indistinguishable from +358 main country
+  ('+358412345678', 'FI'), // AX: shares its ranges with the +358 main country
   ('+3592123456', 'BG'),
   ('+35943012345', 'BG'),
   ('+3612345678', 'HU'),
@@ -256,9 +258,9 @@ const List<(String, String)> libphonenumberExamples = <(String, String)>[
   ('+38922012345', 'MK'),
   ('+38972345678', 'MK'),
   ('+390212345678', 'IT'),
-  ('+390669812345', 'IT'),  // VA: indistinguishable from +39 main country
+  ('+390669812345', 'IT'), // VA: shares its ranges with the +39 main country
   ('+393123456789', 'IT'),
-  ('+393123456789', 'IT'),  // VA: indistinguishable from +39 main country
+  ('+393123456789', 'IT'), // VA: shares its ranges with the +39 main country
   ('+40211234567', 'RO'),
   ('+40712034567', 'RO'),
   ('+41212345678', 'CH'),
@@ -278,14 +280,14 @@ const List<(String, String)> libphonenumberExamples = <(String, String)>[
   ('+447400123456', 'GB'),
   ('+447781123456', 'GG'),
   ('+447797712345', 'JE'),
-  ('+447924123456', 'GB'),  // IM: indistinguishable from +44 main country
+  ('+447924123456', 'GB'), // IM: shares its ranges with the +44 main country
   ('+4532123456', 'DK'),
   ('+4534412345', 'DK'),
   ('+46701234567', 'SE'),
   ('+468123456', 'SE'),
   ('+4721234567', 'NO'),
   ('+4740612345', 'NO'),
-  ('+4741234567', 'NO'),  // SJ: indistinguishable from +47 main country
+  ('+4741234567', 'NO'), // SJ: shares its ranges with the +47 main country
   ('+4779123456', 'SJ'),
   ('+48123456789', 'PL'),
   ('+48512345678', 'PL'),
@@ -328,11 +330,11 @@ const List<(String, String)> libphonenumberExamples = <(String, String)>[
   ('+582121234567', 'VE'),
   ('+584121234567', 'VE'),
   ('+590590201234', 'GP'),
-  ('+590590271234', 'GP'),  // BL: indistinguishable from +590 main country
-  ('+590590271234', 'GP'),  // MF: indistinguishable from +590 main country
+  ('+590590271234', 'GP'), // BL: shares its ranges with the +590 main country
+  ('+590590271234', 'GP'), // MF: shares its ranges with the +590 main country
   ('+590690001234', 'GP'),
-  ('+590690001234', 'GP'),  // BL: indistinguishable from +590 main country
-  ('+590690001234', 'GP'),  // MF: indistinguishable from +590 main country
+  ('+590690001234', 'GP'), // BL: shares its ranges with the +590 main country
+  ('+590690001234', 'GP'), // MF: shares its ranges with the +590 main country
   ('+59122123456', 'BO'),
   ('+59171234567', 'BO'),
   ('+5922201234', 'GY'),
@@ -357,10 +359,10 @@ const List<(String, String)> libphonenumberExamples = <(String, String)>[
   ('+60323856789', 'MY'),
   ('+61212345678', 'AU'),
   ('+61412345678', 'AU'),
-  ('+61412345678', 'AU'),  // CC: indistinguishable from +61 main country
-  ('+61412345678', 'AU'),  // CX: indistinguishable from +61 main country
-  ('+61891621234', 'AU'),  // CC: indistinguishable from +61 main country
-  ('+61891641234', 'AU'),  // CX: indistinguishable from +61 main country
+  ('+61412345678', 'AU'), // CC: shares its ranges with the +61 main country
+  ('+61412345678', 'AU'), // CX: shares its ranges with the +61 main country
+  ('+61891621234', 'AU'), // CC: shares its ranges with the +61 main country
+  ('+61891641234', 'AU'), // CX: shares its ranges with the +61 main country
   ('+62218350123', 'ID'),
   ('+62812345678', 'ID'),
   ('+63232345678', 'PH'),

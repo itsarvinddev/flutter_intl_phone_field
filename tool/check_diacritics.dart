@@ -1,5 +1,5 @@
 // Guards the paired diacritic tables in lib/src/helpers.dart.
-import '../lib/src/helpers.dart';
+import 'package:flutter_intl_phone_field/src/helpers.dart';
 
 void main() {
   const pairs = <String, String>{

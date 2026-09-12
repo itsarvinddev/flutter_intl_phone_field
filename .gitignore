@@ -14,7 +14,6 @@
 *.ipr
 *.iws
 .idea/
-.dart_tool/
 
 # The .vscode folder contains launch configuration and tasks you configure in
 # VS Code which you may wish to be included in version control, so this line
@@ -30,6 +29,18 @@
 .pub-cache/
 .pub/
 build/
+pubspec_overrides.yaml
+
+# Test coverage output (`flutter test --coverage`, and CI's upload step).
+coverage/
+lcov.info
+
+# Upstream data cached by tool/generate_country_data.py.
+tool/.cache/
+
+# Version managers
+.fvm/
+.fvmrc
 
 # Android related
 **/android/**/gradle-wrapper.jar

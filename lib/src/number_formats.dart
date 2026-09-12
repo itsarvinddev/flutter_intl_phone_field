@@ -1,7 +1,10 @@
 // GENERATED FILE -- DO NOT EDIT BY HAND.
 //
-// National number formatting rules from Google's libphonenumber metadata
-// (Apache-2.0). Drives as-you-type formatting.
+// Regenerate with `python3 tool/generate_country_data.py`; see tool/README.md.
+//
+// National number formatting rules, driving as-you-type formatting.
+//
+// Derived from Google's libphonenumber metadata (Apache-2.0).
 
 import 'phone_number_format.dart';
 
@@ -546,53 +549,6 @@ const Map<String, List<PhoneNumberFormat>> countryNumberFormats =
         pattern: r"(\d)(\d{2})(\d{2})(\d{2})(\d{2})",
         format: "\$1 \$2 \$3 \$4 \$5",
         leadingDigits: r"[26]|88"),
-  ],
-  "IT": [
-    PhoneNumberFormat(
-        pattern: r"(\d{4,5})",
-        format: "\$1",
-        leadingDigits: r"1(?:0|9(?:2[2-9]|[46]))"),
-    PhoneNumberFormat(
-        pattern: r"(\d{6})", format: "\$1", leadingDigits: r"1(?:1|92)"),
-    PhoneNumberFormat(
-        pattern: r"(\d{2})(\d{4,6})",
-        format: "\$1 \$2",
-        leadingDigits: r"0[26]"),
-    PhoneNumberFormat(
-        pattern: r"(\d{3})(\d{3,6})",
-        format: "\$1 \$2",
-        leadingDigits:
-            r"0[13-57-9][0159]|8(?:03|4[17]|9(?:2|3[04]|[45][0-4]))"),
-    PhoneNumberFormat(
-        pattern: r"(\d{4})(\d{2,6})",
-        format: "\$1 \$2",
-        leadingDigits: r"0(?:[13-579][2-46-8]|8[236-8])"),
-    PhoneNumberFormat(
-        pattern: r"(\d{4})(\d{4})", format: "\$1 \$2", leadingDigits: r"894"),
-    PhoneNumberFormat(
-        pattern: r"(\d{2})(\d{3,4})(\d{4})",
-        format: "\$1 \$2 \$3",
-        leadingDigits: r"0[26]|5"),
-    PhoneNumberFormat(
-        pattern: r"(\d{3})(\d{3})(\d{3,4})",
-        format: "\$1 \$2 \$3",
-        leadingDigits: r"1(?:44|[679])|[378]|43"),
-    PhoneNumberFormat(
-        pattern: r"(\d{3})(\d{3,4})(\d{4})",
-        format: "\$1 \$2 \$3",
-        leadingDigits: r"0[13-57-9][0159]|14"),
-    PhoneNumberFormat(
-        pattern: r"(\d{2})(\d{4})(\d{5})",
-        format: "\$1 \$2 \$3",
-        leadingDigits: r"0[26]"),
-    PhoneNumberFormat(
-        pattern: r"(\d{4})(\d{3})(\d{4})",
-        format: "\$1 \$2 \$3",
-        leadingDigits: r"0"),
-    PhoneNumberFormat(
-        pattern: r"(\d{3})(\d{4})(\d{4,5})",
-        format: "\$1 \$2 \$3",
-        leadingDigits: r"[03]"),
   ],
   "CV": [
     PhoneNumberFormat(
@@ -1635,6 +1591,53 @@ const Map<String, List<PhoneNumberFormat>> countryNumberFormats =
         format: "\$1-\$2 \$3-\$4",
         leadingDigits: r"15"),
   ],
+  "IT": [
+    PhoneNumberFormat(
+        pattern: r"(\d{4,5})",
+        format: "\$1",
+        leadingDigits: r"1(?:0|9(?:2[2-9]|[46]))"),
+    PhoneNumberFormat(
+        pattern: r"(\d{6})", format: "\$1", leadingDigits: r"1(?:1|92)"),
+    PhoneNumberFormat(
+        pattern: r"(\d{2})(\d{4,6})",
+        format: "\$1 \$2",
+        leadingDigits: r"0[26]"),
+    PhoneNumberFormat(
+        pattern: r"(\d{3})(\d{3,6})",
+        format: "\$1 \$2",
+        leadingDigits:
+            r"0[13-57-9][0159]|8(?:03|4[17]|9(?:2|3[04]|[45][0-4]))"),
+    PhoneNumberFormat(
+        pattern: r"(\d{4})(\d{2,6})",
+        format: "\$1 \$2",
+        leadingDigits: r"0(?:[13-579][2-46-8]|8[236-8])"),
+    PhoneNumberFormat(
+        pattern: r"(\d{4})(\d{4})", format: "\$1 \$2", leadingDigits: r"894"),
+    PhoneNumberFormat(
+        pattern: r"(\d{2})(\d{3,4})(\d{4})",
+        format: "\$1 \$2 \$3",
+        leadingDigits: r"0[26]|5"),
+    PhoneNumberFormat(
+        pattern: r"(\d{3})(\d{3})(\d{3,4})",
+        format: "\$1 \$2 \$3",
+        leadingDigits: r"1(?:44|[679])|[378]|43"),
+    PhoneNumberFormat(
+        pattern: r"(\d{3})(\d{3,4})(\d{4})",
+        format: "\$1 \$2 \$3",
+        leadingDigits: r"0[13-57-9][0159]|14"),
+    PhoneNumberFormat(
+        pattern: r"(\d{2})(\d{4})(\d{5})",
+        format: "\$1 \$2 \$3",
+        leadingDigits: r"0[26]"),
+    PhoneNumberFormat(
+        pattern: r"(\d{4})(\d{3})(\d{4})",
+        format: "\$1 \$2 \$3",
+        leadingDigits: r"0"),
+    PhoneNumberFormat(
+        pattern: r"(\d{3})(\d{4})(\d{4,5})",
+        format: "\$1 \$2 \$3",
+        leadingDigits: r"[03]"),
+  ],
   "JP": [
     PhoneNumberFormat(
         pattern: r"(\d{4})(\d{4})",
@@ -1747,74 +1750,6 @@ const Map<String, List<PhoneNumberFormat>> countryNumberFormats =
         format: "\$1 \$2 \$3",
         leadingDigits: r"[89]",
         nationalPrefixFormattingRule: "\$NP\$FG"),
-  ],
-  "KP": [
-    PhoneNumberFormat(
-        pattern: r"(\d{2})(\d{3})(\d{3})",
-        format: "\$1 \$2 \$3",
-        leadingDigits: r"8",
-        nationalPrefixFormattingRule: "\$NP\$FG"),
-    PhoneNumberFormat(
-        pattern: r"(\d)(\d{3})(\d{4})",
-        format: "\$1 \$2 \$3",
-        leadingDigits: r"[2-7]",
-        nationalPrefixFormattingRule: "\$NP\$FG"),
-    PhoneNumberFormat(
-        pattern: r"(\d{3})(\d{3})(\d{4})",
-        format: "\$1 \$2 \$3",
-        leadingDigits: r"1",
-        nationalPrefixFormattingRule: "\$NP\$FG"),
-  ],
-  "KR": [
-    PhoneNumberFormat(
-        pattern: r"(\d{5})",
-        format: "\$1",
-        leadingDigits: r"1[016-9]114",
-        nationalPrefixFormattingRule: "\$NP\$FG"),
-    PhoneNumberFormat(
-        pattern: r"(\d{2})(\d{3,4})",
-        format: "\$1-\$2",
-        leadingDigits: r"(?:3[1-3]|[46][1-4]|5[1-5])1",
-        nationalPrefixFormattingRule: "\$NP\$FG"),
-    PhoneNumberFormat(
-        pattern: r"(\d{4})(\d{4})", format: "\$1-\$2", leadingDigits: r"1"),
-    PhoneNumberFormat(
-        pattern: r"(\d)(\d{3,4})(\d{4})",
-        format: "\$1-\$2-\$3",
-        leadingDigits: r"2",
-        nationalPrefixFormattingRule: "\$NP\$FG"),
-    PhoneNumberFormat(
-        pattern: r"(\d{2})(\d{3})(\d{4})",
-        format: "\$1-\$2-\$3",
-        leadingDigits: r"[36]0|8",
-        nationalPrefixFormattingRule: "\$NP\$FG"),
-    PhoneNumberFormat(
-        pattern: r"(\d{2})(\d{3,4})(\d{4})",
-        format: "\$1-\$2-\$3",
-        leadingDigits: r"[1346]|5[1-5]",
-        nationalPrefixFormattingRule: "\$NP\$FG"),
-    PhoneNumberFormat(
-        pattern: r"(\d{2})(\d{4})(\d{4})",
-        format: "\$1-\$2-\$3",
-        leadingDigits: r"[57]",
-        nationalPrefixFormattingRule: "\$NP\$FG"),
-    PhoneNumberFormat(
-        pattern: r"(\d{5})(\d{3})(\d{3})",
-        format: "\$1 \$2 \$3",
-        leadingDigits: r"0030"),
-    PhoneNumberFormat(
-        pattern: r"(\d{2})(\d{5})(\d{4})",
-        format: "\$1-\$2-\$3",
-        leadingDigits: r"5",
-        nationalPrefixFormattingRule: "\$NP\$FG"),
-    PhoneNumberFormat(
-        pattern: r"(\d{5})(\d{3,4})(\d{4})",
-        format: "\$1 \$2 \$3",
-        leadingDigits: r"0"),
-    PhoneNumberFormat(
-        pattern: r"(\d{5})(\d{2})(\d{3})(\d{4})",
-        format: "\$1 \$2 \$3 \$4",
-        leadingDigits: r"0"),
   ],
   "XK": [
     PhoneNumberFormat(
@@ -2012,23 +1947,6 @@ const Map<String, List<PhoneNumberFormat>> countryNumberFormats =
         pattern: r"(\d{4})(\d{3})", format: "\$1 \$2", leadingDigits: r"0"),
     PhoneNumberFormat(
         pattern: r"(\d{4})(\d{4})", format: "\$1 \$2", leadingDigits: r"[268]"),
-  ],
-  "MK": [
-    PhoneNumberFormat(
-        pattern: r"(\d)(\d{3})(\d{4})",
-        format: "\$1 \$2 \$3",
-        leadingDigits: r"2|34[47]|4(?:[37]7|5[47]|64)",
-        nationalPrefixFormattingRule: "\$NP\$FG"),
-    PhoneNumberFormat(
-        pattern: r"(\d{2})(\d{3})(\d{3})",
-        format: "\$1 \$2 \$3",
-        leadingDigits: r"[347]",
-        nationalPrefixFormattingRule: "\$NP\$FG"),
-    PhoneNumberFormat(
-        pattern: r"(\d{3})(\d)(\d{2})(\d{2})",
-        format: "\$1 \$2 \$3 \$4",
-        leadingDigits: r"[58]",
-        nationalPrefixFormattingRule: "\$NP\$FG"),
   ],
   "MG": [
     PhoneNumberFormat(
@@ -2474,6 +2392,40 @@ const Map<String, List<PhoneNumberFormat>> countryNumberFormats =
     PhoneNumberFormat(
         pattern: r"(\d)(\d{5})", format: "\$1 \$2", leadingDigits: r"[13]"),
   ],
+  "KP": [
+    PhoneNumberFormat(
+        pattern: r"(\d{2})(\d{3})(\d{3})",
+        format: "\$1 \$2 \$3",
+        leadingDigits: r"8",
+        nationalPrefixFormattingRule: "\$NP\$FG"),
+    PhoneNumberFormat(
+        pattern: r"(\d)(\d{3})(\d{4})",
+        format: "\$1 \$2 \$3",
+        leadingDigits: r"[2-7]",
+        nationalPrefixFormattingRule: "\$NP\$FG"),
+    PhoneNumberFormat(
+        pattern: r"(\d{3})(\d{3})(\d{4})",
+        format: "\$1 \$2 \$3",
+        leadingDigits: r"1",
+        nationalPrefixFormattingRule: "\$NP\$FG"),
+  ],
+  "MK": [
+    PhoneNumberFormat(
+        pattern: r"(\d)(\d{3})(\d{4})",
+        format: "\$1 \$2 \$3",
+        leadingDigits: r"2|34[47]|4(?:[37]7|5[47]|64)",
+        nationalPrefixFormattingRule: "\$NP\$FG"),
+    PhoneNumberFormat(
+        pattern: r"(\d{2})(\d{3})(\d{3})",
+        format: "\$1 \$2 \$3",
+        leadingDigits: r"[347]",
+        nationalPrefixFormattingRule: "\$NP\$FG"),
+    PhoneNumberFormat(
+        pattern: r"(\d{3})(\d)(\d{2})(\d{2})",
+        format: "\$1 \$2 \$3 \$4",
+        leadingDigits: r"[58]",
+        nationalPrefixFormattingRule: "\$NP\$FG"),
+  ],
   "NO": [
     PhoneNumberFormat(
         pattern: r"(\d{3})(\d{2})(\d{3})",
@@ -2726,13 +2678,6 @@ const Map<String, List<PhoneNumberFormat>> countryNumberFormats =
     PhoneNumberFormat(
         pattern: r"(\d{4})(\d{4})", format: "\$1 \$2", leadingDigits: r"[3-7]"),
   ],
-  "RE": [
-    PhoneNumberFormat(
-        pattern: r"(\d{3})(\d{2})(\d{2})(\d{2})",
-        format: "\$1 \$2 \$3 \$4",
-        leadingDigits: r"[26-9]",
-        nationalPrefixFormattingRule: "\$NP\$FG"),
-  ],
   "RO": [
     PhoneNumberFormat(
         pattern: r"(\d{3})(\d{3})",
@@ -2803,20 +2748,11 @@ const Map<String, List<PhoneNumberFormat>> countryNumberFormats =
         leadingDigits: r"[7-9]",
         nationalPrefixFormattingRule: "\$NP\$FG"),
   ],
-  "PM": [
-    PhoneNumberFormat(
-        pattern: r"(\d{2})(\d{2})(\d{2})",
-        format: "\$1 \$2 \$3",
-        leadingDigits: r"[2-9]",
-        nationalPrefixFormattingRule: "\$NP\$FG"),
-    PhoneNumberFormat(
-        pattern: r"(\d{3})(\d{3})(\d{3})",
-        format: "\$1 \$2 \$3",
-        leadingDigits: r"7"),
+  "RE": [
     PhoneNumberFormat(
         pattern: r"(\d{3})(\d{2})(\d{2})(\d{2})",
         format: "\$1 \$2 \$3 \$4",
-        leadingDigits: r"8",
+        leadingDigits: r"[26-9]",
         nationalPrefixFormattingRule: "\$NP\$FG"),
   ],
   "WS": [
@@ -2838,10 +2774,6 @@ const Map<String, List<PhoneNumberFormat>> countryNumberFormats =
         leadingDigits: r"[5-7]"),
     PhoneNumberFormat(
         pattern: r"(\d{4})(\d{6})", format: "\$1 \$2", leadingDigits: r"0"),
-  ],
-  "ST": [
-    PhoneNumberFormat(
-        pattern: r"(\d{3})(\d{4})", format: "\$1 \$2", leadingDigits: r"[29]"),
   ],
   "SA": [
     PhoneNumberFormat(
@@ -3029,6 +2961,57 @@ const Map<String, List<PhoneNumberFormat>> countryNumberFormats =
         leadingDigits: r"8",
         nationalPrefixFormattingRule: "\$NP\$FG"),
   ],
+  "KR": [
+    PhoneNumberFormat(
+        pattern: r"(\d{5})",
+        format: "\$1",
+        leadingDigits: r"1[016-9]114",
+        nationalPrefixFormattingRule: "\$NP\$FG"),
+    PhoneNumberFormat(
+        pattern: r"(\d{2})(\d{3,4})",
+        format: "\$1-\$2",
+        leadingDigits: r"(?:3[1-3]|[46][1-4]|5[1-5])1",
+        nationalPrefixFormattingRule: "\$NP\$FG"),
+    PhoneNumberFormat(
+        pattern: r"(\d{4})(\d{4})", format: "\$1-\$2", leadingDigits: r"1"),
+    PhoneNumberFormat(
+        pattern: r"(\d)(\d{3,4})(\d{4})",
+        format: "\$1-\$2-\$3",
+        leadingDigits: r"2",
+        nationalPrefixFormattingRule: "\$NP\$FG"),
+    PhoneNumberFormat(
+        pattern: r"(\d{2})(\d{3})(\d{4})",
+        format: "\$1-\$2-\$3",
+        leadingDigits: r"[36]0|8",
+        nationalPrefixFormattingRule: "\$NP\$FG"),
+    PhoneNumberFormat(
+        pattern: r"(\d{2})(\d{3,4})(\d{4})",
+        format: "\$1-\$2-\$3",
+        leadingDigits: r"[1346]|5[1-5]",
+        nationalPrefixFormattingRule: "\$NP\$FG"),
+    PhoneNumberFormat(
+        pattern: r"(\d{2})(\d{4})(\d{4})",
+        format: "\$1-\$2-\$3",
+        leadingDigits: r"[57]",
+        nationalPrefixFormattingRule: "\$NP\$FG"),
+    PhoneNumberFormat(
+        pattern: r"(\d{5})(\d{3})(\d{3})",
+        format: "\$1 \$2 \$3",
+        leadingDigits: r"0030"),
+    PhoneNumberFormat(
+        pattern: r"(\d{2})(\d{5})(\d{4})",
+        format: "\$1-\$2-\$3",
+        leadingDigits: r"5",
+        nationalPrefixFormattingRule: "\$NP\$FG"),
+    PhoneNumberFormat(
+        pattern: r"(\d{5})(\d{3,4})(\d{4})",
+        format: "\$1 \$2 \$3",
+        leadingDigits: r"0"),
+    PhoneNumberFormat(
+        pattern: r"(\d{5})(\d{2})(\d{3})(\d{4})",
+        format: "\$1 \$2 \$3 \$4",
+        leadingDigits: r"0"),
+  ],
   "SS": [
     PhoneNumberFormat(
         pattern: r"(\d{3})(\d{3})(\d{3})",
@@ -3060,6 +3043,22 @@ const Map<String, List<PhoneNumberFormat>> countryNumberFormats =
         pattern: r"(\d{3})(\d{3})(\d{3})",
         format: "\$1 \$2 \$3",
         leadingDigits: r"[1-689]",
+        nationalPrefixFormattingRule: "\$NP\$FG"),
+  ],
+  "PM": [
+    PhoneNumberFormat(
+        pattern: r"(\d{2})(\d{2})(\d{2})",
+        format: "\$1 \$2 \$3",
+        leadingDigits: r"[2-9]",
+        nationalPrefixFormattingRule: "\$NP\$FG"),
+    PhoneNumberFormat(
+        pattern: r"(\d{3})(\d{3})(\d{3})",
+        format: "\$1 \$2 \$3",
+        leadingDigits: r"7"),
+    PhoneNumberFormat(
+        pattern: r"(\d{3})(\d{2})(\d{2})(\d{2})",
+        format: "\$1 \$2 \$3 \$4",
+        leadingDigits: r"8",
         nationalPrefixFormattingRule: "\$NP\$FG"),
   ],
   "SD": [
@@ -3171,6 +3170,10 @@ const Map<String, List<PhoneNumberFormat>> countryNumberFormats =
         format: "\$1 \$2 \$3",
         leadingDigits: r"[59]",
         nationalPrefixFormattingRule: "\$NP\$FG"),
+  ],
+  "ST": [
+    PhoneNumberFormat(
+        pattern: r"(\d{3})(\d{4})", format: "\$1 \$2", leadingDigits: r"[29]"),
   ],
   "TW": [
     PhoneNumberFormat(
@@ -3297,6 +3300,31 @@ const Map<String, List<PhoneNumberFormat>> countryNumberFormats =
         format: "\$1 \$2 \$3",
         leadingDigits: r"[2-57-9]"),
   ],
+  "TM": [
+    PhoneNumberFormat(
+        pattern: r"(\d{2})(\d{2})(\d{2})(\d{2})",
+        format: "\$1 \$2-\$3-\$4",
+        leadingDigits: r"12",
+        nationalPrefixFormattingRule: "(\$NP \$FG)"),
+    PhoneNumberFormat(
+        pattern: r"(\d{3})(\d)(\d{2})(\d{2})",
+        format: "\$1 \$2-\$3-\$4",
+        leadingDigits: r"[1-5]",
+        nationalPrefixFormattingRule: "(\$NP \$FG)"),
+    PhoneNumberFormat(
+        pattern: r"(\d{2})(\d{6})",
+        format: "\$1 \$2",
+        leadingDigits: r"[67]",
+        nationalPrefixFormattingRule: "\$NP \$FG"),
+  ],
+  "TV": [
+    PhoneNumberFormat(
+        pattern: r"(\d{2})(\d{3})", format: "\$1 \$2", leadingDigits: r"2"),
+    PhoneNumberFormat(
+        pattern: r"(\d{2})(\d{4})", format: "\$1 \$2", leadingDigits: r"90"),
+    PhoneNumberFormat(
+        pattern: r"(\d{2})(\d{5})", format: "\$1 \$2", leadingDigits: r"7"),
+  ],
   "TR": [
     PhoneNumberFormat(
         pattern: r"(\d{3})(\d)(\d{3})",
@@ -3322,31 +3350,6 @@ const Map<String, List<PhoneNumberFormat>> countryNumberFormats =
         format: "\$1 \$2 \$3",
         leadingDigits: r"80",
         nationalPrefixFormattingRule: "\$NP\$FG"),
-  ],
-  "TM": [
-    PhoneNumberFormat(
-        pattern: r"(\d{2})(\d{2})(\d{2})(\d{2})",
-        format: "\$1 \$2-\$3-\$4",
-        leadingDigits: r"12",
-        nationalPrefixFormattingRule: "(\$NP \$FG)"),
-    PhoneNumberFormat(
-        pattern: r"(\d{3})(\d)(\d{2})(\d{2})",
-        format: "\$1 \$2-\$3-\$4",
-        leadingDigits: r"[1-5]",
-        nationalPrefixFormattingRule: "(\$NP \$FG)"),
-    PhoneNumberFormat(
-        pattern: r"(\d{2})(\d{6})",
-        format: "\$1 \$2",
-        leadingDigits: r"[67]",
-        nationalPrefixFormattingRule: "\$NP \$FG"),
-  ],
-  "TV": [
-    PhoneNumberFormat(
-        pattern: r"(\d{2})(\d{3})", format: "\$1 \$2", leadingDigits: r"2"),
-    PhoneNumberFormat(
-        pattern: r"(\d{2})(\d{4})", format: "\$1 \$2", leadingDigits: r"90"),
-    PhoneNumberFormat(
-        pattern: r"(\d{2})(\d{5})", format: "\$1 \$2", leadingDigits: r"7"),
   ],
   "UG": [
     PhoneNumberFormat(
