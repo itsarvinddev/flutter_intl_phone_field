@@ -173,7 +173,11 @@ rewritten on top of it. See [MIGRATION.md](MIGRATION.md) for an upgrade guide.
   `helpers.dart` has no replacement, as those utilities were never meant to be
   public.
 
-## [0.0.8] - 2026-09-12
+## [0.0.8] — never published
+
+This version was prepared in the repository but never released to pub.dev;
+everything in it ships as part of 0.1.0. It is kept here so the contributions
+it carries stay on the record.
 
 ### Added
 

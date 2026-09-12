@@ -1,4 +1,13 @@
-# Migrating from 0.0.8 to 0.1.0
+# Migrating to 0.1.0
+
+> **If you are coming from 0.0.7** — and you are, unless you tracked `main`:
+> 0.0.8 was prepared in the repository but never published to pub.dev, so
+> 0.1.0 is the first release after 0.0.7. Read "0.0.8" below as "the code
+> before this release". Two of the changes described here never reached
+> pub.dev at all, so there is nothing for you to migrate in them: the
+> synthetic `regionCode` given to Guernsey, Isle of Man and Jersey, and the
+> widening of Kenya's length to 9–10. Everything else applies to 0.0.7 exactly
+> as written.
 
 0.1.0 replaces the hand-maintained country table with data generated from
 Google's libphonenumber metadata, and rewrites the widget on top of it. Country
@@ -23,7 +32,7 @@ keeps compiling and behaving as before.
 | Async validators now display their message | Make sure your async validator only returns messages you want shown |
 | Default `autofillHints` lead with `telephoneNumber` | Nothing, or pass `autofillHints` explicitly to keep the old order |
 | Flags render as PNG on Windows, Linux and web | Nothing; for the same look everywhere pass a `flagBuilder` returning `CountryFlag(..., forceImage: true)` |
-| Minimum SDK is Dart 3.4 / Flutter 3.22 | Raise your own constraint, or stay on 0.0.8 |
+| Minimum SDK is Dart 3.4 / Flutter 3.22 | Raise your own constraint, or stay on 0.0.7 |
 | `searchText` is deprecated | Move the string to `localizations.searchHint` |
 | Implementation moved under `lib/src/` behind one barrel | Import `package:flutter_intl_phone_field/flutter_intl_phone_field.dart` |
 | `CountryPickerDialog` was replaced by `showCountryPicker` | Call `showCountryPicker(...)`, or embed `CountryPickerBody` |
