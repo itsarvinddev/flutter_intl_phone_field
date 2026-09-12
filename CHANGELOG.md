@@ -1,3 +1,8 @@
+## 0.0.8
+
+- Fixed Kenya mobile number validation - updated length from 9 to 9-10 digits to accommodate both standard international format and local format with trunk prefix
+- Added comprehensive test cases for Kenya phone numbers
+
 ## 0.0.7
 
 - Refactor initState to use Future.microtask for improved initialization of country list and phone number handling

@@ -107,5 +107,65 @@ void main() {
       expect(() => PhoneNumber.fromCompleteNumber(completeNumber: "+44abcdef1"),
           throwsA(const TypeMatcher<InvalidCharactersException>()));
     });
+
+    // Kenya phone number tests
+    test('create Kenya phone number with 9 digits', () {
+      PhoneNumber phoneNumber = PhoneNumber(
+          countryISOCode: "KE", countryCode: "+254", number: "712345678");
+      String actual = phoneNumber.completeNumber;
+      String expected = "+254712345678";
+
+      expect(actual, expected);
+      expect(phoneNumber.isValidNumber(), true);
+    });
+
+    test('create Kenya phone number with 10 digits', () {
+      PhoneNumber phoneNumber = PhoneNumber(
+          countryISOCode: "KE", countryCode: "+254", number: "0712345678");
+      String actual = phoneNumber.completeNumber;
+      String expected = "+2540712345678";
+
+      expect(actual, expected);
+      expect(phoneNumber.isValidNumber(), true);
+    });
+
+    test('create Kenya PhoneNumber from +254712345678 (9 digits)', () {
+      PhoneNumber phoneNumber =
+          PhoneNumber.fromCompleteNumber(completeNumber: "+254712345678");
+      expect(phoneNumber.countryISOCode, "KE");
+      expect(phoneNumber.countryCode, "254");
+      expect(phoneNumber.number, "712345678");
+      expect(phoneNumber.isValidNumber(), true);
+    });
+
+    test('create Kenya PhoneNumber from +2540712345678 (10 digits with leading 0)', () {
+      PhoneNumber phoneNumber =
+          PhoneNumber.fromCompleteNumber(completeNumber: "+2540712345678");
+      expect(phoneNumber.countryISOCode, "KE");
+      expect(phoneNumber.countryCode, "254");
+      expect(phoneNumber.number, "0712345678");
+      expect(phoneNumber.isValidNumber(), true);
+    });
+
+    test('Kenya phone number too short +25471234567', () {
+      PhoneNumber phoneNumber =
+          PhoneNumber.fromCompleteNumber(completeNumber: "+25471234567");
+      expect(() => phoneNumber.isValidNumber(),
+          throwsA(const TypeMatcher<NumberTooShortException>()));
+    });
+
+    test('Kenya phone number too long +254071234567890', () {
+      PhoneNumber phoneNumber =
+          PhoneNumber.fromCompleteNumber(completeNumber: "+254071234567890");
+      expect(() => phoneNumber.isValidNumber(),
+          throwsA(const TypeMatcher<NumberTooLongException>()));
+    });
+
+    test('look up Kenya as a country code', () {
+      Country country = PhoneNumber.getCountry("+254712345678");
+      expect(country.name, "Kenya");
+      expect(country.code, "KE");
+      expect(country.dialCode, "254");
+    });
   });
 }
