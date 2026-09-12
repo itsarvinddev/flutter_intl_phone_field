@@ -408,6 +408,8 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
   late Country _selectedCountry;
   late TextEditingController _controller;
   late PhoneInputFormatter _formatter;
+  late _DigitLimitingFormatter _limiter;
+  late _CountryDetectingFormatter _detector;
   bool _ownsController = false;
   bool _syncing = false;
   String? _validatorMessage;
@@ -426,6 +428,12 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
     _ownsController = widget.controller == null;
     _formatter = PhoneInputFormatter(
         country: _selectedCountry, enabled: widget.formatInput);
+    _limiter = _DigitLimitingFormatter(_digitLimit);
+    _detector = _CountryDetectingFormatter(
+      isEnabled: () => widget.detectCountryOnPaste,
+      resolve: _detectCountry,
+      onDetected: _applyDetectedCountry,
+    );
     _controller.text = widget.formatInput
         ? AsYouTypeFormatter.format(_selectedCountry, initialText)
         : initialText;
@@ -712,28 +720,30 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
     }
   }
 
-  void _onChanged(String value) {
-    // A pasted international number should switch the country, not be glued
-    // onto the current one.
-    if (widget.detectCountryOnPaste) {
-      final raw = _controller.text.trim();
-      if (raw.startsWith('+') || raw.startsWith('00')) {
-        final detected = CountryResolver.instance.fromInternationalNumber(raw);
-        if (detected != null &&
-            _countryList.any((c) => c.code == detected.code)) {
-          final parsed = PhoneNumber.fromCompleteNumber(completeNumber: raw);
-          setState(() {
-            _selectedCountry = detected;
-            _formatter.country = detected;
-          });
-          _setText(widget.formatInput
-              ? AsYouTypeFormatter.format(detected, parsed.number)
-              : parsed.number);
-          widget.onCountryChanged?.call(detected);
-        }
-      }
-    }
+  /// Digits the field currently accepts, or null when unlimited.
+  int? _digitLimit() => widget.disableLengthCheck
+      ? widget.maxLength
+      : (widget.maxLength ?? _selectedCountry.maxLength);
 
+  /// Recognise a full international number, so pasting one switches country
+  /// instead of gluing foreign digits onto the current one.
+  Country? _detectCountry(String raw) {
+    final detected = CountryResolver.instance.fromInternationalNumber(raw);
+    if (detected == null) return null;
+    if (detected.code == _selectedCountry.code) return null;
+    if (!_countryList.any((c) => c.code == detected.code)) return null;
+    return detected;
+  }
+
+  void _applyDetectedCountry(Country country) {
+    setState(() {
+      _selectedCountry = country;
+      _formatter.country = country;
+    });
+    widget.onCountryChanged?.call(country);
+  }
+
+  void _onChanged(String value) {
     final number = _currentNumber();
     widget.onChanged?.call(number);
     _pushToPhoneController();
@@ -847,8 +857,12 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
       keyboardType: widget.keyboardType,
       inputFormatters: widget.inputFormatters ??
           <TextInputFormatter>[
+            // The detector runs first: it is the only stage that still sees the
+            // '+' of a pasted international number, which every later stage
+            // strips.
+            _detector,
             FilteringTextInputFormatter.allow(RegExp(r'[0-9+\s\-().]')),
-            if (limit != null) _DigitLimitingFormatter(limit),
+            _limiter,
             _formatter,
           ],
       enabled: widget.enabled,
@@ -951,16 +965,61 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
 }
 
 /// Caps the number of *digits*, ignoring any formatting separators.
+///
+/// The limit is read on each edit rather than captured, so it follows the
+/// selected country without the field having to rebuild first.
 class _DigitLimitingFormatter extends TextInputFormatter {
-  const _DigitLimitingFormatter(this.maxDigits);
+  const _DigitLimitingFormatter(this.limit);
 
-  final int maxDigits;
+  final int? Function() limit;
 
   @override
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {
+    final max = limit();
+    if (max == null) return newValue;
     final digits = newValue.text.replaceAll(RegExp(r'\D'), '');
-    if (digits.length <= maxDigits) return newValue;
+    if (digits.length <= max) return newValue;
     return oldValue;
+  }
+}
+
+/// Rewrites a pasted or typed international number into its national part and
+/// reports the country it belongs to.
+///
+/// This has to run before the digits-only filter: once the '+' is gone there is
+/// no way to tell '+447400123456' from a long national number.
+class _CountryDetectingFormatter extends TextInputFormatter {
+  const _CountryDetectingFormatter({
+    required this.isEnabled,
+    required this.resolve,
+    required this.onDetected,
+  });
+
+  final bool Function() isEnabled;
+  final Country? Function(String raw) resolve;
+  final void Function(Country country) onDetected;
+
+  @override
+  TextEditingValue formatEditUpdate(
+      TextEditingValue oldValue, TextEditingValue newValue) {
+    if (!isEnabled()) return newValue;
+
+    final raw = newValue.text.trim();
+    final isInternational =
+        raw.startsWith('+') || (raw.startsWith('00') && raw.length > 4);
+    if (!isInternational) return newValue;
+
+    final country = resolve(raw);
+    if (country == null) return newValue;
+
+    final parsed = PhoneNumber.fromCompleteNumber(completeNumber: raw);
+    if (parsed.countryISOCode.isEmpty) return newValue;
+
+    onDetected(country);
+    return TextEditingValue(
+      text: parsed.number,
+      selection: TextSelection.collapsed(offset: parsed.number.length),
+    );
   }
 }

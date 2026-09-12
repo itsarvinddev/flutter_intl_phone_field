@@ -1,25 +1,88 @@
 name: CI
 
 on:
-  pull_request:
-    branches: '*'
   push:
-    branches: [master]
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+# A new push to a PR makes the in-flight run pointless; don't pay for it.
+# Nothing here writes to the repository.
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  ci:
+  test:
+    name: Test (Flutter ${{ matrix.flutter-version }})
     runs-on: ubuntu-latest
+    strategy:
+      # Let both versions report; a failure on one is more informative when you
+      # can see whether the other passed.
+      fail-fast: false
+      matrix:
+        # 3.22.0 is the minimum declared in pubspec.yaml and has to be proven,
+        # not assumed. 'stable' catches new lints and deprecations early.
+        flutter-version: ['3.22.0', 'stable']
+
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+
       - uses: subosito/flutter-action@v2
         with:
-          channel: 'stable'
+          flutter-version: ${{ matrix.flutter-version }}
+          channel: stable
+          cache: true
+
+      - name: Print toolchain versions
+        run: flutter --version
+
       - name: Install dependencies
         run: flutter pub get
-      - name: Format code
-        run: dart format --line-length 120 --set-exit-if-changed .
-      - name: Analyze code
-        run: flutter analyze
-      # Skip tests for now
-      # - name: Run tests
-      #   run: flutter test
+
+      # The package is formatted at dart format's default 80 columns, which is
+      # also what pub.dev's pana scores. Do not add --line-length here.
+      - name: Verify formatting
+        run: dart format --output=none --set-exit-if-changed .
+
+      - name: Analyze
+        run: flutter analyze --fatal-infos
+
+      - name: Run tests
+        run: flutter test --coverage
+
+      - name: Upload coverage
+        # Only upload once; two identical reports add nothing.
+        if: matrix.flutter-version == 'stable'
+        uses: codecov/codecov-action@v4
+        with:
+          files: coverage/lcov.info
+          token: ${{ secrets.CODECOV_TOKEN }}
+          # A fork PR has no token, and a missing token must not turn a green
+          # test run red.
+          fail_ci_if_error: false
+
+  publish-dry-run:
+    name: Publish dry run
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Publish dry run
+        run: flutter pub publish --dry-run
+
+      - name: Score with pana
+        run: |
+          dart pub global activate pana
+          dart pub global run pana --no-warning --exit-code-threshold 0

@@ -36,8 +36,8 @@ void main() {
     });
 
     test('rejects an empty or unmatchable number', () {
-      expect(() => PhoneNumber.parse(''),
-          throwsA(isA<NumberTooShortException>()));
+      expect(
+          () => PhoneNumber.parse(''), throwsA(isA<NumberTooShortException>()));
       expect(() => PhoneNumber.parse('+'),
           throwsA(isA<InvalidCharactersException>()));
       expect(() => PhoneNumber.parse('+9999999999'),

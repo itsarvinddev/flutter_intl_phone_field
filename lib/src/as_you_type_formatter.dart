@@ -65,11 +65,14 @@ class AsYouTypeFormatter {
   }
 
   /// `r'(\d{3})(\d{4})'` + `r'$1-$2'` -> `'###-####'`
+  ///
+  /// Returns null for a rule this formatter cannot honour safely.
   static String? _buildMask(String pattern, String format) {
     final groups = RegExp(r'\((?:\?:)?([^()]*)\)').allMatches(pattern);
     if (groups.isEmpty) return null;
     var mask = format;
     var index = 0;
+    var totalWidth = 0;
     for (final g in groups) {
       index++;
       final body = g.group(1)!;
@@ -82,9 +85,18 @@ class AsYouTypeFormatter {
       } else {
         return null;
       }
+      totalWidth += width;
       mask = mask.replaceAll('\$$index', '#' * width);
     }
     if (!mask.contains('#') || mask.contains(r'$')) return null;
+
+    // Reject a rule that would change the digits. Argentina's domestic mobile
+    // format is `$2 15-$3-$4`: it injects a literal 15 that belongs to
+    // in-country dialling, and drops group 1 entirely. Neither is right for a
+    // number we are about to render in international form.
+    if (RegExp(r'\d').hasMatch(mask)) return null;
+    if (_count(mask) != totalWidth) return null;
+
     return mask;
   }
 

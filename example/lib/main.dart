@@ -1,141 +1,57 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_intl_phone_field/country_picker_dialog.dart';
-import 'package:flutter_intl_phone_field/flutter_intl_phone_field.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+import 'demo_page.dart';
+import 'home_page.dart';
 
-class MyApp extends StatefulWidget {
-  const MyApp({super.key});
+void main() => runApp(const ExampleApp());
+
+/// Root of the example gallery.
+///
+/// Holds nothing but the theme mode and the route table; every feature is
+/// demonstrated on its own page under `lib/demos/`.
+class ExampleApp extends StatefulWidget {
+  const ExampleApp({super.key});
 
   @override
-  State<MyApp> createState() => _MyAppState();
+  State<ExampleApp> createState() => _ExampleAppState();
 }
 
-class _MyAppState extends State<MyApp> {
-  final GlobalKey<FormState> _formKey = GlobalKey();
+class _ExampleAppState extends State<ExampleApp> {
+  final ValueNotifier<ThemeMode> _themeMode =
+      ValueNotifier<ThemeMode>(ThemeMode.system);
 
-  FocusNode focusNode = FocusNode();
+  @override
+  void dispose() {
+    _themeMode.dispose();
+    super.dispose();
+  }
+
+  ThemeData _theme(Brightness brightness) => ThemeData(
+        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color(0xFF0B6BCB),
+          brightness: brightness,
+        ),
+      );
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(title: const Text('Phone Field Example')),
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: Form(
-            key: _formKey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                const SizedBox(height: 30),
-                const TextField(
-                  decoration: InputDecoration(
-                    labelText: 'Name',
-                    border: OutlineInputBorder(borderSide: BorderSide()),
-                  ),
-                ),
-                const SizedBox(height: 10),
-                const TextField(
-                  decoration: InputDecoration(
-                    labelText: 'Email',
-                    border: OutlineInputBorder(borderSide: BorderSide()),
-                  ),
-                ),
-                const SizedBox(height: 10),
-                IntlPhoneField(
-                  initialValue: "7012345678",
-                  focusNode: focusNode,
-                  decoration: const InputDecoration(
-                    labelText: 'Phone Number',
-                    border: OutlineInputBorder(borderSide: BorderSide()),
-                  ),
-                  languageCode: "en",
-                  onChanged: (phone) {
-                    print(phone.completeNumber);
-                  },
-                  onCountryChanged: (country) {
-                    print('Country changed to: ${country.name}');
-                  },
-                  // Demonstrate custom validator using isValidNumber()
-                  validator: (phoneNumber) {
-                    if (phoneNumber == null || phoneNumber.number.isEmpty) {
-                      return 'Please enter a phone number';
-                    }
-                    if (!phoneNumber.isValidNumber()) {
-                      return 'Please enter a valid phone number';
-                    }
-                    return null;
-                  },
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                IntlPhoneField(
-                  initialValue: "7012345678",
-                  focusNode: focusNode,
-                  dialogType: DialogType.showModalBottomSheet,
-                  decoration: const InputDecoration(
-                    labelText: 'Phone Number (No Country Code)',
-                    border: OutlineInputBorder(
-                      borderSide: BorderSide(),
-                    ),
-                  ),
-                  onTapOutside: (_) {
-                    focusNode.unfocus();
-                  },
-                  languageCode: "en",
-                  onChanged: (phone) {
-                    print(phone.completeNumber);
-                  },
-                  onCountryChanged: (country) {
-                    print('Country changed to: ${country.name}');
-                  },
-                ),
-                const SizedBox(height: 10),
-                IntlPhoneField(
-                  decoration: const InputDecoration(
-                    labelText: 'Phone Number with Custom Dialog Style',
-                    border: OutlineInputBorder(borderSide: BorderSide()),
-                  ),
-                  languageCode: "en",
-                  pickerDialogStyle: PickerDialogStyle(
-                    backgroundColor: Colors.blueGrey[900],
-                    searchFieldStyle: const TextStyle(color: Colors.white, fontSize: 16),
-                    searchFieldInputDecoration: const InputDecoration(
-                      labelText: 'Search country',
-                      labelStyle: TextStyle(color: Colors.white70),
-                      suffixIcon: Icon(Icons.search, color: Colors.white70),
-                      enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.white38)),
-                      focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.white)),
-                    ),
-                    searchFieldCursorColor: Colors.white,
-                    countryCodeStyle: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-                    countryNameStyle: const TextStyle(color: Colors.white70),
-                  ),
-                  onChanged: (phone) {
-                    print(phone.completeNumber);
-                  },
-                  onCountryChanged: (country) {
-                    print('Country changed to: ${country.name}');
-                  },
-                ),
-                const SizedBox(height: 10),
-                MaterialButton(
-                  color: Theme.of(context).primaryColor,
-                  textColor: Colors.white,
-                  onPressed: () {
-                    _formKey.currentState?.validate();
-                  },
-                  child: const Text('Submit'),
-                ),
-              ],
-            ),
-          ),
-        ),
+    return ValueListenableBuilder<ThemeMode>(
+      valueListenable: _themeMode,
+      builder: (context, mode, _) => MaterialApp(
+        title: 'flutter_intl_phone_field',
+        debugShowCheckedModeBanner: false,
+        theme: _theme(Brightness.light),
+        darkTheme: _theme(Brightness.dark),
+        themeMode: mode,
+        // Installed above the navigator so every page can flip the theme.
+        builder: (context, child) =>
+            ThemeModeScope(notifier: _themeMode, child: child!),
+        initialRoute: HomePage.route,
+        routes: <String, WidgetBuilder>{
+          HomePage.route: (_) => const HomePage(),
+          for (final demo in demos) demo.route: demo.builder,
+        },
       ),
     );
   }

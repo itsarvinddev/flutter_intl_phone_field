@@ -1,32 +1,81 @@
-# This file configures the analyzer, which statically analyzes Dart code to
-# check for errors, warnings, and lints.
+# Analyzer configuration for flutter_intl_phone_field.
 #
-# The issues identified by the analyzer are surfaced in the UI of Dart-enabled
-# IDEs (https://dart.dev/tools#ides-and-editors). The analyzer can also be
-# invoked from the command line by running `flutter analyze`.
+# This is a published package, so the bar is higher than for an app: every
+# public symbol is someone's API surface and a lint that fires here is a
+# breaking change waiting to happen. The rules below are all verified to be
+# clean on this repository -- `flutter analyze --fatal-infos` is a CI gate, so
+# anything added here must stay at zero hits.
+#
+# See tool/README.md for which files under lib/ are generated.
 
-# The following line activates a set of recommended lints for Flutter apps,
-# packages, and plugins designed to encourage good coding practices.
 analyzer:
   exclude:
     - build/**
+
+  # strict-raw-types is deliberately absent: FormFieldState is used raw in
+  # lib/src/intl_phone_field.dart, which is how FormField subclasses are
+  # conventionally written.
+  language:
+    strict-casts: true
+    strict-inference: true
+
 include: package:flutter_lints/flutter.yaml
 
 linter:
-  # The lint rules applied to this project can be customized in the
-  # section below to disable rules from the `package:flutter_lints/flutter.yaml`
-  # included above or to enable additional rules. A list of all available lints
-  # and their documentation is published at
-  # https://dart-lang.github.io/linter/lints/index.html.
-  #
-  # Instead of disabling a lint rule for the entire project in the
-  # section below, it can also be suppressed for a single line of code
-  # or a specific dart file by using the `// ignore: name_of_lint` and
-  # `// ignore_for_file: name_of_lint` syntax on the line or in the file
-  # producing the lint.
   rules:
-    # avoid_print: false  # Uncomment to disable the `avoid_print` rule
-    # prefer_single_quotes: true  # Uncomment to enable the `prefer_single_quotes` rule
+    # --- Correctness -------------------------------------------------------
+    avoid_catching_errors: true
+    avoid_js_rounded_ints: true
+    avoid_slow_async_io: true
+    avoid_type_to_string: true
+    avoid_unused_constructor_parameters: true
+    avoid_void_async: true
+    cancel_subscriptions: true
+    close_sinks: true
+    literal_only_boolean_expressions: true
+    no_adjacent_strings_in_list: true
+    no_runtimeType_toString: true
+    only_throw_errors: true
+    test_types_in_equals: true
+    throw_in_finally: true
+    unawaited_futures: true
+    unnecessary_null_aware_operator_on_extension_on_nullable: true
+    unnecessary_null_checks: true
+    unnecessary_statements: true
 
-# Additional information about this file can be found at
-# https://dart.dev/guides/language/analysis-options
+    # --- Public API hygiene ------------------------------------------------
+    # This package's whole value is its API surface, so the rules that keep it
+    # explicit and hard to misuse are worth the friction.
+    always_declare_return_types: true
+    avoid_field_initializers_in_const_classes: true
+    avoid_implementing_value_types: true
+    avoid_positional_boolean_parameters: true
+    avoid_returning_this: true
+    avoid_setters_without_getters: true
+    package_api_docs: true
+    prefer_asserts_in_initializer_lists: true
+    tighten_type_of_initializing_formals: true
+    use_setters_to_change_properties: true
+
+    # --- Const correctness and allocation ----------------------------------
+    # The country table is a large const structure; keeping const propagation
+    # tight is what makes it free at runtime.
+    prefer_const_constructors_in_immutables: true
+    prefer_const_declarations: true
+    prefer_const_literals_to_create_immutables: true
+    prefer_final_in_for_each: true
+    prefer_final_locals: true
+    unnecessary_await_in_return: true
+    unnecessary_lambdas: true
+    use_string_buffers: true
+
+    # --- Consistency -------------------------------------------------------
+    avoid_escaping_inner_quotes: true
+    directives_ordering: true
+    prefer_null_aware_method_calls: true
+    sort_pub_dependencies: true
+    unnecessary_breaks: true
+    unnecessary_parenthesis: true
+    use_enums: true
+    use_if_null_to_convert_nulls_to_bools: true
+    use_is_even_rather_than_modulo: true
