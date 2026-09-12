@@ -831,13 +831,19 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
       onSaved: (_) => widget.onSaved?.call(_currentNumber()),
       onChanged: _onChanged,
       validator: _validate,
-      maxLength: widget.disableLengthCheck ? null : limit,
+      // TextField's maxLength counts characters, so with formatting on it
+      // would cut '(201) 555-0123' down to ten characters. The digit cap is
+      // enforced by _DigitLimitingFormatter instead, and the counter below
+      // reports digits rather than characters.
+      maxLength:
+          (widget.disableLengthCheck || widget.formatInput) ? null : limit,
       onEditingComplete: widget.onEditingComplete,
       expands: widget.expands,
       maxLines: widget.maxLines,
       minLines: widget.minLines,
       maxLengthEnforcement: widget.maxLengthEnforcement,
-      buildCounter: widget.buildCounter,
+      buildCounter: widget.buildCounter ??
+          (widget.formatInput && limit != null ? _digitCounter(limit) : null),
       keyboardType: widget.keyboardType,
       inputFormatters: widget.inputFormatters ??
           <TextInputFormatter>[
@@ -851,6 +857,19 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
       textInputAction: widget.textInputAction,
       autovalidateMode: widget.autovalidateMode,
     );
+  }
+
+  /// Counts digits rather than characters, so a formatted number still
+  /// reports '7/10' and not '12/10'.
+  InputCounterWidgetBuilder _digitCounter(int limit) {
+    return (context, {required currentLength, required isFocused, maxLength}) {
+      final count = _digits.length;
+      return Text(
+        '$count/$limit',
+        semanticsLabel: '$count of $limit digits',
+        style: Theme.of(context).textTheme.bodySmall,
+      );
+    };
   }
 
   String? _exampleHint() {
