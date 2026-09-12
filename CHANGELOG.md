@@ -5,6 +5,36 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.1] - 2026-09-12
+
+Documentation and tooling only; no API or behaviour changes.
+
+### Added
+
+- Agent skills, bundled with the package and installable with
+  `dart run skills@ get`, so AI coding assistants write the real 0.1.0 API
+  instead of recalling the unrelated `intl_phone_field` package.
+  `flutter-intl-phone-field-usage` covers the API, the common recipes and the
+  mistakes to avoid, with the full parameter reference alongside it;
+  `flutter-intl-phone-field-migration` covers upgrading from `intl_phone_field`
+  or from 0.0.x. See
+  [Ship skills with packages](https://dart.dev/tools/pub/package-skills).
+- A **Showcase** page in the example app: five configurations of the same field
+  on one screen.
+- A third registered screenshot, and captions on all three.
+
+### Changed
+
+- Rewrote the README opening: screenshots first, a table of contents, and a
+  "why this package" summary in place of the long feature list. Added a section
+  on using the package with an AI assistant, including a copy-pasteable prompt.
+- Replaced the screenshots, which still showed the pre-0.1.0 interface.
+
+### Fixed
+
+- The country picker drew two dividers between the pinned favourites and the
+  rest of the list.
+
 ## [0.1.0] - 2026-09-12
 
 Country data is now generated from Google's libphonenumber metadata, with

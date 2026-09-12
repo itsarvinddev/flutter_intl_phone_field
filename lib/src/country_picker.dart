@@ -379,7 +379,9 @@ class _CountryPickerBodyState extends State<CountryPickerBody> {
                       final row = _rows[index];
                       if (row.isHeader) {
                         return row.title!.isEmpty
-                            ? divider
+                            // Each country row already draws its own divider; a second
+                            // one here would double up under the favourites.
+                            ? const SizedBox(height: 8)
                             : Padding(
                                 padding:
                                     const EdgeInsets.fromLTRB(16, 12, 16, 4),

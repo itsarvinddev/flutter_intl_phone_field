@@ -133,3 +133,30 @@ accent-insensitive search in the country picker (typing `Aland` should find
 `Åland`). It asserts a fixed table of 62 accented/plain character pairs and
 prints either `all 62 mappings correct` or one line per broken mapping. Run it
 after touching `removeDiacritics`.
+
+## Releasing
+
+When the public API changes, update the shipped agent skills in the same
+commit — a stale skill is worse than no skill, because it turns an assistant's
+uncertainty into confidence in the wrong answer:
+
+* `skills/flutter-intl-phone-field-usage/SKILL.md` — the "Do not reach for
+  these" table is the load-bearing part; it is what overrides a model's prior.
+* `skills/flutter-intl-phone-field-usage/references/parameters.md` — regenerate
+  from the README's parameter reference.
+* `skills/flutter-intl-phone-field-migration/SKILL.md` — add the new breaking
+  changes.
+* The version each file names.
+
+Verify they still install before publishing:
+
+```sh
+cd /tmp && flutter create --project-name skilltest skilltest
+cd skilltest && dart pub add 'flutter_intl_phone_field:{"path":"../../path/to/repo"}'
+dart run skills@ get --agent claude --all
+```
+
+Screenshots (`image-1.png`, `image-2.png`, `image-3.png`) are captured from the
+example app's Showcase, Country list curation and Validation pages. Re-shoot
+them when the interface changes; they are registered in `pubspec.yaml` and are
+what pub.dev displays.

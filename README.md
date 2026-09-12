@@ -10,44 +10,51 @@ countries and territories.
 [![License: MIT](https://img.shields.io/github/license/itsarvinddev/flutter_intl_phone_field?color=green)](https://github.com/itsarvinddev/flutter_intl_phone_field/blob/main/LICENSE)
 [![CI](https://github.com/itsarvinddev/flutter_intl_phone_field/actions/workflows/ci.yml/badge.svg)](https://github.com/itsarvinddev/flutter_intl_phone_field/actions/workflows/ci.yml)
 
-## Features
-
-- **251 countries and territories**, with calling codes, national-number length
-  ranges, example numbers and national prefixes generated from Google's
-  libphonenumber metadata.
-- **Length validation out of the box**, and optional `strictValidation` that
-  requires the number to match a real fixed-line or mobile range.
-- **As-you-type formatting** using each country's national layout —
-  `2015550123` becomes `(201) 555-0123` — while the value you receive stays
-  digits only.
-- **Accurate country resolution**: numbers sharing a calling code are told apart
-  by their leading digits, so `+447781123456` resolves to Guernsey, not the UK.
-- **A searchable picker** in five presentations (dialog, modal sheet, draggable
-  sheet, full-screen page, or platform-adaptive), searchable by country name in
-  any bundled language, by ISO code, or by dial code, with accent folding.
-- **Favourite countries** pinned to the top of the list, plus `onlyCountries` /
-  `excludeCountries` filtering.
-- **Flags that work everywhere**: regional-indicator emoji on iOS, macOS and
-  Android; bundled PNGs on Windows, Linux and the web, where flag emoji don't
-  render.
-- **`PhoneController`** — a `ValueNotifier<PhoneNumber>` for reading, writing and
-  listening to the value from outside the widget.
-- **Immutable `PhoneNumber`** with `==`, `copyWith`, `toJson`/`fromJson`, E.164
-  output and non-throwing parsing.
-- **Localizable strings** with no `intl` dependency, and localized country names
-  from the Unicode CLDR.
-- **Deeply customizable**: builders for the flag, the dial code and the whole
-  country selector; every part hideable.
-
-## Screenshots
-
 <table>
 <tr>
-<td><img src="https://raw.githubusercontent.com/itsarvinddev/flutter_intl_phone_field/main/image-1.png" width="270" alt="Phone field with country selector"></td>
-<td><img src="https://raw.githubusercontent.com/itsarvinddev/flutter_intl_phone_field/main/image-2.png" width="270" alt="Searchable country picker"></td>
-<td><img src="https://raw.githubusercontent.com/itsarvinddev/flutter_intl_phone_field/main/image-3.png" width="270" alt="Validation and formatting"></td>
+<td align="center" width="33%">
+<img src="https://raw.githubusercontent.com/itsarvinddev/flutter_intl_phone_field/main/image-1.png" width="250" alt="Five IntlPhoneField variants on one screen: default, as-you-type formatted, circular flag, flag only, and a custom selector">
+<br/><sub><b>One widget, many looks</b><br/>Every field is the same <code>IntlPhoneField</code></sub>
+</td>
+<td align="center" width="33%">
+<img src="https://raw.githubusercontent.com/itsarvinddev/flutter_intl_phone_field/main/image-2.png" width="250" alt="The country picker, with a search box, favourite countries pinned under a Frequently used heading, and the selected country highlighted">
+<br/><sub><b>Searchable picker</b><br/>Favourites pinned, search by name or code</sub>
+</td>
+<td align="center" width="33%">
+<img src="https://raw.githubusercontent.com/itsarvinddev/flutter_intl_phone_field/main/image-3.png" width="250" alt="A field showing an Invalid phone number error, beside a panel listing the live PhoneNumber fields it reports">
+<br/><sub><b>Validation built in</b><br/>And the exact value you get back</sub>
+</td>
 </tr>
 </table>
+
+## Contents
+
+- [Why this package](#why-this-package)
+- [Install](#install)
+- [Using this package with an AI coding assistant](#using-this-package-with-an-ai-coding-assistant)
+- [Quick start](#quick-start)
+- [Recipes](#recipes) — [validation](#validation), [reading the value](#reading-the-value),
+  [`PhoneController`](#phonecontroller), [formatting](#as-you-type-formatting),
+  [country list](#curating-the-country-list), [picker](#picker-presentation),
+  [styling](#styling-the-picker), [selector](#customizing-the-selector),
+  [localization](#localization)
+- [Parameter reference](#parameter-reference) — all 73 parameters
+- [Country data](#country-data)
+- [Migrating from 0.0.x](#migrating-from-00x)
+- [FAQ & troubleshooting](#faq--troubleshooting)
+
+## Why this package
+
+|  | |
+| --- | --- |
+| **Correct by construction** | Calling codes, national-number lengths, example numbers, validation patterns and formatting rules are generated from Google's libphonenumber metadata — not maintained by hand. 251 territories. |
+| **Knows numbers apart** | Territories sharing a calling code are resolved by the leading digits of the number, so `+447781123456` is Guernsey and `+447400123456` is the UK. |
+| **Validates properly** | Length checking out of the box; `strictValidation` additionally requires the number to fall in a real fixed-line or mobile range. |
+| **Formats as you type** | `2015550123` renders as `(201) 555-0123` using each country's own layout, while the value you receive stays digits only. |
+| **Flags that render everywhere** | Emoji on iOS, macOS and Android; bundled PNGs on Windows, Linux and web, where flag emoji have no glyphs. |
+| **Fits your design** | Builders for the flag, the dial code and the entire country selector. Five picker presentations. Every part hideable. |
+| **Fits your architecture** | Immutable `PhoneNumber` with `==`, `copyWith` and JSON; a `PhoneController` for driving the field from outside; localizable strings with no `intl` dependency. |
+| **All six platforms** | iOS, Android, Web, Windows, macOS, Linux. No plugins, no platform channels, no native code. |
 
 ## Install
 
@@ -59,13 +66,63 @@ Or add it to `pubspec.yaml` by hand:
 
 ```yaml
 dependencies:
-  flutter_intl_phone_field: ^0.1.0
+  flutter_intl_phone_field: ^0.1.1
 ```
 
 Then import the single barrel file:
 
 ```dart
 import 'package:flutter_intl_phone_field/flutter_intl_phone_field.dart';
+```
+
+## Using this package with an AI coding assistant
+
+Assistants tend to write this package from memory, and their memory is of the
+older, unrelated `intl_phone_field` package. The result compiles and is subtly
+wrong — most often `'+${phone.countryCode}${phone.number}'`, which produces
+`++919876543210` because `countryCode` already carries the `+`.
+
+### Option 1 — install the bundled skills (recommended)
+
+This package ships [agent skills](https://dart.dev/tools/pub/package-skills).
+One command teaches your assistant the real 0.1.0 API:
+
+```bash
+dart run skills@ get
+```
+
+It detects your assistant — Claude Code, Cursor, Copilot, Cline, Codex,
+Antigravity, opencode — and installs two skills into your project:
+
+| Skill | What it does |
+| --- | --- |
+| `flutter-intl-phone-field-usage` | Correct API, common recipes, and the mistakes to avoid. Includes the full parameter reference. |
+| `flutter-intl-phone-field-migration` | Upgrading from `intl_phone_field`, or from this package's 0.0.x releases. |
+
+### Option 2 — paste this prompt
+
+For assistants that don't support skills, paste this alongside your request:
+
+```text
+Use flutter_intl_phone_field ^0.1.0. It is NOT the `intl_phone_field` package —
+do not use that API. Import only:
+  package:flutter_intl_phone_field/flutter_intl_phone_field.dart
+
+Rules that differ from what you may remember:
+- PhoneNumber.countryCode ALREADY includes the leading '+'. To get E.164 use
+  phone.completeNumber. Never write '+' + phone.countryCode.
+- phone.number is the national part only, never the calling code.
+- isValidNumber() returns bool and never throws. validate() is the throwing one.
+- PhoneNumber is immutable — use copyWith, not field assignment.
+- The error-message parameter is `invalidMessage`, not `invalidNumberMessage`.
+- Open the picker with showCountryPicker(...), not CountryPickerDialog(...).
+- Use country.fullCountryCode to build a number, country.displayCC to show one.
+  country.dialCode is the bare calling code and is not dialable on its own.
+- A custom `validator` runs IN ADDITION TO the built-in length check. Pass
+  disableLengthCheck: true if you want only your own rule.
+
+Symbol index:
+https://pub.dev/documentation/flutter_intl_phone_field/latest/index.json
 ```
 
 ## Quick start

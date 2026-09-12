@@ -2,7 +2,7 @@ name: flutter_intl_phone_field
 description: >-
   International phone number input for Flutter: country picker, as-you-type
   formatting, and libphonenumber-accurate validation for 250+ countries.
-version: 0.1.0
+version: 0.1.1
 homepage: https://github.com/itsarvinddev/flutter_intl_phone_field
 repository: https://github.com/itsarvinddev/flutter_intl_phone_field
 issue_tracker: https://github.com/itsarvinddev/flutter_intl_phone_field/issues
@@ -11,10 +11,12 @@ funding:
   - https://github.com/sponsors/itsarvinddev
 
 screenshots:
-  - description: "Phone number field with country picker"
+  - description: "Five IntlPhoneField variants on one screen: default, as-you-type formatted, circular flag, flag only, and a custom selector"
     path: image-1.png
-  - description: "Searchable country picker"
+  - description: "The country picker, with search, favourite countries pinned on top, and the selected country highlighted"
     path: image-2.png
+  - description: "A field showing a validation error, beside the PhoneNumber value it reports"
+    path: image-3.png
 
 topics:
   - phone

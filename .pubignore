@@ -30,7 +30,3 @@ example/.flutter-plugins-dependencies
 test/
 tool/
 .github/
-
-# Third screenshot is linked from the README on GitHub; it does not need to
-# ship in the archive (pubspec only registers image-1 and image-2).
-image-3.png

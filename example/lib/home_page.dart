@@ -8,6 +8,7 @@ import 'demos/edge_cases_demo.dart';
 import 'demos/formatting_demo.dart';
 import 'demos/localization_demo.dart';
 import 'demos/picker_demo.dart';
+import 'demos/showcase_demo.dart';
 import 'demos/styling_demo.dart';
 import 'demos/validation_demo.dart';
 
@@ -32,6 +33,13 @@ class DemoEntry {
 /// The gallery's table of contents. `main.dart` turns this into the route
 /// table, so adding a demo means adding one entry here.
 const List<DemoEntry> demos = <DemoEntry>[
+  DemoEntry(
+    title: 'Showcase',
+    subtitle: 'The same field in five different looks, on one screen.',
+    icon: Icons.auto_awesome_outlined,
+    route: ShowcaseDemo.route,
+    builder: _showcase,
+  ),
   DemoEntry(
     title: 'Basic usage & forms',
     subtitle: 'A field inside a Form, validated by a Submit button.',
@@ -99,6 +107,7 @@ const List<DemoEntry> demos = <DemoEntry>[
 ];
 
 // Const-constructible builders, so `demos` itself can be const.
+Widget _showcase(BuildContext context) => const ShowcaseDemo();
 Widget _basic(BuildContext context) => const BasicDemo();
 Widget _validation(BuildContext context) => const ValidationDemo();
 Widget _formatting(BuildContext context) => const FormattingDemo();
