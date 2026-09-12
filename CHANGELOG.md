@@ -8,6 +8,8 @@
 - Added comprehensive tests for UK and Crown Dependencies phone validation
 - Added `showCountryCode` parameter to control visibility of country dial code (e.g., +1, +44)
 - Enhanced flexibility in customizing phone field appearance
+- Add `searchFieldStyle` parameter to `PickerDialogStyle` to allow customization of search field text style
+- This allows users to customize text color, font size, and other text properties in the country picker search field
 
 ## 0.0.7
 

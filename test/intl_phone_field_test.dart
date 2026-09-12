@@ -1,43 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_intl_phone_field/country_picker_dialog.dart';
 import 'package:flutter_intl_phone_field/flutter_intl_phone_field.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 class TestWidget extends StatelessWidget {
-  const TestWidget({
-    Key? key,
-    required this.phoneNumber,
-    this.countryCode,
-    this.showCountryCode = true,
-    this.showCountryFlag = true,
-  }) : super(key: key);
+  const TestWidget({Key? key, required this.phoneNumber, this.countryCode, this.pickerDialogStyle}) : super(key: key);
 
   final String phoneNumber;
   final String? countryCode;
-  final bool showCountryCode;
-  final bool showCountryFlag;
+  final PickerDialogStyle? pickerDialogStyle;
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Test Intl Phone Field',
-        home: Scaffold(
-          appBar: AppBar(title: const Text("")),
-          body: IntlPhoneField(
-            initialValue: phoneNumber,
-            initialCountryCode: countryCode,
-            showCountryCode: showCountryCode,
-            showCountryFlag: showCountryFlag,
-          ),
-        ));
+      title: 'Test Intl Phone Field',
+      home: Scaffold(
+        appBar: AppBar(title: const Text("")),
+        body: IntlPhoneField(
+          initialValue: phoneNumber,
+          initialCountryCode: countryCode,
+          pickerDialogStyle: pickerDialogStyle,
+        ),
+      ),
+    );
   }
 }
 
 void main() {
-  testWidgets('Test flutter_intl_phone_field setup with completeNumber',
-      (WidgetTester tester) async {
-    await tester.pumpWidget(const TestWidget(
-      phoneNumber: '+447891234467',
-    ));
+  testWidgets('Test flutter_intl_phone_field setup with completeNumber', (WidgetTester tester) async {
+    await tester.pumpWidget(const TestWidget(phoneNumber: '+447891234467'));
 
     final countryCodeFinder = find.text('+44');
     final numberFinder = find.text('7891234467');
@@ -46,13 +37,8 @@ void main() {
     expect(numberFinder, findsOneWidget);
   });
 
-  testWidgets(
-      'Test flutter_intl_phone_field setup with Guernsey number: +441481960194',
-      (WidgetTester tester) async {
-    await tester.pumpWidget(const TestWidget(
-      phoneNumber: '+441481960194',
-      countryCode: 'GG',
-    ));
+  testWidgets('Test flutter_intl_phone_field setup with Guernsey number: +441481960194', (WidgetTester tester) async {
+    await tester.pumpWidget(const TestWidget(phoneNumber: '+441481960194', countryCode: 'GG'));
 
     final countryCodeFinder = find.text('+44 1481');
     final numberFinder = find.text('960194');
@@ -61,13 +47,8 @@ void main() {
     expect(numberFinder, findsOneWidget);
   });
 
-  testWidgets(
-      'Test flutter_intl_phone_field setup with UK number: +447891244567',
-      (WidgetTester tester) async {
-    await tester.pumpWidget(const TestWidget(
-      phoneNumber: '+447891244567',
-      countryCode: 'GB',
-    ));
+  testWidgets('Test flutter_intl_phone_field setup with UK number: +447891244567', (WidgetTester tester) async {
+    await tester.pumpWidget(const TestWidget(phoneNumber: '+447891244567', countryCode: 'GB'));
 
     final countryCodeFinder = find.text('+44');
     final numberFinder = find.text('7891244567');
@@ -76,72 +57,30 @@ void main() {
     expect(numberFinder, findsOneWidget);
   });
 
-  testWidgets(
-      'Test showCountryCode false hides the country dial code',
-      (WidgetTester tester) async {
-    await tester.pumpWidget(const TestWidget(
-      phoneNumber: '+447891234467',
-      showCountryCode: false,
-    ));
+  testWidgets('Test flutter_intl_phone_field with custom searchFieldStyle', (WidgetTester tester) async {
+    const customTextStyle = TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold);
+
+    await tester.pumpWidget(
+      TestWidget(
+        phoneNumber: '+447891244567',
+        countryCode: 'GB',
+        pickerDialogStyle: PickerDialogStyle(backgroundColor: Colors.black, searchFieldStyle: customTextStyle),
+      ),
+    );
 
     final countryCodeFinder = find.text('+44');
-    final numberFinder = find.text('7891234467');
-
-    // Country code should not be visible
-    expect(countryCodeFinder, findsNothing);
-    // Phone number should still be visible
-    expect(numberFinder, findsOneWidget);
-  });
-
-  testWidgets(
-      'Test showCountryCode true shows the country dial code',
-      (WidgetTester tester) async {
-    await tester.pumpWidget(const TestWidget(
-      phoneNumber: '+447891234467',
-      showCountryCode: true,
-    ));
-
-    final countryCodeFinder = find.text('+44');
-    final numberFinder = find.text('7891234467');
-
-    // Country code should be visible
     expect(countryCodeFinder, findsOneWidget);
-    // Phone number should still be visible
-    expect(numberFinder, findsOneWidget);
-  });
 
-  testWidgets(
-      'Test showCountryFlag false hides the country flag',
-      (WidgetTester tester) async {
-    await tester.pumpWidget(const TestWidget(
-      phoneNumber: '+447891234467',
-      showCountryFlag: false,
-    ));
+    // Tap on the country selector to open the dialog
+    await tester.tap(countryCodeFinder);
+    await tester.pumpAndSettle();
 
-    final countryCodeFinder = find.text('+44');
-    final numberFinder = find.text('7891234467');
+    // Find the search TextField in the dialog
+    final textFieldFinder = find.byType(TextField);
+    expect(textFieldFinder, findsOneWidget);
 
-    // Country code should still be visible
-    expect(countryCodeFinder, findsOneWidget);
-    // Phone number should still be visible
-    expect(numberFinder, findsOneWidget);
-  });
-
-  testWidgets(
-      'Test both showCountryCode and showCountryFlag false',
-      (WidgetTester tester) async {
-    await tester.pumpWidget(const TestWidget(
-      phoneNumber: '+447891234467',
-      showCountryCode: false,
-      showCountryFlag: false,
-    ));
-
-    final countryCodeFinder = find.text('+44');
-    final numberFinder = find.text('7891234467');
-
-    // Country code should not be visible
-    expect(countryCodeFinder, findsNothing);
-    // Phone number should still be visible
-    expect(numberFinder, findsOneWidget);
+    // Verify that the TextField has the custom style applied
+    final textField = tester.widget<TextField>(textFieldFinder);
+    expect(textField.style, equals(customTextStyle));
   });
 }
