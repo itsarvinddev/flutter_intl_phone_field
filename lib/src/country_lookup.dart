@@ -11,12 +11,11 @@ import 'country_patterns.dart';
 ///
 /// The index is built once, lazily, and reused.
 class CountryResolver {
-  CountryResolver._(this._countries)
-      : _byDialCode = _indexByDialCode(_countries),
-        _dialCodes = _sortedDialCodes(_countries),
-        _byIsoCode = {for (final c in _countries) c.code.toUpperCase(): c};
+  CountryResolver._(List<Country> countries)
+      : _byDialCode = _indexByDialCode(countries),
+        _dialCodes = _sortedDialCodes(countries),
+        _byIsoCode = {for (final c in countries) c.code.toUpperCase(): c};
 
-  final List<Country> _countries;
   final Map<String, List<Country>> _byDialCode;
   final List<String> _dialCodes;
   final Map<String, Country> _byIsoCode;

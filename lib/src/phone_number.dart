@@ -136,10 +136,13 @@ class PhoneNumber {
   /// [InvalidCharactersException].
   void validate({bool strict = false}) {
     final c = country;
-    if (c == null) throw const InvalidCharactersException('Unknown country.');
+    if (c == null) {
+      throw const InvalidCharactersException('Unknown country.');
+    }
     final digits = number.replaceAll(RegExp(r'\D'), '');
-    if (digits.length != number.length)
+    if (digits.length != number.length) {
       throw const InvalidCharactersException();
+    }
     if (digits.length < c.minLength) throw const NumberTooShortException();
     if (digits.length > c.maxLength) throw const NumberTooLongException();
     if (strict && !CountryResolver.isValidFor(c, digits, strict: true)) {
