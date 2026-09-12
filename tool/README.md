@@ -57,10 +57,15 @@ Mapping notes that matter when reading the generated output:
 
 `Country.name` is the English territory name and `Country.nameTranslations`
 holds the localised names, keyed by language code, from the
-[Unicode CLDR](https://cldr.unicode.org/) territory-name data. Seventeen
-languages are carried: `ar`, `de`, `en`, `es`, `fa`, `fr`, `it`, `ja`, `nl`,
-`no`, `pl`, `ro`, `ru`, `se`, `sk`, `tr`, `zh`. CLDR is distributed under the
+[Unicode CLDR](https://cldr.unicode.org/) territory-name data. Twenty-two
+locales are carried: `ar`, `de`, `en`, `es`, `fa`, `fr`, `it`, `ja`, `nl`,
+`no`, `pl`, `pt_BR`, `ro`, `ru`, `se`, `sk`, `sr-Cyrl`, `sr-Latn`, `tr`, `yue`,
+`zh`, `zh_TW`. CLDR is distributed under the
 [Unicode License](https://www.unicode.org/license.txt).
+
+`Country.name` is set to the English CLDR name, so it always agrees with
+`nameTranslations['en']` — an invariant `test/country_data_test.dart` asserts.
+The two had drifted apart before: Italy was named "Campione d'Italia".
 
 Flag emoji are derived mechanically from the ISO 3166-1 alpha-2 code by mapping
 each letter to its regional-indicator symbol, so they are not sourced from
@@ -81,10 +86,6 @@ It downloads libphonenumber's `PhoneNumberMetadata.xml` and the CLDR
 rewrites the four generated files in full. `--offline` reuses whatever is
 already cached and fails rather than reaching the network, which is what you
 want when reproducing a previous run.
-
-Note that `lib/src/countries.dart` still names `tool/generate_countries.dart`
-in its header; the script was renamed to `generate_country_data.py` and the
-header is stale. Believe this README.
 
 After regenerating, always run:
 
