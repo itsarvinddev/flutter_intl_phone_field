@@ -1,12 +1,36 @@
-# Keep the published archive small: none of this is needed by consumers.
+# pub uses this file INSTEAD of .gitignore when deciding what to publish, so it
+# has to repeat the build-artifact rules as well as the extras we want dropped.
+
+# Build artifacts and tool state
+build/
+.dart_tool/
+coverage/
+.packages
+.flutter-plugins
+.flutter-plugins-dependencies
+*.iml
+.idea/
+.vscode/
+.DS_Store
+
+# The example's generated platform folders and build output. Its Dart sources
+# stay, so pub.dev can still show the example.
+example/build/
+example/.dart_tool/
 example/android/
 example/ios/
 example/linux/
 example/macos/
 example/windows/
 example/web/
-example/build/
+example/.flutter-plugins
+example/.flutter-plugins-dependencies
+
+# Developer-only material
 test/
 tool/
 .github/
+
+# Third screenshot is linked from the README on GitHub; it does not need to
+# ship in the archive (pubspec only registers image-1 and image-2).
 image-3.png
