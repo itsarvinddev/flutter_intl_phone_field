@@ -5,6 +5,22 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.2] - Unreleased
+
+### Fixed
+
+- **No "setState() or markNeedsBuild() called during build" when the field
+  updates.** Changing `initialCountryCode`, `formatInput`, `countries`,
+  `onlyCountries`, `excludeCountries` or `initialValue` on a mounted field
+  rewrote the controller from `didUpdateWidget`, in the middle of a build, and
+  the field's `TextFormField` then rebuilt the enclosing `Form`. The rewrite,
+  and the `onCountryChanged` and `onChanged` calls that go with it, now run
+  once the frame has been built.
+- **Mounting on a controller whose text is already parsed notifies no one.**
+  The field assigned the text back in `initState` even when it was unchanged,
+  which reset the selection and notified every listener, including another
+  field bound to the same controller that was still on screen.
+
 ## [0.1.1] - 2026-09-12
 
 Documentation and tooling only; no API or behaviour changes.

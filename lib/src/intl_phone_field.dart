@@ -441,9 +441,13 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
       resolve: _detectCountry,
       onDetected: _applyDetectedCountry,
     );
-    _controller.text = widget.formatInput
+    final text = widget.formatInput
         ? AsYouTypeFormatter.format(_selectedCountry, initialText)
         : initialText;
+    // Assigning resets the selection, so an unchanged text still notified
+    // every listener -- including another field on the same controller, which
+    // was then marked dirty in the middle of this build.
+    if (_controller.text != text) _controller.text = text;
 
     widget.phoneController?.addListener(_onPhoneControllerChanged);
     _pushToPhoneController();
@@ -476,33 +480,53 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
         oldWidget.excludeCountries != widget.excludeCountries;
     if (listChanged) {
       _countryList = _resolveCountryList();
-      if (!_countryList.any((c) => c.code == _selectedCountry.code)) {
-        _selectCountry(_countryList.first, notify: true);
-      }
+      _afterBuild(() {
+        if (!_countryList.any((c) => c.code == _selectedCountry.code)) {
+          _selectCountry(_countryList.first, notify: true);
+        }
+      });
     }
 
     if (oldWidget.initialCountryCode != widget.initialCountryCode &&
         widget.initialCountryCode != null) {
       final next = _countryFromCode(widget.initialCountryCode!);
-      if (next != null && next.code != _selectedCountry.code) {
-        _selectCountry(next, notify: true);
+      if (next != null) {
+        _afterBuild(() {
+          if (next.code != _selectedCountry.code) {
+            _selectCountry(next, notify: true);
+          }
+        });
       }
     }
 
     if (oldWidget.initialValue != widget.initialValue &&
         widget.controller == null) {
-      final text = _parseInitialNumber();
-      _setText(widget.formatInput
-          ? AsYouTypeFormatter.format(_selectedCountry, text)
-          : text);
+      _afterBuild(() {
+        final text = _parseInitialNumber();
+        _setText(widget.formatInput
+            ? AsYouTypeFormatter.format(_selectedCountry, text)
+            : text);
+      });
     }
 
     if (oldWidget.formatInput != widget.formatInput) {
       _formatter.enabled = widget.formatInput;
-      _setText(widget.formatInput
+      _afterBuild(() => _setText(widget.formatInput
           ? AsYouTypeFormatter.format(_selectedCountry, _digits)
-          : _digits);
+          : _digits));
     }
+  }
+
+  /// Runs [action] once the frame being built has finished.
+  ///
+  /// didUpdateWidget runs in the middle of a build. Writing the controller
+  /// there makes this field's own TextFormField rebuild its enclosing [Form],
+  /// which Flutter rejects ("setState() or markNeedsBuild() called during
+  /// build"), and would run onChanged and onCountryChanged mid-build too.
+  void _afterBuild(VoidCallback action) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) action();
+    });
   }
 
   @override
@@ -649,6 +673,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
   }
 
   void _setText(String text) {
+    if (_controller.text == text) return;
     _controller.value = TextEditingValue(
       text: text,
       selection: TextSelection.collapsed(offset: text.length),
