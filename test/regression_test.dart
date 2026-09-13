@@ -122,4 +122,87 @@ void main() {
     expect(number?.countryISOCode, 'KE',
         reason: 'onChanged never fired on country change before');
   });
+
+  group('no controller writes during build', () {
+    Widget form(Widget field) =>
+        MaterialApp(home: Scaffold(body: Form(child: field)));
+
+    testWidgets('a new initialCountryCode reformats after the frame',
+        (tester) async {
+      final controller = TextEditingController();
+      addTearDown(controller.dispose);
+      Country? changed;
+      PhoneNumber? reported;
+      Widget field(String country) => form(IntlPhoneField(
+            controller: controller,
+            initialCountryCode: country,
+            formatInput: true,
+            onCountryChanged: (c) => changed = c,
+            onChanged: (p) => reported = p,
+          ));
+      await tester.pumpWidget(field('IN'));
+      await tester.enterText(find.byType(TextField), '2125550100');
+      await tester.pump();
+
+      await tester.pumpWidget(field('US'));
+      expect(tester.takeException(), isNull,
+          reason: 'setState() or markNeedsBuild() called during build');
+      expect(controller.text, '(212) 555-0100');
+      expect(changed?.code, 'US');
+      expect(reported?.completeNumber, '+12125550100');
+      await tester.pump();
+      expect(find.text('(212) 555-0100'), findsOneWidget);
+    });
+
+    testWidgets('turning formatInput on reformats after the frame',
+        (tester) async {
+      final controller = TextEditingController();
+      addTearDown(controller.dispose);
+      Widget field({required bool formatInput}) => form(IntlPhoneField(
+            controller: controller,
+            initialCountryCode: 'US',
+            formatInput: formatInput,
+          ));
+      await tester.pumpWidget(field(formatInput: false));
+      await tester.enterText(find.byType(TextField), '2125550100');
+      await tester.pump();
+
+      await tester.pumpWidget(field(formatInput: true));
+      expect(tester.takeException(), isNull);
+      expect(controller.text, '(212) 555-0100');
+      await tester.pumpWidget(field(formatInput: false));
+      expect(tester.takeException(), isNull);
+      expect(controller.text, '2125550100');
+    });
+
+    testWidgets('mounting on text that is already parsed notifies no one',
+        (tester) async {
+      // Two screens sharing one controller, the second mounting while the
+      // first is still on screen: the old field must not be told to rebuild
+      // in the middle of the new one's build.
+      final controller = TextEditingController(text: '2125550100');
+      addTearDown(controller.dispose);
+      var notified = 0;
+      controller.addListener(() => notified++);
+      Widget screens({required bool both}) => form(Column(children: [
+            IntlPhoneField(
+                key: const ValueKey('a'),
+                controller: controller,
+                initialCountryCode: 'US'),
+            if (both)
+              IntlPhoneField(
+                  key: const ValueKey('b'),
+                  controller: controller,
+                  initialCountryCode: 'US'),
+          ]));
+      await tester.pumpWidget(screens(both: false));
+      // Where typing leaves the cursor.
+      controller.selection = const TextSelection.collapsed(offset: 10);
+      notified = 0;
+      await tester.pumpWidget(screens(both: true));
+      expect(tester.takeException(), isNull);
+      expect(notified, 0);
+      expect(controller.text, '2125550100');
+    });
+  });
 }
