@@ -1,7 +1,7 @@
 # IntlPhoneField parameters
 
 Every constructor parameter of `IntlPhoneField` in flutter_intl_phone_field
-0.1.x, with its type and default. Generated from the constructor; if this
+1.x, with its type and default. Generated from the constructor; if this
 disagrees with the dartdoc, the dartdoc wins:
 <https://pub.dev/documentation/flutter_intl_phone_field/latest/>.
 
@@ -77,7 +77,6 @@ disagrees with the dartdoc, the dartdoc wins:
 | --- | --- | --- | --- |
 | `dialogType` | `DialogType` | `DialogType.showDialog` | How the picker is presented: `showDialog`, `showModalBottomSheet`, `showDraggableBottomSheet`, `showFullScreenPage` or `adaptive`. |
 | `pickerDialogStyle` | `PickerDialogStyle?` | `null` | Styling for the country picker. |
-| `searchText` | `String` | `'Search country'` | **Deprecated** — use `localizations.searchHint` or `PickerDialogStyle.searchFieldInputDecoration`. Removed in 1.0.0. |
 
 ## Text field
 

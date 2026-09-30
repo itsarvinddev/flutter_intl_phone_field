@@ -1,3 +1,136 @@
+# Migrating to 1.0.0
+
+1.0.0 moves the package from the Flutter SDK's built-in Material library
+(`package:flutter/material.dart`) to the standalone
+[`package:material_ui`](https://pub.dev/packages/material_ui), which Flutter
+decoupled from the SDK; the built-in copy is frozen and scheduled for
+deprecation. Flutter's
+[guidance for package authors](https://docs.flutter.dev/release/breaking-changes/material-ui-and-cupertino-ui#guidance-for-package-authors)
+treats this as a major version bump, and so does this release. It also removes
+everything 0.1.x deprecated.
+
+Nothing about phone numbers changed: country data, validation, formatting and
+`PhoneNumber` behave exactly as in 0.1.2.
+
+## At a glance
+
+| What changed | What to do |
+| --- | --- |
+| The package is built on `package:material_ui` | Migrate your app to `material_ui` — see below |
+| Minimum SDK is Dart 3.12 / Flutter 3.44 | Raise your own constraint, or stay on `^0.1.2` |
+| The deprecated import paths are gone | Import `package:flutter_intl_phone_field/flutter_intl_phone_field.dart` |
+| `searchText` is gone | Use `localizations.searchHint` |
+
+---
+
+### Your app has to use `package:material_ui`
+
+**Why.** Classes in `material_ui` have the same names as the SDK's, but they
+are different types. That breaks an app still on `package:flutter/material.dart`
+in two ways:
+
+- **At compile time**, wherever you pass a Material type into the field:
+  `decoration` and `PickerDialogStyle.searchFieldInputDecoration` take
+  `material_ui`'s `InputDecoration`, and `buildCounter` takes its
+  `InputCounterWidgetBuilder`. The SDK's `InputDecoration` is rejected with
+  "The argument type 'InputDecoration' can't be assigned to the parameter type
+  'InputDecoration'".
+- **At runtime**, even if you pass none of them: the field's text field looks
+  for `material_ui`'s `Material` ancestor, which an SDK `MaterialApp`/`Scaffold`
+  does not provide. It fails with "No Material widget found".
+  `MaterialUiCompatibilityBridge` does not help here — it only lets *old*
+  widgets run inside a `material_ui` app, not the other way round.
+
+```dart
+// Before (0.1.x)
+import 'package:flutter/material.dart';
+import 'package:flutter_intl_phone_field/flutter_intl_phone_field.dart';
+```
+
+```dart
+// After (1.0.0)
+import 'package:flutter_intl_phone_field/flutter_intl_phone_field.dart';
+import 'package:material_ui/material_ui.dart';
+```
+
+```yaml
+dependencies:
+  flutter_intl_phone_field: ^1.0.0
+  material_ui: ^1.0.0
+```
+
+**Automatable?** On Flutter 3.47 or newer, yes:
+
+```bash
+dart fix --apply --code=migrate_design_widgets
+```
+
+It rewrites the imports across your project and adds `material_ui: any` to
+`pubspec.yaml` — change that to `^1.0.0`. On Flutter
+3.44–3.46 that fix does not exist yet ("The diagnostic 'migrate_design_widgets'
+is not defined by the analyzer"); replace the import by hand. See Flutter's
+[migration guide](https://docs.flutter.dev/release/breaking-changes/material-ui-and-cupertino-ui)
+for localization delegates and other app-level details.
+
+---
+
+### Minimum SDK is Dart 3.12 / Flutter 3.44
+
+**Why.** `material_ui` 1.0.0 requires it.
+
+```yaml
+# After (1.0.0)
+environment:
+  sdk: ">=3.12.0 <4.0.0"
+  flutter: ">=3.44.0"
+```
+
+**Automatable?** Yes — one line in your `pubspec.yaml`. If you cannot raise it,
+stay on `^0.1.2`, which keeps working with `package:flutter/material.dart`.
+
+---
+
+### The deprecated import paths are removed
+
+`package:flutter_intl_phone_field/countries.dart`, `phone_number.dart`,
+`country_picker_dialog.dart` and `helpers.dart` were deprecated re-export shims
+in 0.1.x. They are gone.
+
+```dart
+// After (1.0.0) — one import covers all of it
+import 'package:flutter_intl_phone_field/flutter_intl_phone_field.dart';
+```
+
+`helpers.dart` has no replacement: `isNumeric`, `removeDiacritics` and the
+list extension were never part of the supported API.
+
+**Automatable?** Yes — delete the extra import lines.
+
+---
+
+### `searchText` is removed
+
+Deprecated since 0.1.0. Move the string to `localizations.searchHint`, or style
+the whole search field with `PickerDialogStyle.searchFieldInputDecoration`.
+
+```dart
+// Before (0.1.x)
+IntlPhoneField(searchText: 'Rechercher un pays');
+```
+
+```dart
+// After (1.0.0)
+IntlPhoneField(
+  localizations: const IntlPhoneFieldLocalizations(
+    searchHint: 'Rechercher un pays',
+  ),
+);
+```
+
+**Automatable?** Yes — a mechanical rename of the one argument.
+
+---
+
 # Migrating to 0.1.0
 
 > **If you are coming from 0.0.7** — and you are, unless you tracked `main`:
@@ -416,8 +549,7 @@ stay on 0.0.8.
 
 **Why.** Every user-facing string is now in one place,
 `IntlPhoneFieldLocalizations`, with no dependency on `intl` or generated
-delegates. `searchText` still works and still wins over the default, but it
-will be removed in 1.0.0.
+delegates. `searchText` kept working through 0.1.x and was removed in 1.0.0.
 
 ```dart
 // Before (0.0.8)
@@ -444,8 +576,8 @@ IntlPhoneField(
 
 **Why.** The package exported four top-level files, which made every internal
 helper part of its public API. Everything now lives in `lib/src/` behind a
-single export. The old paths still resolve — they are deprecated re-export
-shims — and will be removed in 1.0.0.
+single export. The old paths kept resolving through 0.1.x as deprecated
+re-export shims and were removed in 1.0.0.
 
 ```dart
 // Before (0.0.8)
@@ -538,6 +670,10 @@ ISO code is stable and the display name is not.
 ---
 
 ## Nothing to do if…
+
+*For 0.0.x → 0.1.x only. Going on to 1.0.0, also apply
+[Migrating to 1.0.0](#migrating-to-100) — it changes `decoration` and the
+minimum SDK.*
 
 - You use `IntlPhoneField` with `initialCountryCode`, `onChanged` and
   `validator`, and read `phone.completeNumber`. That path is unchanged, apart

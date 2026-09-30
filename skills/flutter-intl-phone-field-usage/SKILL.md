@@ -5,15 +5,18 @@ description: >-
   international phone number input in Flutter, or when code mentions
   IntlPhoneField, PhoneNumber, PhoneController, CountryFlag or a country
   picker. Corrects the API remembered from the unrelated intl_phone_field
-  package and from this package's own 0.0.x releases.
+  package, from this package's own 0.0.x/0.1.x releases, and from
+  package:flutter/material.dart (this package is built on package:material_ui).
 ---
 
 # flutter_intl_phone_field
 
 An international phone number `TextFormField` with a country picker. This skill
-describes the **0.1.x** series. Country data — calling codes, national number
-lengths, validation patterns, formatting rules — is generated from Google's
-libphonenumber, so it covers 251 territories.
+describes the **1.x** series, which is built on `package:material_ui`
+(Flutter 3.44+), not on the SDK's `package:flutter/material.dart`. Country
+data — calling codes, national number lengths, validation patterns, formatting
+rules — is generated from Google's libphonenumber, so it covers 251
+territories.
 
 ## Do not reach for these
 
@@ -26,11 +29,12 @@ are silently wrong, so they matter most.
 | `try { phone.isValidNumber() } on NumberTooShortException { … }` | `if (!phone.isValidNumber()) { … }` | `isValidNumber()` returns `bool` and never throws. The throwing variant is `phone.validate()`. |
 | `country.dialCode` to build a number | `country.fullCountryCode` to build, `country.displayCC` to show | For Antigua, `dialCode` is `"1"`, `regionCode` is `"268"`, `fullCountryCode` is `"1268"` and `displayCC` is `"1 268"`. `dialCode` alone is not dialable. |
 | `import 'package:intl_phone_field/intl_phone_field.dart'` | `import 'package:flutter_intl_phone_field/flutter_intl_phone_field.dart'` | Different package. The names overlap; the APIs do not. |
-| `import 'package:flutter_intl_phone_field/countries.dart'` | the single barrel above | Everything is exported from one file. The old top-level paths still resolve but are deprecated. |
+| `import 'package:flutter/material.dart'` | `import 'package:material_ui/material_ui.dart'` | The package is built on `material_ui`: the SDK's `InputDecoration` is a different type, and an SDK `MaterialApp` gives "No Material widget found". |
+| `import 'package:flutter_intl_phone_field/countries.dart'` | the single barrel above | Everything is exported from one file. The old top-level paths were removed in 1.0.0. |
 | `invalidNumberMessage:` | `invalidMessage:` | Parameter is named `invalidMessage`. |
 | `phone.number = '555'` | `phone.copyWith(number: '555')` | `PhoneNumber` is immutable with a `const` constructor. |
 | `CountryPickerDialog(...)` | `showCountryPicker(...)`, or embed `CountryPickerBody` | The widget was replaced by a function. |
-| `searchText: 'Search'` | `localizations: IntlPhoneFieldLocalizations(searchHint: 'Search')` | `searchText` is deprecated and removed in 1.0.0. |
+| `searchText: 'Search'` | `localizations: IntlPhoneFieldLocalizations(searchHint: 'Search')` | `searchText` was removed in 1.0.0. |
 
 Two more that produce surprising behaviour rather than errors:
 
@@ -44,8 +48,8 @@ Two more that produce surprising behaviour rather than errors:
 This compiles as written.
 
 ```dart
-import 'package:flutter/material.dart';
 import 'package:flutter_intl_phone_field/flutter_intl_phone_field.dart';
+import 'package:material_ui/material_ui.dart';
 
 class SignUpForm extends StatefulWidget {
   const SignUpForm({super.key});
@@ -233,7 +237,7 @@ IntlPhoneField(
 
 ## Localization
 
-No dependency on `intl` or generated delegates. Country names come from CLDR via
+No generated delegates needed. Country names come from CLDR via
 `languageCode`; the package's own strings come from `localizations`.
 
 ```dart

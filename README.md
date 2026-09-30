@@ -38,9 +38,9 @@ countries and territories.
   [country list](#curating-the-country-list), [picker](#picker-presentation),
   [styling](#styling-the-picker), [selector](#customizing-the-selector),
   [localization](#localization)
-- [Parameter reference](#parameter-reference) — all 73 parameters
+- [Parameter reference](#parameter-reference) — all 72 parameters
 - [Country data](#country-data)
-- [Migrating from 0.0.x](#migrating-from-00x)
+- [Migrating](#migrating)
 - [FAQ & troubleshooting](#faq--troubleshooting)
 
 ## Why this package
@@ -53,27 +53,34 @@ countries and territories.
 | **Formats as you type** | `2015550123` renders as `(201) 555-0123` using each country's own layout, while the value you receive stays digits only. |
 | **Flags that render everywhere** | Emoji on iOS, macOS and Android; bundled PNGs on Windows, Linux and web, where flag emoji have no glyphs. |
 | **Fits your design** | Builders for the flag, the dial code and the entire country selector. Five picker presentations. Every part hideable. |
-| **Fits your architecture** | Immutable `PhoneNumber` with `==`, `copyWith` and JSON; a `PhoneController` for driving the field from outside; localizable strings with no `intl` dependency. |
+| **Fits your architecture** | Immutable `PhoneNumber` with `==`, `copyWith` and JSON; a `PhoneController` for driving the field from outside; localizable strings that need no generated delegates. |
 | **All six platforms** | iOS, Android, Web, Windows, macOS, Linux. No plugins, no platform channels, no native code. |
 
 ## Install
 
 ```bash
-flutter pub add flutter_intl_phone_field
+flutter pub add flutter_intl_phone_field material_ui
 ```
 
 Or add it to `pubspec.yaml` by hand:
 
 ```yaml
 dependencies:
-  flutter_intl_phone_field: ^0.1.1
+  flutter_intl_phone_field: ^1.0.0
+  material_ui: ^1.0.0
 ```
 
-Then import the single barrel file:
+Then import the single barrel file, next to `material_ui`:
 
 ```dart
 import 'package:flutter_intl_phone_field/flutter_intl_phone_field.dart';
+import 'package:material_ui/material_ui.dart';
 ```
+
+**Requirements:** Flutter 3.44 or newer, and an app built on
+[`package:material_ui`](https://pub.dev/packages/material_ui) rather than
+`package:flutter/material.dart` — see [Migrating](#migrating). On an older
+Flutter, stay on `^0.1.2`.
 
 ## Using this package with an AI coding assistant
 
@@ -85,7 +92,7 @@ wrong — most often `'+${phone.countryCode}${phone.number}'`, which produces
 ### Option 1 — install the bundled skills (recommended)
 
 This package ships [agent skills](https://dart.dev/tools/pub/package-skills).
-One command teaches your assistant the real 0.1.0 API:
+One command teaches your assistant the real 1.0.0 API:
 
 ```bash
 dart run skills@ get
@@ -97,16 +104,17 @@ Antigravity, opencode — and installs two skills into your project:
 | Skill | What it does |
 | --- | --- |
 | `flutter-intl-phone-field-usage` | Correct API, common recipes, and the mistakes to avoid. Includes the full parameter reference. |
-| `flutter-intl-phone-field-migration` | Upgrading from `intl_phone_field`, or from this package's 0.0.x releases. |
+| `flutter-intl-phone-field-migration` | Upgrading from `intl_phone_field`, or from this package's 0.0.x and 0.1.x releases. |
 
 ### Option 2 — paste this prompt
 
 For assistants that don't support skills, paste this alongside your request:
 
 ```text
-Use flutter_intl_phone_field ^0.1.0. It is NOT the `intl_phone_field` package —
+Use flutter_intl_phone_field ^1.0.0. It is NOT the `intl_phone_field` package —
 do not use that API. Import only:
   package:flutter_intl_phone_field/flutter_intl_phone_field.dart
+  package:material_ui/material_ui.dart  (never package:flutter/material.dart)
 
 Rules that differ from what you may remember:
 - PhoneNumber.countryCode ALREADY includes the leading '+'. To get E.164 use
@@ -547,7 +555,6 @@ Every parameter of `IntlPhoneField`.
 | --- | --- | --- | --- |
 | `dialogType` | `DialogType` | `DialogType.showDialog` | How the picker is presented: `showDialog`, `showModalBottomSheet`, `showDraggableBottomSheet`, `showFullScreenPage` or `adaptive`. |
 | `pickerDialogStyle` | `PickerDialogStyle?` | `null` | Styling for the country picker. |
-| `searchText` | `String` | `'Search country'` | **Deprecated** — use `localizations.searchHint` or `PickerDialogStyle.searchFieldInputDecoration`. Removed in 1.0.0. |
 
 ### Text field
 
@@ -622,7 +629,16 @@ flutter test
 Do not hand-edit the generated files; a fix belongs upstream in libphonenumber,
 or in the generator.
 
-## Migrating from 0.0.x
+## Migrating
+
+### From 0.1.x
+
+`1.0.0` is built on [`package:material_ui`](https://pub.dev/packages/material_ui)
+instead of `package:flutter/material.dart`, so your app has to move to
+`material_ui` as well. It also removes the deprecated import paths and
+`searchText`. See **[MIGRATION.md](MIGRATION.md#migrating-to-100)** for the steps.
+
+### From 0.0.x
 
 `0.1.0` corrects the country dataset and reshapes several APIs. `Country.dialCode`
 is now the true calling code (territories that used to carry an area code inside
@@ -678,10 +694,20 @@ IntlPhoneField(
 It is the `+`, the calling code, any fixed area code, and the digits typed —
 with no spaces or punctuation, whatever `formatInput` is displaying.
 
+**"The argument type 'InputDecoration' can't be assigned to the parameter type 'InputDecoration'".**
+Your file imports `package:flutter/material.dart`; the field takes
+`material_ui`'s `InputDecoration`, a different type with the same name. Import
+`package:material_ui/material_ui.dart` instead — see [MIGRATION.md](MIGRATION.md#migrating-to-100).
+
+**"No Material widget found" as soon as the field is shown.**
+The app's `MaterialApp`/`Scaffold` come from `package:flutter/material.dart`,
+which does not provide the `material_ui` `Material` the field needs. Migrate the
+app to `package:material_ui` — see [MIGRATION.md](MIGRATION.md#migrating-to-100).
+
 **Can I use the old import paths?**
-`package:flutter_intl_phone_field/countries.dart`, `phone_number.dart`,
-`country_picker_dialog.dart` and `helpers.dart` still work as deprecated
-re-export shims. Move to the single barrel file:
+No. `package:flutter_intl_phone_field/countries.dart`, `phone_number.dart`,
+`country_picker_dialog.dart` and `helpers.dart` were removed in 1.0.0. Use the
+single barrel file:
 
 ```dart
 import 'package:flutter_intl_phone_field/flutter_intl_phone_field.dart';
