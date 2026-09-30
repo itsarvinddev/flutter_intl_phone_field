@@ -182,14 +182,6 @@ class IntlPhoneField extends StatefulWidget {
   /// own replaces all of that.
   final List<TextInputFormatter>? inputFormatters;
 
-  /// Label for the picker's search field.
-  @Deprecated(
-    'Use localizations.searchHint, or '
-    'PickerDialogStyle.searchFieldInputDecoration. '
-    'Will be removed in 1.0.0.',
-  )
-  final String searchText;
-
   /// Where the dropdown arrow sits.
   final IconPosition dropdownIconPosition;
 
@@ -366,12 +358,6 @@ class IntlPhoneField extends StatefulWidget {
     this.inputFormatters,
     this.enabled = true,
     this.keyboardAppearance,
-    @Deprecated(
-      'Use localizations.searchHint, or '
-      'PickerDialogStyle.searchFieldInputDecoration. '
-      'Will be removed in 1.0.0.',
-    )
-    this.searchText = 'Search country',
     this.dropdownIconPosition = IconPosition.leading,
     this.dropdownIcon = const Icon(Icons.arrow_drop_down),
     this.autofocus = false,
@@ -707,7 +693,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
       style: widget.pickerDialogStyle,
       languageCode: widget.languageCode,
       favorites: _favorites(),
-      localizations: _localizations,
+      localizations: widget.localizations,
     );
     if (chosen != null && mounted) _selectCountry(chosen);
   }
@@ -725,16 +711,6 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
       }
     }
     return out;
-  }
-
-  IntlPhoneFieldLocalizations get _localizations {
-    // ignore: deprecated_member_use_from_same_package
-    final legacy = widget.searchText;
-    if (legacy != 'Search country' &&
-        widget.localizations.searchHint == 'Search country') {
-      return widget.localizations.copyWith(searchHint: legacy);
-    }
-    return widget.localizations;
   }
 
   // ----------------------------------------------------------------- value
@@ -820,7 +796,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
 
   String? _validate(String? _) {
     final digits = _digits;
-    final l10n = _localizations;
+    final l10n = widget.localizations;
 
     if (digits.isEmpty) {
       // An empty field is only an error when there is no custom validator to
@@ -1003,7 +979,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
         child: Semantics(
           button: true,
           enabled: widget.enabled,
-          label: _localizations.countrySelectorLabelFor(
+          label: widget.localizations.countrySelectorLabelFor(
             _selectedCountry.localizedName(widget.languageCode),
           ),
           child: InkWell(
