@@ -25,14 +25,17 @@ import 'phone_number.dart';
 class PhoneController extends ValueNotifier<PhoneNumber> {
   /// Creates a controller, optionally starting from [initialValue].
   PhoneController({PhoneNumber? initialValue})
-      : super(initialValue ??
-            const PhoneNumber(countryISOCode: '', countryCode: '', number: ''));
+    : super(
+        initialValue ??
+            const PhoneNumber(countryISOCode: '', countryCode: '', number: ''),
+      );
 
   /// Build a controller from a full international number, e.g. `+447400123456`.
   factory PhoneController.fromCompleteNumber(String completeNumber) =>
       PhoneController(
-        initialValue:
-            PhoneNumber.fromCompleteNumber(completeNumber: completeNumber),
+        initialValue: PhoneNumber.fromCompleteNumber(
+          completeNumber: completeNumber,
+        ),
       );
 
   /// Build a controller from an ISO country code and a national number.
@@ -40,7 +43,8 @@ class PhoneController extends ValueNotifier<PhoneNumber> {
     required String isoCode,
     String number = '',
   }) {
-    final country = CountryResolver.instance.byIsoCode(isoCode) ??
+    final country =
+        CountryResolver.instance.byIsoCode(isoCode) ??
         countries.firstWhere((c) => c.code == 'US');
     return PhoneController(
       initialValue: PhoneNumber(

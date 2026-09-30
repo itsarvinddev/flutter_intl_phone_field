@@ -12,8 +12,11 @@ void main() {
       final seen = <String>{};
       for (final c in countries) {
         expect(c.code, matches(RegExp(r'^[A-Z]{2}$')), reason: c.name);
-        expect(seen.add(c.code), isTrue,
-            reason: 'duplicate ISO code ${c.code}');
+        expect(
+          seen.add(c.code),
+          isTrue,
+          reason: 'duplicate ISO code ${c.code}',
+        );
       }
     });
 
@@ -30,8 +33,11 @@ void main() {
         expect(c.minLength, lessThanOrEqualTo(c.maxLength), reason: c.name);
         expect(c.maxLength, lessThanOrEqualTo(15), reason: c.name);
         // E.164 caps the whole number at 15 digits.
-        expect(c.fullCountryCode.length + c.maxLength, lessThanOrEqualTo(15),
-            reason: c.name);
+        expect(
+          c.fullCountryCode.length + c.maxLength,
+          lessThanOrEqualTo(15),
+          reason: c.name,
+        );
       }
     });
 
@@ -64,10 +70,16 @@ void main() {
     test('localizedName falls back sensibly', () {
       final gb = countries.firstWhere((c) => c.code == 'GB');
       expect(gb.localizedName('fr'), gb.nameTranslations['fr']);
-      expect(gb.localizedName('FR'), gb.nameTranslations['fr'],
-          reason: 'case-insensitive');
-      expect(gb.localizedName('fr_CA'), gb.nameTranslations['fr'],
-          reason: 'falls back to the base language');
+      expect(
+        gb.localizedName('FR'),
+        gb.nameTranslations['fr'],
+        reason: 'case-insensitive',
+      );
+      expect(
+        gb.localizedName('fr_CA'),
+        gb.nameTranslations['fr'],
+        reason: 'falls back to the base language',
+      );
       expect(gb.localizedName('xx'), gb.name, reason: 'unknown language');
     });
 
@@ -87,10 +99,14 @@ void main() {
       }
       for (final entry in byDial.entries) {
         if (entry.value.length == 1) continue;
-        final mains =
-            entry.value.where((c) => c.isMainCountryForDialCode).toList();
-        expect(mains, hasLength(1),
-            reason: '+${entry.key} has ${mains.length} main countries');
+        final mains = entry.value
+            .where((c) => c.isMainCountryForDialCode)
+            .toList();
+        expect(
+          mains,
+          hasLength(1),
+          reason: '+${entry.key} has ${mains.length} main countries',
+        );
       }
     });
   });
@@ -102,9 +118,13 @@ void main() {
         final c = CountryResolver.instance.fromInternationalNumber(e164);
         if (c?.code != iso) failures.add('$e164 -> ${c?.code} (want $iso)');
       }
-      expect(failures, isEmpty,
-          reason: '${failures.length} of ${libphonenumberExamples.length} '
-              'examples resolved to the wrong country');
+      expect(
+        failures,
+        isEmpty,
+        reason:
+            '${failures.length} of ${libphonenumberExamples.length} '
+            'examples resolved to the wrong country',
+      );
     });
 
     test('every libphonenumber example validates', () {

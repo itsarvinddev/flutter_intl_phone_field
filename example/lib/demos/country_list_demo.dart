@@ -37,7 +37,8 @@ class _CountryListDemoState extends State<CountryListDemo> {
   Widget build(BuildContext context) {
     return DemoScaffold(
       title: 'Country list curation',
-      description: 'Open each picker to see how the list differs. Codes are '
+      description:
+          'Open each picker to see how the list differs. Codes are '
           'ISO 3166-1 alpha-2 and are matched case-insensitively.',
       children: <Widget>[
         DemoSection(
@@ -72,7 +73,8 @@ class _CountryListDemoState extends State<CountryListDemo> {
         ),
         DemoSection(
           title: 'excludeCountries',
-          caption: "['US', 'CA'] removed from the full list; everything else "
+          caption:
+              "['US', 'CA'] removed from the full list; everything else "
               'remains.',
           child: Column(
             children: <Widget>[
@@ -88,7 +90,8 @@ class _CountryListDemoState extends State<CountryListDemo> {
         ),
         DemoSection(
           title: 'A hand-built list',
-          caption: 'countries: every territory on the +1 calling code '
+          caption:
+              'countries: every territory on the +1 calling code '
               '(${_northAmerica.length} of them).',
           child: Column(
             children: <Widget>[
@@ -98,7 +101,8 @@ class _CountryListDemoState extends State<CountryListDemo> {
                 favoriteCountries: const <String>['US'],
                 decoration: phoneDecoration(
                   'The +1 numbering plan',
-                  helper: 'Territories share dialCode "1"; the area code '
+                  helper:
+                      'Territories share dialCode "1"; the area code '
                       'lives in Country.regionCode.',
                 ),
                 onChanged: (phone) => setState(() => _custom = phone),

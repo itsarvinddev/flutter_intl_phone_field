@@ -28,8 +28,9 @@ class NumberTooShortException implements Exception {
 /// number.
 class InvalidCharactersException implements Exception {
   /// Creates the exception, optionally with a custom [message].
-  const InvalidCharactersException(
-      [this.message = 'The number contains invalid characters.']);
+  const InvalidCharactersException([
+    this.message = 'The number contains invalid characters.',
+  ]);
 
   /// Human-readable description of the failure.
   final String message;
@@ -98,7 +99,8 @@ class PhoneNumber {
     final country = resolver.fromInternationalNumber(trimmed);
     if (country == null) {
       throw const NumberTooShortException(
-          'No country calling code matches this number.');
+        'No country calling code matches this number.',
+      );
     }
 
     var digits = trimmed.replaceAll(RegExp(r'\D'), '');
@@ -157,7 +159,8 @@ class PhoneNumber {
     if (digits.length > c.maxLength) throw const NumberTooLongException();
     if (strict && !CountryResolver.isValidFor(c, digits, strict: true)) {
       throw const InvalidCharactersException(
-          'The number is not in an assigned range for this country.');
+        'The number is not in an assigned range for this country.',
+      );
     }
   }
 
@@ -176,26 +179,25 @@ class PhoneNumber {
     String? countryISOCode,
     String? countryCode,
     String? number,
-  }) =>
-      PhoneNumber(
-        countryISOCode: countryISOCode ?? this.countryISOCode,
-        countryCode: countryCode ?? this.countryCode,
-        number: number ?? this.number,
-      );
+  }) => PhoneNumber(
+    countryISOCode: countryISOCode ?? this.countryISOCode,
+    countryCode: countryCode ?? this.countryCode,
+    number: number ?? this.number,
+  );
 
   /// A JSON map of [countryISOCode], [countryCode] and [number].
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'countryISOCode': countryISOCode,
-        'countryCode': countryCode,
-        'number': number,
-      };
+    'countryISOCode': countryISOCode,
+    'countryCode': countryCode,
+    'number': number,
+  };
 
   /// Rebuilds a number from the map produced by [toJson].
   factory PhoneNumber.fromJson(Map<String, dynamic> json) => PhoneNumber(
-        countryISOCode: json['countryISOCode'] as String? ?? '',
-        countryCode: json['countryCode'] as String? ?? '',
-        number: json['number'] as String? ?? '',
-      );
+    countryISOCode: json['countryISOCode'] as String? ?? '',
+    countryCode: json['countryCode'] as String? ?? '',
+    number: json['number'] as String? ?? '',
+  );
 
   /// Resolve the country for an arbitrary international number.
   ///

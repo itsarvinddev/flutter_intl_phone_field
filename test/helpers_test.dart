@@ -25,7 +25,8 @@ void main() {
         expect(
           removeDiacritics(_accented[i]),
           _plain[i],
-          reason: 'U+${_accented.codeUnitAt(i).toRadixString(16)} '
+          reason:
+              'U+${_accented.codeUnitAt(i).toRadixString(16)} '
               '(${_accented[i]}) should fold to ${_plain[i]}',
         );
       }

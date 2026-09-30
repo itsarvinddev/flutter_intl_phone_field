@@ -29,7 +29,8 @@ class _FormattingDemoState extends State<FormattingDemo> {
 
     return DemoScaffold(
       title: 'As-you-type formatting',
-      description: 'Toggle formatInput and watch the field. The reported '
+      description:
+          'Toggle formatInput and watch the field. The reported '
           'PhoneNumber.number never changes: formatting is presentation only.',
       children: <Widget>[
         SwitchListTile(
@@ -46,7 +47,8 @@ class _FormattingDemoState extends State<FormattingDemo> {
         const SizedBox(height: 16),
         DemoSection(
           title: 'The field',
-          caption: 'Changing formatInput re-lays the digits already in the '
+          caption:
+              'Changing formatInput re-lays the digits already in the '
               'field; nothing is added or lost.',
           child: IntlPhoneField(
             initialCountryCode: 'US',
@@ -65,8 +67,10 @@ class _FormattingDemoState extends State<FormattingDemo> {
           title: 'Raw value vs formatted',
           extras: <String, String>{
             if (country != null)
-              'AsYouTypeFormatter.format()':
-                  AsYouTypeFormatter.format(country, value!.number),
+              'AsYouTypeFormatter.format()': AsYouTypeFormatter.format(
+                country,
+                value!.number,
+              ),
             if (country?.example != null)
               'country example': AsYouTypeFormatter.format(
                 country!,

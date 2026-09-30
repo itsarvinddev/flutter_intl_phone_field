@@ -46,22 +46,27 @@ class _PickerDemoState extends State<PickerDemo> {
     final chosen = await showCountryPicker(
       context: context,
       countries: countries,
-      selectedCountry: _value?.country ??
+      selectedCountry:
+          _value?.country ??
           CountryResolver.instance.byIsoCode('DE') ??
           countries.first,
       dialogType: _dialogType,
       favorites: const <Country>[],
     );
     if (!mounted) return;
-    setState(() => _standalone =
-        chosen == null ? 'Dismissed without choosing.' : 'Chose $chosen');
+    setState(
+      () => _standalone = chosen == null
+          ? 'Dismissed without choosing.'
+          : 'Chose $chosen',
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return DemoScaffold(
       title: 'Picker presentation',
-      description: 'dialogType is read when the picker opens, so it can be '
+      description:
+          'dialogType is read when the picker opens, so it can be '
           'changed at runtime.',
       children: <Widget>[
         SingleChildScrollView(
@@ -102,7 +107,8 @@ class _PickerDemoState extends State<PickerDemo> {
         const SizedBox(height: 28),
         DemoSection(
           title: 'Without a field',
-          caption: 'showCountryPicker() returns the chosen Country, or null '
+          caption:
+              'showCountryPicker() returns the chosen Country, or null '
               'if the user dismissed it.',
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

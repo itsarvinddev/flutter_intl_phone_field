@@ -60,12 +60,14 @@ class _StylingDemoState extends State<StylingDemo> {
 
     return DemoScaffold(
       title: 'Styling',
-      description: 'Open each picker to see the difference. None of these '
+      description:
+          'Open each picker to see the difference. None of these '
           'fields changes behaviour — only presentation.',
       children: <Widget>[
         DemoSection(
           title: 'PickerDialogStyle',
-          caption: 'A dark picker, with a rounded flag, a focused search '
+          caption:
+              'A dark picker, with a rounded flag, a focused search '
               'field and a custom divider.',
           child: Column(
             children: <Widget>[
@@ -82,7 +84,8 @@ class _StylingDemoState extends State<StylingDemo> {
         ),
         DemoSection(
           title: 'flagShape, flagSize and the dropdown icon',
-          caption: 'A circular 26px flag, the arrow moved to the trailing '
+          caption:
+              'A circular 26px flag, the arrow moved to the trailing '
               'edge, and a tinted selector background.',
           child: Column(
             children: <Widget>[
@@ -114,7 +117,8 @@ class _StylingDemoState extends State<StylingDemo> {
         ),
         DemoSection(
           title: 'countrySelectorBuilder',
-          caption: 'The selector is replaced by a chip of our own. The '
+          caption:
+              'The selector is replaced by a chip of our own. The '
               'openPicker callback still opens the picker.',
           child: Column(
             children: <Widget>[

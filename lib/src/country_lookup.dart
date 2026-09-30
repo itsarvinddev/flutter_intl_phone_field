@@ -12,9 +12,9 @@ import 'country_patterns.dart';
 /// The index is built once, lazily, and reused.
 class CountryResolver {
   CountryResolver._(List<Country> countries)
-      : _byDialCode = _indexByDialCode(countries),
-        _dialCodes = _sortedDialCodes(countries),
-        _byIsoCode = {for (final c in countries) c.code.toUpperCase(): c};
+    : _byDialCode = _indexByDialCode(countries),
+      _dialCodes = _sortedDialCodes(countries),
+      _byIsoCode = {for (final c in countries) c.code.toUpperCase(): c};
 
   final Map<String, List<Country>> _byDialCode;
   final List<String> _dialCodes;
@@ -89,8 +89,10 @@ class CountryResolver {
       for (final c in candidates) {
         if (c.isMainCountryForDialCode) return c;
       }
-      return candidates.firstWhere((c) => c.autoDetectable,
-          orElse: () => candidates.first);
+      return candidates.firstWhere(
+        (c) => c.autoDetectable,
+        orElse: () => candidates.first,
+      );
     }
     return null;
   }
@@ -119,8 +121,11 @@ class CountryResolver {
   /// [Country.dialCode]. Some territories cannot be told apart from the number
   /// alone — a Vatican number is reported as Italian, a Cocos Islands number as
   /// Australian — and rejecting those would be wrong.
-  static bool isValidFor(Country country, String subscriberNumber,
-      {bool strict = false}) {
+  static bool isValidFor(
+    Country country,
+    String subscriberNumber, {
+    bool strict = false,
+  }) {
     final digits = subscriberNumber.replaceAll(RegExp(r'\D'), '');
     if (digits.length < country.minLength) return false;
     if (digits.length > country.maxLength) return false;

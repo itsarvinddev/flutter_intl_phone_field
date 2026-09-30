@@ -183,9 +183,11 @@ class IntlPhoneField extends StatefulWidget {
   final List<TextInputFormatter>? inputFormatters;
 
   /// Label for the picker's search field.
-  @Deprecated('Use localizations.searchHint, or '
-      'PickerDialogStyle.searchFieldInputDecoration. '
-      'Will be removed in 1.0.0.')
+  @Deprecated(
+    'Use localizations.searchHint, or '
+    'PickerDialogStyle.searchFieldInputDecoration. '
+    'Will be removed in 1.0.0.',
+  )
   final String searchText;
 
   /// Where the dropdown arrow sits.
@@ -231,8 +233,11 @@ class IntlPhoneField extends StatefulWidget {
   /// ),
   /// ```
   final Widget Function(
-          BuildContext context, Country country, VoidCallback openPicker)?
-      countrySelectorBuilder;
+    BuildContext context,
+    Country country,
+    VoidCallback openPicker,
+  )?
+  countrySelectorBuilder;
 
   /// Message shown when the number's length is outside the country's range.
   ///
@@ -361,9 +366,11 @@ class IntlPhoneField extends StatefulWidget {
     this.inputFormatters,
     this.enabled = true,
     this.keyboardAppearance,
-    @Deprecated('Use localizations.searchHint, or '
-        'PickerDialogStyle.searchFieldInputDecoration. '
-        'Will be removed in 1.0.0.')
+    @Deprecated(
+      'Use localizations.searchHint, or '
+      'PickerDialogStyle.searchFieldInputDecoration. '
+      'Will be removed in 1.0.0.',
+    )
     this.searchText = 'Search country',
     this.dropdownIconPosition = IconPosition.leading,
     this.dropdownIcon = const Icon(Icons.arrow_drop_down),
@@ -434,7 +441,9 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
     _controller = widget.controller ?? TextEditingController();
     _ownsController = widget.controller == null;
     _formatter = PhoneInputFormatter(
-        country: _selectedCountry, enabled: widget.formatInput);
+      country: _selectedCountry,
+      enabled: widget.formatInput,
+    );
     _limiter = _DigitLimitingFormatter(_digitLimit);
     _detector = _CountryDetectingFormatter(
       isEnabled: () => widget.detectCountryOnPaste,
@@ -475,7 +484,8 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
       _ownsController = widget.controller == null;
     }
 
-    final listChanged = oldWidget.countries != widget.countries ||
+    final listChanged =
+        oldWidget.countries != widget.countries ||
         oldWidget.onlyCountries != widget.onlyCountries ||
         oldWidget.excludeCountries != widget.excludeCountries;
     if (listChanged) {
@@ -503,17 +513,23 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
         widget.controller == null) {
       _afterBuild(() {
         final text = _parseInitialNumber();
-        _setText(widget.formatInput
-            ? AsYouTypeFormatter.format(_selectedCountry, text)
-            : text);
+        _setText(
+          widget.formatInput
+              ? AsYouTypeFormatter.format(_selectedCountry, text)
+              : text,
+        );
       });
     }
 
     if (oldWidget.formatInput != widget.formatInput) {
       _formatter.enabled = widget.formatInput;
-      _afterBuild(() => _setText(widget.formatInput
-          ? AsYouTypeFormatter.format(_selectedCountry, _digits)
-          : _digits));
+      _afterBuild(
+        () => _setText(
+          widget.formatInput
+              ? AsYouTypeFormatter.format(_selectedCountry, _digits)
+              : _digits,
+        ),
+      );
     }
   }
 
@@ -656,9 +672,11 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
         final limit = widget.maxLength ?? country.maxLength;
         if (_digits.length > limit) {
           final trimmed = _digits.substring(0, limit);
-          _setText(widget.formatInput
-              ? AsYouTypeFormatter.format(country, trimmed)
-              : trimmed);
+          _setText(
+            widget.formatInput
+                ? AsYouTypeFormatter.format(country, trimmed)
+                : trimmed,
+          );
         }
       }
     });
@@ -722,10 +740,10 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
   // ----------------------------------------------------------------- value
 
   PhoneNumber _currentNumber() => PhoneNumber(
-        countryISOCode: _selectedCountry.code,
-        countryCode: '+${_selectedCountry.fullCountryCode}',
-        number: _digits,
-      );
+    countryISOCode: _selectedCountry.code,
+    countryCode: '+${_selectedCountry.fullCountryCode}',
+    number: _digits,
+  );
 
   void _pushToPhoneController() {
     final pc = widget.phoneController;
@@ -746,9 +764,11 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
       });
     }
     if (value.number != _digits) {
-      _setText(widget.formatInput
-          ? AsYouTypeFormatter.format(_selectedCountry, value.number)
-          : value.number);
+      _setText(
+        widget.formatInput
+            ? AsYouTypeFormatter.format(_selectedCountry, value.number)
+            : value.number,
+      );
     }
   }
 
@@ -842,7 +862,8 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
       key: widget.formFieldKey,
       controller: _controller,
       restorationId: widget.restorationId,
-      autofillHints: widget.autofillHints ??
+      autofillHints:
+          widget.autofillHints ??
           const [
             // Telephone first: iOS and macOS QuickType only honour the first
             // hint, and it is the full number they have stored.
@@ -866,7 +887,8 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
       decoration: widget.decoration.copyWith(
         prefixIcon: widget.prefixIcon ?? _buildCountrySelector(),
         counterText: !widget.enabled ? '' : null,
-        hintText: widget.decoration.hintText ??
+        hintText:
+            widget.decoration.hintText ??
             (widget.showExampleAsHint ? _exampleHint() : null),
       ),
       style: widget.style,
@@ -877,17 +899,20 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
       // would cut '(201) 555-0123' down to ten characters. The digit cap is
       // enforced by _DigitLimitingFormatter instead, and the counter below
       // reports digits rather than characters.
-      maxLength:
-          (widget.disableLengthCheck || widget.formatInput) ? null : limit,
+      maxLength: (widget.disableLengthCheck || widget.formatInput)
+          ? null
+          : limit,
       onEditingComplete: widget.onEditingComplete,
       expands: widget.expands,
       maxLines: widget.maxLines,
       minLines: widget.minLines,
       maxLengthEnforcement: widget.maxLengthEnforcement,
-      buildCounter: widget.buildCounter ??
+      buildCounter:
+          widget.buildCounter ??
           (widget.formatInput && limit != null ? _digitCounter(limit) : null),
       keyboardType: widget.keyboardType,
-      inputFormatters: widget.inputFormatters ??
+      inputFormatters:
+          widget.inputFormatters ??
           <TextInputFormatter>[
             // The detector runs first: it is the only stage that still sees the
             // '+' of a pasted international number, which every later stage
@@ -931,7 +956,10 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
 
     if (widget.countrySelectorBuilder != null) {
       return widget.countrySelectorBuilder!(
-          context, _selectedCountry, open ?? () {});
+        context,
+        _selectedCountry,
+        open ?? () {},
+      );
     }
 
     final showIcon = widget.enabled && widget.showDropdownIcon;
@@ -976,7 +1004,8 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
           button: true,
           enabled: widget.enabled,
           label: _localizations.countrySelectorLabelFor(
-              _selectedCountry.localizedName(widget.languageCode)),
+            _selectedCountry.localizedName(widget.languageCode),
+          ),
           child: InkWell(
             // BorderRadiusDirectional is a BorderRadiusGeometry but not a
             // BorderRadius, so a cast here crashes for RTL-aware decorations.
@@ -1011,7 +1040,9 @@ class _DigitLimitingFormatter extends TextInputFormatter {
 
   @override
   TextEditingValue formatEditUpdate(
-      TextEditingValue oldValue, TextEditingValue newValue) {
+    TextEditingValue oldValue,
+    TextEditingValue newValue,
+  ) {
     final max = limit();
     if (max == null) return newValue;
     final digits = newValue.text.replaceAll(RegExp(r'\D'), '');
@@ -1038,7 +1069,9 @@ class _CountryDetectingFormatter extends TextInputFormatter {
 
   @override
   TextEditingValue formatEditUpdate(
-      TextEditingValue oldValue, TextEditingValue newValue) {
+    TextEditingValue oldValue,
+    TextEditingValue newValue,
+  ) {
     if (!isEnabled()) return newValue;
 
     final raw = newValue.text.trim();

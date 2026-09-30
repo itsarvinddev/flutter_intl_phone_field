@@ -19,8 +19,9 @@ class ControllerDemo extends StatefulWidget {
 
 class _ControllerDemoState extends State<ControllerDemo> {
   /// Starts at a full international number; `fromParts` is the other factory.
-  final PhoneController _controller =
-      PhoneController.fromCompleteNumber('+14155550123');
+  final PhoneController _controller = PhoneController.fromCompleteNumber(
+    '+14155550123',
+  );
 
   /// The last value captured by the "Read completeNumber" button.
   String? _readBack;
@@ -41,7 +42,8 @@ class _ControllerDemoState extends State<ControllerDemo> {
   Widget build(BuildContext context) {
     return DemoScaffold(
       title: 'PhoneController',
-      description: 'The buttons below write to the controller; the field '
+      description:
+          'The buttons below write to the controller; the field '
           'follows. Type in the field and the panel follows.',
       children: <Widget>[
         DemoSection(
@@ -85,9 +87,8 @@ class _ControllerDemoState extends State<ControllerDemo> {
                 child: const Text('Clear'),
               ),
               FilledButton(
-                onPressed: () => setState(
-                  () => _readBack = _controller.completeNumber,
-                ),
+                onPressed: () =>
+                    setState(() => _readBack = _controller.completeNumber),
                 child: const Text('Read completeNumber'),
               ),
             ],

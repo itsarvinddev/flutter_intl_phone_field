@@ -59,9 +59,9 @@ Future<void> _search(WidgetTester tester, String query) async {
 }
 
 List<String> _renderedNames(WidgetTester tester) => [
-      for (final tile in tester.widgetList<ListTile>(find.byType(ListTile)))
-        (tile.title as Text).data!,
-    ];
+  for (final tile in tester.widgetList<ListTile>(find.byType(ListTile)))
+    (tile.title as Text).data!,
+];
 
 void main() {
   group('showCountryPicker', () {
@@ -93,8 +93,9 @@ void main() {
       expect(_renderedNames(tester), contains('Albania'));
     });
 
-    testWidgets('sorts and labels the list in the given language',
-        (tester) async {
+    testWidgets('sorts and labels the list in the given language', (
+      tester,
+    ) async {
       await _open(tester, languageCode: 'fr');
       expect(_renderedNames(tester).first, 'Afghanistan');
       expect(_renderedNames(tester), contains('Afrique du Sud'));
@@ -115,18 +116,22 @@ void main() {
     testWidgets('filters by dial code prefix', (tester) async {
       await _open(tester);
       await _search(tester, '+44');
-      expect(
-        _renderedNames(tester),
-        <String>['Guernsey', 'Isle of Man', 'Jersey', 'United Kingdom'],
-      );
+      expect(_renderedNames(tester), <String>[
+        'Guernsey',
+        'Isle of Man',
+        'Jersey',
+        'United Kingdom',
+      ]);
     });
 
-    testWidgets('shows the localised empty message when nothing matches',
-        (tester) async {
+    testWidgets('shows the localised empty message when nothing matches', (
+      tester,
+    ) async {
       await _open(
         tester,
-        localizations:
-            const IntlPhoneFieldLocalizations(noCountriesFound: 'Nothing here'),
+        localizations: const IntlPhoneFieldLocalizations(
+          noCountriesFound: 'Nothing here',
+        ),
       );
       await _search(tester, 'zzzzz');
 
@@ -134,8 +139,9 @@ void main() {
       expect(find.text('Nothing here'), findsOneWidget);
     });
 
-    testWidgets('the clear button empties the search and restores the list',
-        (tester) async {
+    testWidgets('the clear button empties the search and restores the list', (
+      tester,
+    ) async {
       await _open(tester);
       await _search(tester, 'zzzzz');
       expect(find.text('No countries found'), findsOneWidget);
@@ -143,15 +149,18 @@ void main() {
       await tester.tap(find.byIcon(Icons.clear));
       await tester.pumpAndSettle();
 
-      expect(tester.widget<TextField>(find.byType(TextField)).controller!.text,
-          isEmpty);
+      expect(
+        tester.widget<TextField>(find.byType(TextField)).controller!.text,
+        isEmpty,
+      );
       expect(find.text('No countries found'), findsNothing);
       expect(_renderedNames(tester), contains('Afghanistan'));
       expect(find.byIcon(Icons.clear), findsNothing);
     });
 
-    testWidgets('the clear button is hidden when disabled by the style',
-        (tester) async {
+    testWidgets('the clear button is hidden when disabled by the style', (
+      tester,
+    ) async {
       await _open(
         tester,
         style: const PickerDialogStyle(showSearchClearButton: false),
@@ -162,8 +171,9 @@ void main() {
   });
 
   group('rows', () {
-    testWidgets('show the full calling code, area code included',
-        (tester) async {
+    testWidgets('show the full calling code, area code included', (
+      tester,
+    ) async {
       await _open(tester);
       await _search(tester, 'Antigua');
 
@@ -175,8 +185,10 @@ void main() {
       await _open(tester, selectedCountry: _byCode('IN'));
       await _search(tester, 'india');
 
-      expect(_renderedNames(tester),
-          <String>['British Indian Ocean Territory', 'India']);
+      expect(_renderedNames(tester), <String>[
+        'British Indian Ocean Territory',
+        'India',
+      ]);
       expect(
         tester
             .widget<ListTile>(find.widgetWithText(ListTile, 'India'))
@@ -186,7 +198,8 @@ void main() {
       expect(
         tester
             .widget<ListTile>(
-                find.widgetWithText(ListTile, 'British Indian Ocean Territory'))
+              find.widgetWithText(ListTile, 'British Indian Ocean Territory'),
+            )
             .selected,
         isFalse,
       );
@@ -194,12 +207,10 @@ void main() {
   });
 
   group('favorites', () {
-    testWidgets('are pinned at the top under the favourites header',
-        (tester) async {
-      await _open(
-        tester,
-        favorites: <Country>[_byCode('IN'), _byCode('GB')],
-      );
+    testWidgets('are pinned at the top under the favourites header', (
+      tester,
+    ) async {
+      await _open(tester, favorites: <Country>[_byCode('IN'), _byCode('GB')]);
 
       final names = _renderedNames(tester);
       expect(names.take(2).toList(), <String>['India', 'United Kingdom']);
@@ -218,14 +229,16 @@ void main() {
       await _open(
         tester,
         favorites: <Country>[_byCode('IN')],
-        localizations:
-            const IntlPhoneFieldLocalizations(favoritesLabel: 'Pinned'),
+        localizations: const IntlPhoneFieldLocalizations(
+          favoritesLabel: 'Pinned',
+        ),
       );
       expect(find.text('Pinned'), findsOneWidget);
     });
 
-    testWidgets('are filtered out when they do not match the search',
-        (tester) async {
+    testWidgets('are filtered out when they do not match the search', (
+      tester,
+    ) async {
       await _open(tester, favorites: <Country>[_byCode('IN')]);
       await _search(tester, 'Antigua');
 
@@ -236,8 +249,10 @@ void main() {
 
   group('dialog types', () {
     testWidgets('showModalBottomSheet opens and selects', (tester) async {
-      final picker =
-          await _open(tester, dialogType: DialogType.showModalBottomSheet);
+      final picker = await _open(
+        tester,
+        dialogType: DialogType.showModalBottomSheet,
+      );
       expect(find.byType(BottomSheet), findsOneWidget);
 
       await _search(tester, 'Antigua');
@@ -248,8 +263,10 @@ void main() {
     });
 
     testWidgets('showDraggableBottomSheet opens and selects', (tester) async {
-      final picker =
-          await _open(tester, dialogType: DialogType.showDraggableBottomSheet);
+      final picker = await _open(
+        tester,
+        dialogType: DialogType.showDraggableBottomSheet,
+      );
       expect(find.byType(DraggableScrollableSheet), findsOneWidget);
 
       await _search(tester, 'Antigua');
@@ -260,8 +277,10 @@ void main() {
     });
 
     testWidgets('showFullScreenPage opens and selects', (tester) async {
-      final picker =
-          await _open(tester, dialogType: DialogType.showFullScreenPage);
+      final picker = await _open(
+        tester,
+        dialogType: DialogType.showFullScreenPage,
+      );
       expect(find.byType(AppBar), findsOneWidget);
 
       await _search(tester, 'Antigua');
@@ -275,17 +294,20 @@ void main() {
   group('PickerDialogStyle', () {
     testWidgets('searchFieldStyle reaches the search field', (tester) async {
       const searchStyle = TextStyle(fontSize: 27, color: Color(0xFF00FF00));
-      await _open(tester,
-          style: const PickerDialogStyle(
-            searchFieldStyle: searchStyle,
-          ));
+      await _open(
+        tester,
+        style: const PickerDialogStyle(searchFieldStyle: searchStyle),
+      );
 
       expect(
-          tester.widget<TextField>(find.byType(TextField)).style, searchStyle);
+        tester.widget<TextField>(find.byType(TextField)).style,
+        searchStyle,
+      );
     });
 
-    testWidgets('searchFieldInputDecoration replaces the default label',
-        (tester) async {
+    testWidgets('searchFieldInputDecoration replaces the default label', (
+      tester,
+    ) async {
       await _open(
         tester,
         style: const PickerDialogStyle(
@@ -297,8 +319,9 @@ void main() {
       expect(find.text('Search country'), findsNothing);
     });
 
-    testWidgets('countryNameStyle and countryCodeStyle reach the rows',
-        (tester) async {
+    testWidgets('countryNameStyle and countryCodeStyle reach the rows', (
+      tester,
+    ) async {
       const nameStyle = TextStyle(fontSize: 21);
       const codeStyle = TextStyle(fontSize: 13);
       await _open(
@@ -311,7 +334,9 @@ void main() {
       await _search(tester, 'Antigua');
 
       expect(
-          tester.widget<Text>(find.text('Antigua & Barbuda')).style, nameStyle);
+        tester.widget<Text>(find.text('Antigua & Barbuda')).style,
+        nameStyle,
+      );
       expect(tester.widget<Text>(find.text('+1 268')).style, codeStyle);
     });
   });

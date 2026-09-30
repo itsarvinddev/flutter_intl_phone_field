@@ -44,7 +44,8 @@ class _LocalizationDemoState extends State<LocalizationDemo> {
 
     return DemoScaffold(
       title: 'Localization',
-      description: 'Open the picker and search: the hint, the country names '
+      description:
+          'Open the picker and search: the hint, the country names '
           'and the error messages all follow the switch below.',
       children: <Widget>[
         SwitchListTile(
@@ -61,7 +62,8 @@ class _LocalizationDemoState extends State<LocalizationDemo> {
         const SizedBox(height: 16),
         DemoSection(
           title: 'The field',
-          caption: 'Clear the field and leave it to see the localised '
+          caption:
+              'Clear the field and leave it to see the localised '
               '"required" message.',
           child: IntlPhoneField(
             key: ValueKey<String>(languageCode),
@@ -84,8 +86,9 @@ class _LocalizationDemoState extends State<LocalizationDemo> {
             'invalidNumber': localizations.invalidNumber,
             if (country != null) ...<String, String>{
               'Country.name': country.name,
-              'localizedName($languageCode)':
-                  country.localizedName(languageCode),
+              'localizedName($languageCode)': country.localizedName(
+                languageCode,
+              ),
             },
           },
         ),

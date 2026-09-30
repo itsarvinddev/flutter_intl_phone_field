@@ -127,21 +127,20 @@ Future<Country?> showCountryPicker({
   final resolved = dialogType == DialogType.adaptive
       ? (switch (Theme.of(context).platform) {
           TargetPlatform.iOS ||
-          TargetPlatform.macOS =>
-            DialogType.showModalBottomSheet,
+          TargetPlatform.macOS => DialogType.showModalBottomSheet,
           _ => DialogType.showDialog,
         })
       : dialogType;
 
   Widget body({ScrollController? scrollController}) => CountryPickerBody(
-        countries: countries,
-        selectedCountry: selectedCountry,
-        style: style,
-        languageCode: languageCode,
-        favorites: favorites,
-        localizations: localizations,
-        scrollController: scrollController,
-      );
+    countries: countries,
+    selectedCountry: selectedCountry,
+    style: style,
+    languageCode: languageCode,
+    favorites: favorites,
+    localizations: localizations,
+    scrollController: scrollController,
+  );
 
   switch (resolved) {
     case DialogType.showDialog:
@@ -161,8 +160,9 @@ Future<Country?> showCountryPicker({
         builder: (ctx) => FractionallySizedBox(
           heightFactor: style?.heightFactor ?? 0.8,
           child: Padding(
-            padding:
-                EdgeInsets.only(bottom: MediaQuery.viewInsetsOf(ctx).bottom),
+            padding: EdgeInsets.only(
+              bottom: MediaQuery.viewInsetsOf(ctx).bottom,
+            ),
             child: body(),
           ),
         ),
@@ -184,15 +184,19 @@ Future<Country?> showCountryPicker({
       );
 
     case DialogType.showFullScreenPage:
-      return Navigator.of(context, rootNavigator: useRootNavigator)
-          .push<Country>(MaterialPageRoute(
-        fullscreenDialog: true,
-        builder: (_) => Scaffold(
-          backgroundColor: style?.backgroundColor,
-          appBar: AppBar(title: Text(localizations.searchHint)),
-          body: SafeArea(child: body()),
+      return Navigator.of(
+        context,
+        rootNavigator: useRootNavigator,
+      ).push<Country>(
+        MaterialPageRoute(
+          fullscreenDialog: true,
+          builder: (_) => Scaffold(
+            backgroundColor: style?.backgroundColor,
+            appBar: AppBar(title: Text(localizations.searchHint)),
+            body: SafeArea(child: body()),
+          ),
         ),
-      ));
+      );
   }
 }
 
@@ -211,7 +215,8 @@ class _PickerDialog extends StatelessWidget {
     const horizontal = 40.0;
     const vertical = 24.0;
     return Dialog(
-      insetPadding: style?.dialogPadding ??
+      insetPadding:
+          style?.dialogPadding ??
           EdgeInsets.symmetric(
             vertical: vertical,
             horizontal: media.width > (width + horizontal * 2)
@@ -298,8 +303,9 @@ class _CountryPickerBodyState extends State<CountryPickerBody> {
   }
 
   List<_Row> _build(String query) {
-    final matches =
-        widget.countries.stringSearch(query).sortedByName(widget.languageCode);
+    final matches = widget.countries
+        .stringSearch(query)
+        .sortedByName(widget.languageCode);
     if (widget.favorites.isEmpty) {
       return [for (final c in matches) _Row.country(c)];
     }
@@ -340,16 +346,19 @@ class _CountryPickerBodyState extends State<CountryPickerBody> {
               cursorColor: style?.searchFieldCursorColor,
               style: style?.searchFieldStyle,
               textInputAction: TextInputAction.search,
-              decoration: style?.searchFieldInputDecoration ??
+              decoration:
+                  style?.searchFieldInputDecoration ??
                   InputDecoration(
                     labelText: widget.localizations.searchHint,
                     prefixIcon: const Icon(Icons.search),
-                    suffixIcon: (style?.showSearchClearButton ?? true) &&
+                    suffixIcon:
+                        (style?.showSearchClearButton ?? true) &&
                             _search.text.isNotEmpty
                         ? IconButton(
                             icon: const Icon(Icons.clear),
-                            tooltip: MaterialLocalizations.of(context)
-                                .deleteButtonTooltip,
+                            tooltip: MaterialLocalizations.of(
+                              context,
+                            ).deleteButtonTooltip,
                             onPressed: () {
                               _search.clear();
                               _onSearch('');
@@ -373,7 +382,7 @@ class _CountryPickerBodyState extends State<CountryPickerBody> {
                     controller: widget.scrollController,
                     keyboardDismissBehavior:
                         style?.scrollViewKeyboardDismissBehavior ??
-                            ScrollViewKeyboardDismissBehavior.onDrag,
+                        ScrollViewKeyboardDismissBehavior.onDrag,
                     itemCount: _rows.length,
                     itemBuilder: (context, index) {
                       final row = _rows[index];
@@ -383,15 +392,20 @@ class _CountryPickerBodyState extends State<CountryPickerBody> {
                             // one here would double up under the favourites.
                             ? const SizedBox(height: 8)
                             : Padding(
-                                padding:
-                                    const EdgeInsets.fromLTRB(16, 12, 16, 4),
+                                padding: const EdgeInsets.fromLTRB(
+                                  16,
+                                  12,
+                                  16,
+                                  4,
+                                ),
                                 child: Align(
                                   alignment: AlignmentDirectional.centerStart,
                                   child: Text(
                                     row.title!,
                                     style: theme.textTheme.labelMedium
                                         ?.copyWith(
-                                            color: theme.colorScheme.primary),
+                                          color: theme.colorScheme.primary,
+                                        ),
                                   ),
                                 ),
                               );
@@ -413,14 +427,16 @@ class _CountryPickerBodyState extends State<CountryPickerBody> {
                             contentPadding: style?.listTilePadding,
                             title: Text(
                               country.localizedName(widget.languageCode),
-                              style: style?.countryNameStyle ??
+                              style:
+                                  style?.countryNameStyle ??
                                   const TextStyle(fontWeight: FontWeight.w700),
                             ),
                             trailing: Text(
                               '+${country.displayCC}',
                               // '+' must lead the digits even in RTL layouts.
                               textDirection: TextDirection.ltr,
-                              style: style?.countryCodeStyle ??
+                              style:
+                                  style?.countryCodeStyle ??
                                   const TextStyle(fontWeight: FontWeight.w700),
                             ),
                             onTap: () => Navigator.of(context).pop(country),
@@ -438,12 +454,8 @@ class _CountryPickerBodyState extends State<CountryPickerBody> {
 }
 
 class _Row {
-  const _Row.country(Country this.country)
-      : title = null,
-        isHeader = false;
-  const _Row.header(String this.title)
-      : country = null,
-        isHeader = true;
+  const _Row.country(Country this.country) : title = null, isHeader = false;
+  const _Row.header(String this.title) : country = null, isHeader = true;
 
   final Country? country;
   final String? title;

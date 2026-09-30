@@ -42,9 +42,11 @@ extension CountryExtensions on List<Country> {
 
     final digits = query.startsWith('+') ? query.substring(1).trim() : query;
     if (digits.isNotEmpty && isNumeric(digits)) {
-      final byDial = where((c) =>
-          c.fullCountryCode.startsWith(digits) ||
-          c.dialCode.startsWith(digits)).toList();
+      final byDial = where(
+        (c) =>
+            c.fullCountryCode.startsWith(digits) ||
+            c.dialCode.startsWith(digits),
+      ).toList();
       // A bare number is almost always a dial code, but fall through to names
       // so searching "1" in a list without +1 still shows something useful.
       if (byDial.isNotEmpty || query.startsWith('+')) return byDial;
@@ -55,16 +57,20 @@ extension CountryExtensions on List<Country> {
         return true;
       }
       if (country.code.toLowerCase() == query) return true;
-      return country.nameTranslations.values
-          .any((name) => removeDiacritics(name.toLowerCase()).contains(query));
+      return country.nameTranslations.values.any(
+        (name) => removeDiacritics(name.toLowerCase()).contains(query),
+      );
     }).toList();
   }
 
   /// Sort by localised name for [languageCode].
   List<Country> sortedByName(String languageCode) {
     final copy = List<Country>.of(this);
-    copy.sort((a, b) =>
-        a.localizedName(languageCode).compareTo(b.localizedName(languageCode)));
+    copy.sort(
+      (a, b) => a
+          .localizedName(languageCode)
+          .compareTo(b.localizedName(languageCode)),
+    );
     return copy;
   }
 }

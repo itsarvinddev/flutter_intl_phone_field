@@ -1452,7 +1452,7 @@ const List<Country> countries = <Country>[
       "879",
       "902",
       "905",
-      "942"
+      "942",
     ],
     areaCodes: [
       "204",
@@ -1509,7 +1509,7 @@ const List<Country> countries = <Country>[
       "879",
       "902",
       "905",
-      "942"
+      "942",
     ],
   ),
   Country(
@@ -8753,7 +8753,7 @@ const List<Country> countries = <Country>[
       "984",
       "985",
       "986",
-      "989"
+      "989",
     ],
   ),
   Country(

@@ -17,8 +17,9 @@ class ExampleApp extends StatefulWidget {
 }
 
 class _ExampleAppState extends State<ExampleApp> {
-  final ValueNotifier<ThemeMode> _themeMode =
-      ValueNotifier<ThemeMode>(ThemeMode.system);
+  final ValueNotifier<ThemeMode> _themeMode = ValueNotifier<ThemeMode>(
+    ThemeMode.system,
+  );
 
   @override
   void dispose() {
@@ -27,12 +28,12 @@ class _ExampleAppState extends State<ExampleApp> {
   }
 
   ThemeData _theme(Brightness brightness) => ThemeData(
-        useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color(0xFF0B6BCB),
-          brightness: brightness,
-        ),
-      );
+    useMaterial3: true,
+    colorScheme: ColorScheme.fromSeed(
+      seedColor: const Color(0xFF0B6BCB),
+      brightness: brightness,
+    ),
+  );
 
   @override
   Widget build(BuildContext context) {

@@ -49,7 +49,8 @@ const List<DemoEntry> demos = <DemoEntry>[
   ),
   DemoEntry(
     title: 'Validation',
-    subtitle: 'Built-in length check, sync and async validators, '
+    subtitle:
+        'Built-in length check, sync and async validators, '
         'strictValidation.',
     icon: Icons.rule_outlined,
     route: ValidationDemo.route,
@@ -136,7 +137,7 @@ class HomePage extends StatelessWidget {
         child: ListView.separated(
           padding: const EdgeInsets.symmetric(vertical: 8),
           itemCount: demos.length,
-          separatorBuilder: (_, __) => const Divider(height: 1),
+          separatorBuilder: (_, _) => const Divider(height: 1),
           itemBuilder: (context, index) {
             final demo = demos[index];
             return ListTile(

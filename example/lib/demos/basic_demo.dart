@@ -42,7 +42,8 @@ class _BasicDemoState extends State<BasicDemo> {
   Widget build(BuildContext context) {
     return DemoScaffold(
       title: 'Basic usage & forms',
-      description: 'The field edits the national part of the number and hands '
+      description:
+          'The field edits the national part of the number and hands '
           'you a PhoneNumber. Submit runs the form validator, then save() '
           'delivers the value to onSaved.',
       children: <Widget>[
@@ -53,7 +54,8 @@ class _BasicDemoState extends State<BasicDemo> {
             children: <Widget>[
               DemoSection(
                 title: 'IntlPhoneField',
-                caption: 'initialCountryCode: US, with the country example '
+                caption:
+                    'initialCountryCode: US, with the country example '
                     'number as the hint.',
                 child: IntlPhoneField(
                   initialCountryCode: 'US',
@@ -68,10 +70,7 @@ class _BasicDemoState extends State<BasicDemo> {
               ),
               Row(
                 children: <Widget>[
-                  FilledButton(
-                    onPressed: _submit,
-                    child: const Text('Submit'),
-                  ),
+                  FilledButton(onPressed: _submit, child: const Text('Submit')),
                   const SizedBox(width: 12),
                   OutlinedButton(
                     onPressed: () {

@@ -65,8 +65,10 @@ void main() {
     });
 
     test('fromParts builds the value from an ISO code', () {
-      final controller =
-          PhoneController.fromParts(isoCode: 'GB', number: '7400123456');
+      final controller = PhoneController.fromParts(
+        isoCode: 'GB',
+        number: '7400123456',
+      );
       addTearDown(controller.dispose);
 
       expect(
@@ -80,8 +82,10 @@ void main() {
     });
 
     test('fromParts uses the full calling code for a territory', () {
-      final controller =
-          PhoneController.fromParts(isoCode: 'ag', number: '4641234');
+      final controller = PhoneController.fromParts(
+        isoCode: 'ag',
+        number: '4641234',
+      );
       addTearDown(controller.dispose);
 
       expect(controller.value.countryISOCode, 'AG');
@@ -100,8 +104,10 @@ void main() {
 
   group('mutation', () {
     test('setting country keeps the number', () {
-      final controller =
-          PhoneController.fromParts(isoCode: 'GB', number: '7400123456');
+      final controller = PhoneController.fromParts(
+        isoCode: 'GB',
+        number: '7400123456',
+      );
       addTearDown(controller.dispose);
 
       controller.country = _byCode('IN');
@@ -113,8 +119,10 @@ void main() {
     });
 
     test('setting country to null is a no-op', () {
-      final controller =
-          PhoneController.fromParts(isoCode: 'GB', number: '7400123456');
+      final controller = PhoneController.fromParts(
+        isoCode: 'GB',
+        number: '7400123456',
+      );
       addTearDown(controller.dispose);
 
       controller.country = null;
@@ -124,8 +132,10 @@ void main() {
     });
 
     test('setting number keeps the country', () {
-      final controller =
-          PhoneController.fromParts(isoCode: 'GB', number: '7400123456');
+      final controller = PhoneController.fromParts(
+        isoCode: 'GB',
+        number: '7400123456',
+      );
       addTearDown(controller.dispose);
 
       controller.number = '7911123456';
@@ -136,8 +146,10 @@ void main() {
     });
 
     test('the completeNumber setter reparses the whole value', () {
-      final controller =
-          PhoneController.fromParts(isoCode: 'GB', number: '7400123456');
+      final controller = PhoneController.fromParts(
+        isoCode: 'GB',
+        number: '7400123456',
+      );
       addTearDown(controller.dispose);
 
       controller.completeNumber = '+12684641234';
@@ -148,8 +160,10 @@ void main() {
     });
 
     test('clear empties the number only', () {
-      final controller =
-          PhoneController.fromParts(isoCode: 'GB', number: '7400123456');
+      final controller = PhoneController.fromParts(
+        isoCode: 'GB',
+        number: '7400123456',
+      );
       addTearDown(controller.dispose);
 
       controller.clear();
@@ -181,8 +195,10 @@ void main() {
     });
 
     test('follows a change of country', () {
-      final controller =
-          PhoneController.fromParts(isoCode: 'GB', number: '7400123456');
+      final controller = PhoneController.fromParts(
+        isoCode: 'GB',
+        number: '7400123456',
+      );
       addTearDown(controller.dispose);
       expect(controller.isValid, isTrue);
 
@@ -197,8 +213,10 @@ void main() {
 
   group('notification', () {
     test('listeners fire on each mutation', () {
-      final controller =
-          PhoneController.fromParts(isoCode: 'GB', number: '7400123456');
+      final controller = PhoneController.fromParts(
+        isoCode: 'GB',
+        number: '7400123456',
+      );
       addTearDown(controller.dispose);
 
       var notifications = 0;
@@ -218,8 +236,10 @@ void main() {
     });
 
     test('an unchanged value does not notify', () {
-      final controller =
-          PhoneController.fromParts(isoCode: 'GB', number: '7400123456');
+      final controller = PhoneController.fromParts(
+        isoCode: 'GB',
+        number: '7400123456',
+      );
       addTearDown(controller.dispose);
 
       var notifications = 0;
@@ -231,8 +251,10 @@ void main() {
     });
 
     test('no notification after dispose', () {
-      final controller =
-          PhoneController.fromParts(isoCode: 'GB', number: '7400123456');
+      final controller = PhoneController.fromParts(
+        isoCode: 'GB',
+        number: '7400123456',
+      );
 
       var notifications = 0;
       controller.addListener(() => notifications++);
@@ -244,7 +266,9 @@ void main() {
       // A disposed ChangeNotifier rejects further mutation rather than
       // silently notifying stale listeners.
       expect(
-          () => controller.number = '7911123457', throwsA(isA<FlutterError>()));
+        () => controller.number = '7911123457',
+        throwsA(isA<FlutterError>()),
+      );
       expect(notifications, 1);
     });
   });

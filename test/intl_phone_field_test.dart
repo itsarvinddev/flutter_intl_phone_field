@@ -6,24 +6,22 @@ import 'package:flutter_test/flutter_test.dart';
 
 /// The editable text of the phone field itself, never the picker's search box.
 Finder get phoneInput => find.descendant(
-      of: find.byType(IntlPhoneField),
-      matching: find.byType(EditableText),
-    );
+  of: find.byType(IntlPhoneField),
+  matching: find.byType(EditableText),
+);
 
 /// The tappable country selector sitting in the field's prefix.
 Finder get countrySelector => find.descendant(
-      of: find.byType(IntlPhoneField),
-      matching: find.byType(InkWell),
-    );
+  of: find.byType(IntlPhoneField),
+  matching: find.byType(InkWell),
+);
 
 String fieldText(WidgetTester tester) =>
     tester.widget<EditableText>(phoneInput).controller.text;
 
 /// Matches [text] only inside the field (so the open picker cannot satisfy it).
-Finder inField(String text) => find.descendant(
-      of: find.byType(IntlPhoneField),
-      matching: find.text(text),
-    );
+Finder inField(String text) =>
+    find.descendant(of: find.byType(IntlPhoneField), matching: find.text(text));
 
 Country countryOf(String isoCode) =>
     countries.firstWhere((c) => c.code == isoCode);
@@ -88,9 +86,7 @@ Future<GlobalKey<FormState>> pumpField(
     body = Directionality(textDirection: textDirection, child: body);
   }
 
-  await tester.pumpWidget(
-    MaterialApp(home: Scaffold(body: body)),
-  );
+  await tester.pumpWidget(MaterialApp(home: Scaffold(body: body)));
   await tester.pumpAndSettle();
   return formKey;
 }
@@ -125,8 +121,9 @@ void main() {
       expect(fieldText(tester), '7400123456');
     });
 
-    testWidgets('keeps a national number that looks like a dial code',
-        (tester) async {
+    testWidgets('keeps a national number that looks like a dial code', (
+      tester,
+    ) async {
       // Issue #19: '971123456' is a UAE national number, not '+971 123456'.
       await pumpField(
         tester,
@@ -138,8 +135,9 @@ void main() {
       expect(fieldText(tester), '971123456');
     });
 
-    testWidgets('keeps an Italian number starting with its dial code',
-        (tester) async {
+    testWidgets('keeps an Italian number starting with its dial code', (
+      tester,
+    ) async {
       await pumpField(
         tester,
         initialValue: '3921234567',
@@ -150,8 +148,9 @@ void main() {
       expect(fieldText(tester), '3921234567');
     });
 
-    testWidgets('keeps a Kazakh number starting with its dial code',
-        (tester) async {
+    testWidgets('keeps a Kazakh number starting with its dial code', (
+      tester,
+    ) async {
       await pumpField(
         tester,
         initialValue: '7011234567',
@@ -184,8 +183,9 @@ void main() {
       expect(fieldText(tester), '447400123456');
     });
 
-    testWidgets('InitialValueFormat.international always strips',
-        (tester) async {
+    testWidgets('InitialValueFormat.international always strips', (
+      tester,
+    ) async {
       await pumpField(
         tester,
         initialValue: '447400123456',
@@ -227,11 +227,7 @@ void main() {
   group('onChanged', () {
     testWidgets('reports the number as it is typed', (tester) async {
       final seen = <PhoneNumber>[];
-      await pumpField(
-        tester,
-        initialCountryCode: 'GB',
-        onChanged: seen.add,
-      );
+      await pumpField(tester, initialCountryCode: 'GB', onChanged: seen.add);
 
       await tester.enterText(phoneInput, '740012');
       await tester.pump();
@@ -248,8 +244,9 @@ void main() {
   });
 
   group('country picker', () {
-    testWidgets('picking a country notifies and updates the dial code',
-        (tester) async {
+    testWidgets('picking a country notifies and updates the dial code', (
+      tester,
+    ) async {
       Country? picked;
       final changes = <PhoneNumber>[];
       await pumpField(
@@ -273,8 +270,9 @@ void main() {
       expect(inField('+1'), findsNothing);
     });
 
-    testWidgets('switching to a shorter country truncates the number',
-        (tester) async {
+    testWidgets('switching to a shorter country truncates the number', (
+      tester,
+    ) async {
       await pumpField(tester, initialCountryCode: 'US');
 
       await tester.enterText(phoneInput, '2015550123');
@@ -299,11 +297,7 @@ void main() {
     });
 
     testWidgets('hides the flag', (tester) async {
-      await pumpField(
-        tester,
-        initialCountryCode: 'US',
-        showCountryFlag: false,
-      );
+      await pumpField(tester, initialCountryCode: 'US', showCountryFlag: false);
 
       expect(find.byType(CountryFlag), findsNothing);
       expect(inField('+1'), findsOneWidget);
@@ -311,11 +305,7 @@ void main() {
     });
 
     testWidgets('hides the dial code', (tester) async {
-      await pumpField(
-        tester,
-        initialCountryCode: 'US',
-        showCountryCode: false,
-      );
+      await pumpField(tester, initialCountryCode: 'US', showCountryCode: false);
 
       expect(find.byType(CountryFlag), findsOneWidget);
       expect(inField('+1'), findsNothing);
@@ -365,8 +355,9 @@ void main() {
       expect(fieldText(tester), '2015550123');
     });
 
-    testWidgets('disableLengthCheck allows typing past the maximum',
-        (tester) async {
+    testWidgets('disableLengthCheck allows typing past the maximum', (
+      tester,
+    ) async {
       await pumpField(
         tester,
         initialCountryCode: 'US',
@@ -403,8 +394,9 @@ void main() {
       expect(find.text('Invalid phone number'), findsNothing);
     });
 
-    testWidgets('a custom validator runs after the length check',
-        (tester) async {
+    testWidgets('a custom validator runs after the length check', (
+      tester,
+    ) async {
       final form = await pumpField(
         tester,
         initialCountryCode: 'US',
@@ -429,8 +421,9 @@ void main() {
       expect(find.text('Invalid phone number'), findsNothing);
     });
 
-    testWidgets('an async validator eventually shows its message',
-        (tester) async {
+    testWidgets('an async validator eventually shows its message', (
+      tester,
+    ) async {
       final completer = Completer<String?>();
       final fieldKey = GlobalKey<FormFieldState>();
       final form = await pumpField(
@@ -523,25 +516,22 @@ void main() {
   });
 
   group('formatInput', () {
-    testWidgets(
-      'formats as you type but reports digits only',
-      (tester) async {
-        PhoneNumber? changed;
-        await pumpField(
-          tester,
-          initialCountryCode: 'US',
-          formatInput: true,
-          onChanged: (p) => changed = p,
-        );
+    testWidgets('formats as you type but reports digits only', (tester) async {
+      PhoneNumber? changed;
+      await pumpField(
+        tester,
+        initialCountryCode: 'US',
+        formatInput: true,
+        onChanged: (p) => changed = p,
+      );
 
-        await tester.enterText(phoneInput, '2015550123');
-        await tester.pump();
+      await tester.enterText(phoneInput, '2015550123');
+      await tester.pump();
 
-        expect(fieldText(tester), '(201) 555-0123');
-        expect(changed?.number, '2015550123');
-        expect(changed?.completeNumber, '+12015550123');
-      },
-    );
+      expect(fieldText(tester), '(201) 555-0123');
+      expect(changed?.number, '2015550123');
+      expect(changed?.completeNumber, '+12015550123');
+    });
 
     // The formatting itself is right; only the character cap above breaks it.
     testWidgets('formats without the length cap in the way', (tester) async {
@@ -564,24 +554,21 @@ void main() {
   });
 
   group('detectCountryOnPaste', () {
-    testWidgets(
-      'an international number switches the country',
-      (tester) async {
-        Country? picked;
-        await pumpField(
-          tester,
-          initialCountryCode: 'US',
-          onCountryChanged: (c) => picked = c,
-        );
+    testWidgets('an international number switches the country', (tester) async {
+      Country? picked;
+      await pumpField(
+        tester,
+        initialCountryCode: 'US',
+        onCountryChanged: (c) => picked = c,
+      );
 
-        await tester.enterText(phoneInput, '+447400123456');
-        await tester.pump();
+      await tester.enterText(phoneInput, '+447400123456');
+      await tester.pump();
 
-        expect(picked?.code, 'GB');
-        expect(inField('+44'), findsOneWidget);
-        expect(fieldText(tester), '7400123456');
-      },
-    );
+      expect(picked?.code, 'GB');
+      expect(inField('+44'), findsOneWidget);
+      expect(fieldText(tester), '7400123456');
+    });
   });
 
   group('builders', () {
@@ -609,8 +596,9 @@ void main() {
       expect(inField('+1'), findsNothing);
     });
 
-    testWidgets('countrySelectorBuilder replaces the whole selector',
-        (tester) async {
+    testWidgets('countrySelectorBuilder replaces the whole selector', (
+      tester,
+    ) async {
       await pumpField(
         tester,
         initialCountryCode: 'US',

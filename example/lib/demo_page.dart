@@ -176,16 +176,14 @@ class PhoneValuePanel extends StatelessWidget {
                   children: <Widget>[
                     SizedBox(
                       width: 168,
-                      child: Text(
-                        entry.key,
-                        style: theme.textTheme.bodySmall,
-                      ),
+                      child: Text(entry.key, style: theme.textTheme.bodySmall),
                     ),
                     Expanded(
                       child: Text(
                         entry.value,
-                        style: theme.textTheme.bodyMedium
-                            ?.copyWith(fontWeight: FontWeight.w600),
+                        style: theme.textTheme.bodyMedium?.copyWith(
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                     ),
                   ],
