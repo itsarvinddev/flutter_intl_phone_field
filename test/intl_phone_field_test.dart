@@ -1,8 +1,8 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_intl_phone_field/flutter_intl_phone_field.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// The editable text of the phone field itself, never the picker's search box.
 Finder get phoneInput => find.descendant(
@@ -52,6 +52,8 @@ Future<GlobalKey<FormState>> pumpField(
   Widget Function(BuildContext, Country)? dialCodeBuilder,
   Widget Function(BuildContext, Country, VoidCallback)? countrySelectorBuilder,
   TextDirection? textDirection,
+  InputDecoration decoration = const InputDecoration(),
+  InputCounterWidgetBuilder? buildCounter,
 }) async {
   final formKey = GlobalKey<FormState>();
 
@@ -79,6 +81,8 @@ Future<GlobalKey<FormState>> pumpField(
       flagBuilder: flagBuilder,
       dialCodeBuilder: dialCodeBuilder,
       countrySelectorBuilder: countrySelectorBuilder,
+      decoration: decoration,
+      buildCounter: buildCounter,
     ),
   );
 
@@ -615,6 +619,28 @@ void main() {
       await tester.tap(find.text('pick US'));
       await tester.pumpAndSettle();
       expect(find.byType(CountryPickerBody), findsOneWidget);
+    });
+  });
+
+  group('material_ui types', () {
+    // The public API takes material_ui's InputDecoration and
+    // InputCounterWidgetBuilder, not the SDK's same-named types.
+    testWidgets('decoration and buildCounter are applied', (tester) async {
+      await pumpField(
+        tester,
+        initialCountryCode: 'US',
+        decoration: const InputDecoration(labelText: 'Phone'),
+        buildCounter:
+            (
+              context, {
+              required currentLength,
+              required isFocused,
+              required maxLength,
+            }) => Text('counter:$currentLength'),
+      );
+
+      expect(find.text('Phone'), findsOneWidget);
+      expect(find.text('counter:0'), findsOneWidget);
     });
   });
 

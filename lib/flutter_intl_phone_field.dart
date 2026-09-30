@@ -11,6 +11,10 @@
 /// )
 /// ```
 ///
+/// The field is built on `package:material_ui`, not on the SDK's
+/// `package:flutter/material.dart`: the app around it, and any
+/// `InputDecoration` passed to it, must come from `material_ui` as well.
+///
 /// Country data — calling codes, national number lengths, validation patterns
 /// and formatting rules — is generated from Google's libphonenumber metadata,
 /// with localised country names from the Unicode CLDR.
