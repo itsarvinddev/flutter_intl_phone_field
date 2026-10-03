@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart'
     show defaultTargetPlatform, kIsWeb, TargetPlatform;
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import 'country.dart';
 
@@ -95,11 +95,11 @@ class CountryFlag extends StatelessWidget {
   }
 
   BorderRadius? _radius() => switch (shape) {
-        FlagShape.rounded => borderRadius ?? BorderRadius.circular(size / 6),
-        FlagShape.rectangle => borderRadius,
-        FlagShape.square => borderRadius,
-        FlagShape.circle => null,
-      };
+    FlagShape.rounded => borderRadius ?? BorderRadius.circular(size / 6),
+    FlagShape.rectangle => borderRadius,
+    FlagShape.square => borderRadius,
+    FlagShape.circle => null,
+  };
 
   Widget _image() {
     final square = shape == FlagShape.circle || shape == FlagShape.square;
@@ -117,26 +117,26 @@ class CountryFlag extends StatelessWidget {
   }
 
   Widget _emoji() => SizedBox(
-        width: size,
-        child: Text(
-          country.flag,
-          textAlign: TextAlign.center,
-          semanticsLabel: country.name,
-          style: TextStyle(fontSize: size * 0.6),
-        ),
-      );
+    width: size,
+    child: Text(
+      country.flag,
+      textAlign: TextAlign.center,
+      semanticsLabel: country.name,
+      style: TextStyle(fontSize: size * 0.6),
+    ),
+  );
 
   /// Last resort: the ISO code, which at least names the country.
   Widget _isoCode() => SizedBox(
-        width: size,
-        child: Text(
-          country.code,
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: size * 0.4,
-            fontWeight: FontWeight.w600,
-            letterSpacing: 0.5,
-          ),
-        ),
-      );
+    width: size,
+    child: Text(
+      country.code,
+      textAlign: TextAlign.center,
+      style: TextStyle(
+        fontSize: size * 0.4,
+        fontWeight: FontWeight.w600,
+        letterSpacing: 0.5,
+      ),
+    ),
+  );
 }

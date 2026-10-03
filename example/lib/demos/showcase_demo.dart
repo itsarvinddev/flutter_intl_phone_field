@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_intl_phone_field/flutter_intl_phone_field.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// A compact tour of what the field can look like, several variants on one
 /// screen.

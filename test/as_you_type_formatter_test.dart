@@ -8,9 +8,9 @@ Country _byCode(String code) => countries.firstWhere((c) => c.code == code);
 String _digitsOf(String s) => s.replaceAll(RegExp(r'\D'), '');
 
 TextEditingValue _value(String text, int offset) => TextEditingValue(
-      text: text,
-      selection: TextSelection.collapsed(offset: offset),
-    );
+  text: text,
+  selection: TextSelection.collapsed(offset: offset),
+);
 
 void main() {
   group('AsYouTypeFormatter digit preservation', () {
@@ -26,10 +26,16 @@ void main() {
           failures.add('${country.code}: $example -> $formatted');
         }
       }
-      expect(checked, greaterThan(200),
-          reason: 'the dataset should carry an example for most countries');
-      expect(failures, isEmpty,
-          reason: 'formatting must never add, drop or reorder digits');
+      expect(
+        checked,
+        greaterThan(200),
+        reason: 'the dataset should carry an example for most countries',
+      );
+      expect(
+        failures,
+        isEmpty,
+        reason: 'formatting must never add, drop or reorder digits',
+      );
     });
 
     test('every example survives being typed one digit at a time', () {
@@ -54,8 +60,10 @@ void main() {
 
     test('non-digits in the input are stripped, not preserved', () {
       final us = _byCode('US');
-      expect(AsYouTypeFormatter.format(us, '(201) 555-0123'),
-          AsYouTypeFormatter.format(us, '2015550123'));
+      expect(
+        AsYouTypeFormatter.format(us, '(201) 555-0123'),
+        AsYouTypeFormatter.format(us, '2015550123'),
+      );
       expect(AsYouTypeFormatter.format(us, '201 555 0123'), '(201) 555-0123');
     });
 
@@ -67,23 +75,31 @@ void main() {
 
   group('AsYouTypeFormatter national layouts', () {
     test('United States', () {
-      expect(AsYouTypeFormatter.format(_byCode('US'), '2015550123'),
-          '(201) 555-0123');
+      expect(
+        AsYouTypeFormatter.format(_byCode('US'), '2015550123'),
+        '(201) 555-0123',
+      );
     });
 
     test('France', () {
-      expect(AsYouTypeFormatter.format(_byCode('FR'), '612345678'),
-          '6 12 34 56 78');
+      expect(
+        AsYouTypeFormatter.format(_byCode('FR'), '612345678'),
+        '6 12 34 56 78',
+      );
     });
 
     test('Japan', () {
-      expect(AsYouTypeFormatter.format(_byCode('JP'), '9012345678'),
-          '90-1234-5678');
+      expect(
+        AsYouTypeFormatter.format(_byCode('JP'), '9012345678'),
+        '90-1234-5678',
+      );
     });
 
     test('United Kingdom', () {
-      expect(AsYouTypeFormatter.format(_byCode('GB'), '7400123456'),
-          '7400 123456');
+      expect(
+        AsYouTypeFormatter.format(_byCode('GB'), '7400123456'),
+        '7400 123456',
+      );
     });
 
     test('the United States example is laid out at every prefix length', () {
@@ -114,16 +130,22 @@ void main() {
   group('AsYouTypeFormatter without rules', () {
     test('a country with no formatting rules returns the digits unchanged', () {
       final antarctica = _byCode('AQ');
-      expect(countryNumberFormats[antarctica.code], isNull,
-          reason: 'AQ is the fixture for "no rules"; pick another if this '
-              'country gains formatting data');
+      expect(
+        countryNumberFormats[antarctica.code],
+        isNull,
+        reason:
+            'AQ is the fixture for "no rules"; pick another if this '
+            'country gains formatting data',
+      );
       expect(AsYouTypeFormatter.format(antarctica, '123456'), '123456');
       expect(AsYouTypeFormatter.format(antarctica, '1'), '1');
     });
 
     test('a number longer than any rule covers is returned unchanged', () {
-      expect(AsYouTypeFormatter.format(_byCode('US'), '20155501234567'),
-          '20155501234567');
+      expect(
+        AsYouTypeFormatter.format(_byCode('US'), '20155501234567'),
+        '20155501234567',
+      );
     });
   });
 
@@ -164,17 +186,19 @@ void main() {
       expect(result.text[result.selection.baseOffset - 1], '9');
     });
 
-    test('deleting a digit mid-number keeps the caret beside its neighbour',
-        () {
-      final formatter = PhoneInputFormatter(country: _byCode('US'));
-      // '(201) 555-0123' with the '5' after ') ' deleted.
-      final result = formatter.formatEditUpdate(
-        _value('(201) 555-0123', 7),
-        _value('(201) 55-0123', 6),
-      );
-      expect(_digitsOf(result.text), '201550123');
-      expect(result.text[result.selection.baseOffset - 1], '1');
-    });
+    test(
+      'deleting a digit mid-number keeps the caret beside its neighbour',
+      () {
+        final formatter = PhoneInputFormatter(country: _byCode('US'));
+        // '(201) 555-0123' with the '5' after ') ' deleted.
+        final result = formatter.formatEditUpdate(
+          _value('(201) 555-0123', 7),
+          _value('(201) 55-0123', 6),
+        );
+        expect(_digitsOf(result.text), '201550123');
+        expect(result.text[result.selection.baseOffset - 1], '1');
+      },
+    );
 
     test('a caret at the start stays at the start', () {
       final formatter = PhoneInputFormatter(country: _byCode('US'));
@@ -187,8 +211,10 @@ void main() {
     });
 
     test('with enabled: false it strips non-digits', () {
-      final formatter =
-          PhoneInputFormatter(country: _byCode('US'), enabled: false);
+      final formatter = PhoneInputFormatter(
+        country: _byCode('US'),
+        enabled: false,
+      );
       final result = formatter.formatEditUpdate(
         const TextEditingValue(),
         _value('(201) 555-0123', 14),
@@ -198,8 +224,10 @@ void main() {
     });
 
     test('with enabled: false it leaves plain digits alone', () {
-      final formatter =
-          PhoneInputFormatter(country: _byCode('US'), enabled: false);
+      final formatter = PhoneInputFormatter(
+        country: _byCode('US'),
+        enabled: false,
+      );
       final result = formatter.formatEditUpdate(
         _value('201555012', 9),
         _value('2015550123', 10),
@@ -252,8 +280,11 @@ void main() {
           _value(typed, typed.length),
         );
         text = result.text;
-        expect(_digitsOf(text), _digitsOf(typed),
-            reason: 'typing "$typed" produced "$text"');
+        expect(
+          _digitsOf(text),
+          _digitsOf(typed),
+          reason: 'typing "$typed" produced "$text"',
+        );
       }
       expect(_digitsOf(text), example);
     });

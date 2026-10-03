@@ -5,6 +5,25 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.0] - Unreleased
+
+Built on [`package:material_ui`](https://pub.dev/packages/material_ui) instead
+of the SDK's `package:flutter/material.dart`. Phone number handling is
+unchanged. See [MIGRATION.md](MIGRATION.md#migrating-to-100).
+
+### Breaking
+
+- **The package uses `package:material_ui`, and your app has to as well.**
+  `decoration`, `buildCounter` and `PickerDialogStyle.searchFieldInputDecoration`
+  take `material_ui` types, and the field needs a `material_ui` `Material`
+  ancestor at runtime.
+- **Minimum SDK is Dart 3.12 / Flutter 3.44** (was Dart 3.4 / Flutter 3.22).
+- **The deprecated import paths are removed:**
+  `package:flutter_intl_phone_field/countries.dart`, `phone_number.dart`,
+  `country_picker_dialog.dart` and `helpers.dart`. Import
+  `package:flutter_intl_phone_field/flutter_intl_phone_field.dart`.
+- **`IntlPhoneField.searchText` is removed.** Use `localizations.searchHint`.
+
 ## [0.1.2] - 2026-09-13
 
 ### Fixed

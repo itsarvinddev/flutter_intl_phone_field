@@ -62,14 +62,13 @@ class IntlPhoneFieldLocalizations {
     String? noCountriesFound,
     String? countrySelectorLabel,
     String? favoritesLabel,
-  }) =>
-      IntlPhoneFieldLocalizations(
-        searchHint: searchHint ?? this.searchHint,
-        invalidNumber: invalidNumber ?? this.invalidNumber,
-        requiredNumber: requiredNumber ?? this.requiredNumber,
-        invalidCharacters: invalidCharacters ?? this.invalidCharacters,
-        noCountriesFound: noCountriesFound ?? this.noCountriesFound,
-        countrySelectorLabel: countrySelectorLabel ?? this.countrySelectorLabel,
-        favoritesLabel: favoritesLabel ?? this.favoritesLabel,
-      );
+  }) => IntlPhoneFieldLocalizations(
+    searchHint: searchHint ?? this.searchHint,
+    invalidNumber: invalidNumber ?? this.invalidNumber,
+    requiredNumber: requiredNumber ?? this.requiredNumber,
+    invalidCharacters: invalidCharacters ?? this.invalidCharacters,
+    noCountriesFound: noCountriesFound ?? this.noCountriesFound,
+    countrySelectorLabel: countrySelectorLabel ?? this.countrySelectorLabel,
+    favoritesLabel: favoritesLabel ?? this.favoritesLabel,
+  );
 }

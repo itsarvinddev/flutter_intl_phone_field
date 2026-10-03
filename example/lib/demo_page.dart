@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_intl_phone_field/flutter_intl_phone_field.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Carries the app-wide light/dark setting down to every page.
 ///
@@ -176,16 +176,14 @@ class PhoneValuePanel extends StatelessWidget {
                   children: <Widget>[
                     SizedBox(
                       width: 168,
-                      child: Text(
-                        entry.key,
-                        style: theme.textTheme.bodySmall,
-                      ),
+                      child: Text(entry.key, style: theme.textTheme.bodySmall),
                     ),
                     Expanded(
                       child: Text(
                         entry.value,
-                        style: theme.textTheme.bodyMedium
-                            ?.copyWith(fontWeight: FontWeight.w600),
+                        style: theme.textTheme.bodyMedium?.copyWith(
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                     ),
                   ],

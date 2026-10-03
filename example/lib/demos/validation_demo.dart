@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_intl_phone_field/flutter_intl_phone_field.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../demo_page.dart';
 
@@ -90,12 +90,14 @@ class _ValidationDemoState extends State<ValidationDemo> {
   Widget build(BuildContext context) {
     return DemoScaffold(
       title: 'Validation',
-      description: 'Each field below is validated on user interaction '
+      description:
+          'Each field below is validated on user interaction '
           '(AutovalidateMode.onUserInteraction, the default).',
       children: <Widget>[
         DemoSection(
           title: '1. Built-in length check',
-          caption: 'No validator at all. The field rejects anything outside '
+          caption:
+              'No validator at all. The field rejects anything outside '
               "the country's minLength..maxLength range.",
           child: Column(
             children: <Widget>[
@@ -111,7 +113,8 @@ class _ValidationDemoState extends State<ValidationDemo> {
         ),
         DemoSection(
           title: '2. Custom synchronous validator',
-          caption: 'Runs after the length check. Returns a message, or null '
+          caption:
+              'Runs after the length check. Returns a message, or null '
               'when the number is acceptable.',
           child: Column(
             children: <Widget>[
@@ -131,7 +134,8 @@ class _ValidationDemoState extends State<ValidationDemo> {
         ),
         DemoSection(
           title: '3. Asynchronous validator',
-          caption: 'Returns Future<String?>. Simulated with Future.delayed; '
+          caption:
+              'Returns Future<String?>. Simulated with Future.delayed; '
               'in a real app this would be an availability check.',
           child: Column(
             children: <Widget>[
@@ -157,7 +161,8 @@ class _ValidationDemoState extends State<ValidationDemo> {
         ),
         DemoSection(
           title: '4. strictValidation',
-          caption: 'Requires the number to match a real fixed-line or mobile '
+          caption:
+              'Requires the number to match a real fixed-line or mobile '
               'range, not merely to be of a plausible length.',
           child: Column(
             children: <Widget>[
@@ -167,7 +172,8 @@ class _ValidationDemoState extends State<ValidationDemo> {
                 strictValidation: true,
                 decoration: phoneDecoration(
                   'Strict',
-                  helper: '7400123456 passes; 1111111111 is the right length '
+                  helper:
+                      '7400123456 passes; 1111111111 is the right length '
                       'but no such range exists.',
                 ),
                 onChanged: (phone) => setState(() => _strictValue = phone),

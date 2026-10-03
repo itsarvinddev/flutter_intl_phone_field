@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_intl_phone_field/flutter_intl_phone_field.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../demo_page.dart';
 
@@ -34,7 +34,8 @@ class _EdgeCasesDemoState extends State<EdgeCasesDemo> {
   Widget build(BuildContext context) {
     return DemoScaffold(
       title: 'Edge cases',
-      description: 'Layout and parsing situations that are easy to get wrong. '
+      description:
+          'Layout and parsing situations that are easy to get wrong. '
           'Each one is shown with its live value so the behaviour is visible.',
       children: <Widget>[
         DemoSection(
@@ -92,7 +93,8 @@ class _EdgeCasesDemoState extends State<EdgeCasesDemo> {
         ),
         DemoSection(
           title: 'Disabled and read-only',
-          caption: 'enabled: false greys the field out and blocks the picker. '
+          caption:
+              'enabled: false greys the field out and blocks the picker. '
               'readOnly: true keeps it legible and selectable, but not '
               'editable — the picker still opens.',
           child: Column(
@@ -122,7 +124,8 @@ class _EdgeCasesDemoState extends State<EdgeCasesDemo> {
         ),
         DemoSection(
           title: 'Pre-filled national number (issue #19)',
-          caption: "initialValue: '971234567' with initialCountryCode: 'AE'. "
+          caption:
+              "initialValue: '971234567' with initialCountryCode: 'AE'. "
               'The value is national, so the leading 971 is subscriber '
               'digits — not the calling code — and is kept.',
           child: Column(
@@ -135,16 +138,15 @@ class _EdgeCasesDemoState extends State<EdgeCasesDemo> {
               ),
               PhoneValuePanel(
                 value: _national,
-                extras: const <String, String>{
-                  'expected number': '971234567',
-                },
+                extras: const <String, String>{'expected number': '971234567'},
               ),
             ],
           ),
         ),
         DemoSection(
           title: 'Pre-filled international number',
-          caption: "initialValue: '+971501234567'. It starts with '+', so the "
+          caption:
+              "initialValue: '+971501234567'. It starts with '+', so the "
               'calling code is stripped and the country is detected.',
           child: Column(
             children: <Widget>[
@@ -155,16 +157,15 @@ class _EdgeCasesDemoState extends State<EdgeCasesDemo> {
               ),
               PhoneValuePanel(
                 value: _international,
-                extras: const <String, String>{
-                  'expected number': '501234567',
-                },
+                extras: const <String, String>{'expected number': '501234567'},
               ),
             ],
           ),
         ),
         DemoSection(
           title: 'InitialValueFormat.national',
-          caption: 'Forces the national reading even for a value that looks '
+          caption:
+              'Forces the national reading even for a value that looks '
               'international. Use it when you know your stored numbers never '
               'carry a calling code.',
           child: Column(
@@ -179,9 +180,7 @@ class _EdgeCasesDemoState extends State<EdgeCasesDemo> {
               ),
               PhoneValuePanel(
                 value: _forcedNational,
-                extras: const <String, String>{
-                  'expected number': '00971501',
-                },
+                extras: const <String, String>{'expected number': '00971501'},
               ),
             ],
           ),

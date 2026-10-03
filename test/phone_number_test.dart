@@ -29,19 +29,29 @@ void main() {
     });
 
     test('rejects letters', () {
-      expect(() => PhoneNumber.parse('+44abcdef'),
-          throwsA(isA<InvalidCharactersException>()));
-      expect(() => PhoneNumber.parse('+44abcdef1'),
-          throwsA(isA<InvalidCharactersException>()));
+      expect(
+        () => PhoneNumber.parse('+44abcdef'),
+        throwsA(isA<InvalidCharactersException>()),
+      );
+      expect(
+        () => PhoneNumber.parse('+44abcdef1'),
+        throwsA(isA<InvalidCharactersException>()),
+      );
     });
 
     test('rejects an empty or unmatchable number', () {
       expect(
-          () => PhoneNumber.parse(''), throwsA(isA<NumberTooShortException>()));
-      expect(() => PhoneNumber.parse('+'),
-          throwsA(isA<InvalidCharactersException>()));
-      expect(() => PhoneNumber.parse('+9999999999'),
-          throwsA(isA<NumberTooShortException>()));
+        () => PhoneNumber.parse(''),
+        throwsA(isA<NumberTooShortException>()),
+      );
+      expect(
+        () => PhoneNumber.parse('+'),
+        throwsA(isA<InvalidCharactersException>()),
+      );
+      expect(
+        () => PhoneNumber.parse('+9999999999'),
+        throwsA(isA<NumberTooShortException>()),
+      );
     });
   });
 
@@ -100,7 +110,10 @@ void main() {
   group('validation', () {
     test('isValidNumber checks the length range', () {
       const gb = PhoneNumber(
-          countryISOCode: 'GB', countryCode: '+44', number: '7400123456');
+        countryISOCode: 'GB',
+        countryCode: '+44',
+        number: '7400123456',
+      );
       expect(gb.isValidNumber(), isTrue);
       expect(gb.copyWith(number: '740012').isValidNumber(), isFalse);
       expect(gb.copyWith(number: '74001234567890').isValidNumber(), isFalse);
@@ -108,41 +121,67 @@ void main() {
 
     test('validate throws describing the failure', () {
       const gb = PhoneNumber(
-          countryISOCode: 'GB', countryCode: '+44', number: '7400123456');
+        countryISOCode: 'GB',
+        countryCode: '+44',
+        number: '7400123456',
+      );
       expect(gb.validate, returnsNormally);
-      expect(() => gb.copyWith(number: '7400').validate(),
-          throwsA(isA<NumberTooShortException>()));
-      expect(() => gb.copyWith(number: '740012345678901').validate(),
-          throwsA(isA<NumberTooLongException>()));
-      expect(() => gb.copyWith(number: '74001234ab').validate(),
-          throwsA(isA<InvalidCharactersException>()));
+      expect(
+        () => gb.copyWith(number: '7400').validate(),
+        throwsA(isA<NumberTooShortException>()),
+      );
+      expect(
+        () => gb.copyWith(number: '740012345678901').validate(),
+        throwsA(isA<NumberTooLongException>()),
+      );
+      expect(
+        () => gb.copyWith(number: '74001234ab').validate(),
+        throwsA(isA<InvalidCharactersException>()),
+      );
     });
 
     test('strict mode rejects an unassigned range of the right length', () {
       const us = PhoneNumber(
-          countryISOCode: 'US', countryCode: '+1', number: '1112223333');
+        countryISOCode: 'US',
+        countryCode: '+1',
+        number: '1112223333',
+      );
       expect(us.isValidNumber(), isTrue, reason: 'ten digits is plausible');
-      expect(us.isValidNumber(strict: true), isFalse,
-          reason: 'area code 111 is not assigned');
+      expect(
+        us.isValidNumber(strict: true),
+        isFalse,
+        reason: 'area code 111 is not assigned',
+      );
     });
 
-    test('uses the country it was told, not one re-derived from the digits',
-        () {
-      // 7781123456 is a Guernsey mobile; as a UK number it is still valid.
-      const gg = PhoneNumber(
-          countryISOCode: 'GG', countryCode: '+44', number: '7781123456');
-      expect(gg.country?.code, 'GG');
-      expect(gg.isValidNumber(), isTrue);
-    });
+    test(
+      'uses the country it was told, not one re-derived from the digits',
+      () {
+        // 7781123456 is a Guernsey mobile; as a UK number it is still valid.
+        const gg = PhoneNumber(
+          countryISOCode: 'GG',
+          countryCode: '+44',
+          number: '7781123456',
+        );
+        expect(gg.country?.code, 'GG');
+        expect(gg.isValidNumber(), isTrue);
+      },
+    );
   });
 
   group('value semantics', () {
     const a = PhoneNumber(
-        countryISOCode: 'GB', countryCode: '+44', number: '7400123456');
+      countryISOCode: 'GB',
+      countryCode: '+44',
+      number: '7400123456',
+    );
 
     test('equality and hashCode', () {
       const b = PhoneNumber(
-          countryISOCode: 'GB', countryCode: '+44', number: '7400123456');
+        countryISOCode: 'GB',
+        countryCode: '+44',
+        number: '7400123456',
+      );
       expect(a, b);
       expect(a.hashCode, b.hashCode);
       expect(a, isNot(a.copyWith(number: '7400123457')));
@@ -154,7 +193,10 @@ void main() {
 
     test('completeNumber tolerates a countryCode given without +', () {
       const noPlus = PhoneNumber(
-          countryISOCode: 'GB', countryCode: '44', number: '7400123456');
+        countryISOCode: 'GB',
+        countryCode: '44',
+        number: '7400123456',
+      );
       expect(noPlus.completeNumber, '+447400123456');
     });
   });
