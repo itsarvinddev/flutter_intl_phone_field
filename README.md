@@ -441,8 +441,8 @@ it, pass your own `dropdownIcon`.
 
 ### Localization
 
-The package ships English strings and takes no localization dependency. Override
-the ones you need from wherever your app already resolves strings:
+The field ships English strings and needs no generated localization delegates.
+Override the ones you need from wherever your app already resolves strings:
 
 ```dart
 IntlPhoneField(

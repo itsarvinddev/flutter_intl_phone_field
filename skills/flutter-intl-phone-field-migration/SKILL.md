@@ -164,8 +164,10 @@ Steps:
 
 ## After migrating
 
-Run `flutter analyze`. Any remaining `package:flutter/material.dart` import,
-removed shim import or `searchText` argument shows up as an error there.
+Run `flutter analyze` to catch removed shim imports, `searchText` arguments,
+and incompatible Material types. An SDK `MaterialApp`/`Scaffold` can still
+compile when only shared widget types are used, so also run the app and open
+the field and picker to verify their `material_ui` ancestors at runtime.
 
 Full prose guide with before/after for every change:
 <https://github.com/itsarvinddev/flutter_intl_phone_field/blob/main/MIGRATION.md>
